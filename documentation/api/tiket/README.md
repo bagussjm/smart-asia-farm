@@ -20,6 +20,7 @@ Request :
 
 ```json 
 {
+   "id" : "string,unique"
    "tanggal_masuk" : "date",
    "jam_masuk" : "time",
    "status" : "enum['pending','success','failed']",
