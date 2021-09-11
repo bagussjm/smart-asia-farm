@@ -39,7 +39,7 @@ Response :
     "code" : "number",
     "status" : "string",
     "data" : {
-        "id" : "string,unique",
+        "id" : "bigint,unique",
         "email" : "string",
         "password" : "string",
         "jenis_pengguna" : "enum['admin','pengelola','pelanggan']",
@@ -71,7 +71,7 @@ Response :
     "code" : "number",
     "status" : "string",
     "data" : {
-         "id" : "string,unique",
+         "id" : "bigint,unique",
          "email" : "string",
          "password" : "string",
          "jenis_pengguna" : "enum['admin','pengelola','pelanggan']",
@@ -119,7 +119,7 @@ Response :
     "code" : "number",
     "status" : "string",
     "data" : {
-         "id" : "string,unique",
+         "id" : "bigint,unique",
          "email" : "string",
          "password" : "string",
          "jenis_pengguna" : "enum['admin','pengelola','pelanggan']",
@@ -155,7 +155,7 @@ Response :
     "status" : "string",
     "data" : [
         {
-            "id" : "string,unique",
+            "id" : "bigint,unique",
             "email" : "string",
             "password" : "string",
             "jenis_pengguna" : "enum['admin','pengelola','pelanggan']",
@@ -170,7 +170,7 @@ Response :
             "deleted_at" : "timestamps",
         },
         {
-            "id" : "string,unique",
+            "id" : "bigint,unique",
             "email" : "string",
             "password" : "string",
             "jenis_pengguna" : "enum['admin','pengelola','pelanggan']",
