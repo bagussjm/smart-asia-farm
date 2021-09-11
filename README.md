@@ -1,156 +1,17 @@
-# kost-kita API Spec v1.0.0
+# E-Ticket Asia Farm Web Based and Restful APIs
 
-## Authentication
+## Description
+Online Ticket Booking at Asia Farm Pekanbaru City, Riau Province.
 
-No authentication needed to use API
+## Restful API
+Restful API documentation can be found [here](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api)
 
-## Create Kost
+## Framework
 
-Request :
-- Method : POST
-- Endpoint : `/api/kost`
-- Header :
-    - Content-Type: application/json
-    - Accept: application/json
-- Body :
+ - Web Backend App development using [laravel framework](https://laravel.com/).
+ - Web Frontend App development using [vue.js v2 framework](https://vuejs.org/).
 
-```json 
-{
-    "id" : "string, unique",
-    "name" : "string",
-    "price" : "long",
-    "quantity" : "integer"
-}
-```
+## License
 
-Response :
+The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-```json 
-{
-    "code" : "number",
-    "status" : "string",
-    "data" : {
-         "id" : "string, unique",
-         "name" : "string",
-         "price" : "long",
-         "quantity" : "integer",
-         "createdAt" : "date",
-         "updatedAt" : "date"
-     }
-}
-```
-
-## Get Kost
-
-Request :
-- Method : GET
-- Endpoint : `/api/kosts/{id_kost}`
-- Header :
-    - Accept: application/json
-
-Response :
-
-```json 
-{
-    "code" : "number",
-    "status" : "string",
-    "data" : {
-         "id" : "string, unique",
-         "nama" : "string",
-         "price" : "long",
-         "quantity" : "integer",
-         "createdAt" : "date",
-         "updatedAt" : "date"
-     }
-}
-```
-
-## Update Kost
-
-Request :
-- Method : PUT
-- Endpoint : `/api/kost/{id_kost}`
-- Header :
-    - Content-Type: application/json
-    - Accept: application/json
-- Body :
-
-```json 
-{
-    "name" : "string",
-    "price" : "long",
-    "quantity" : "integer"
-}
-```
-
-Response :
-
-```json 
-{
-    "code" : "number",
-    "status" : "string",
-    "data" : {
-         "id" : "string, unique",
-         "name" : "string",
-         "price" : "long",
-         "quantity" : "integer",
-         "createdAt" : "date",
-         "updatedAt" : "date"
-     }
-}
-```
-
-## List Kost
-
-Request :
-- Method : GET
-- Endpoint : `/api/kosts`
-- Header :
-    - Accept: application/json
-- Query Param :
-    - size : number,
-    - page : number
-
-Response :
-
-```json 
-{
-    "code" : "number",
-    "status" : "string",
-    "data" : [
-        {
-             "id" : "string, unique",
-             "name" : "string",
-             "price" : "long",
-             "quantity" : "integer",
-             "createdAt" : "date",
-             "updatedAt" : "date"
-        },
-        {
-             "id" : "string, unique",
-             "name" : "string",
-             "price" : "long",
-             "quantity" : "integer",
-             "createdAt" : "date",
-             "updatedAt" : "date"
-         }
-    ]
-}
-```
-
-## Delete Kost
-
-Request :
-- Method : DELETE
-- Endpoint : `/api/kost/{id_kost}`
-- Header :
-    - Accept: application/json
-
-Response :
-
-```json 
-{
-    "code" : "number",
-    "status" : "string"
-}
-```
