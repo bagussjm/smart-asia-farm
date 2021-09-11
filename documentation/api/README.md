@@ -5,5 +5,5 @@
  - [Wahana](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api/wahana)
  - [Keranjang](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api/keranjang)
  - [TIket](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api/tiket)
- - [User]()
+ - [User](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api/user)
     
