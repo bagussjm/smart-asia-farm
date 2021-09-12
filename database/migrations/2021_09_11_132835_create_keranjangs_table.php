@@ -17,7 +17,7 @@ class CreateKeranjangsTable extends Migration
             $table->id();
             $table->foreignId('id_user');
             $table->foreignId('id_wahana');
-            $table->foreignId('id_tiket')->nullable();
+            $table->string('id_tiket',255)->nullable();
             $table->enum('status_keranjang',['belum diproses','diproses'])->default('belum diproses');
             $table->timestamps();
             $table->softDeletes();
