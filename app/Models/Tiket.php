@@ -4,8 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tiket extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
+
+    protected $table = 'tiket';
+
+    protected $fillable = [
+        'id',
+        'tanggal_masuk',
+        'jam_masuk',
+        'status',
+        'total_bayar',
+        'kode_qr',
+    ];
+
+    public function carts()
+    {
+        return $this->hasMany(Keranjang::class,'id_tiket','id');
+    }
 }
