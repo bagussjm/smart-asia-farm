@@ -11,7 +11,8 @@ class WahanaController extends Controller
     //
     public function index()
     {
-        return view('backend.wahana.index');
+        $data['wahana'] = Wahana::orderBy('created_at','desc')->get();
+        return view('backend.wahana.index',$data);
     }
 
     public function create()
