@@ -5,10 +5,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\KostController;
-use App\Http\Controllers\KamarController;
-use App\Http\Controllers\PemesananController;
-use App\Http\Controllers\AdminController;
 
 // authentication
 Route::get('login',[AuthController::class,'login'])->name('auth.login');
@@ -22,7 +18,9 @@ Route::get('/', function (){
     return Redirect::route('auth.login');
 })->name('app.landing');
 
-Route::middleware('role:admin-pengelola')->group(function (){
+Route::middleware('role:pengelola')->group(function (){
+
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('pengelola.dashboard');
 
 });
 

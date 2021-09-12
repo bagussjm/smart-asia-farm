@@ -650,7 +650,7 @@ dt {
 }
 
 .topbar .topbar-left {
-  background: #292929;
+  background: #d63031;
   float: left;
   /*text-align: center;*/
   height: 70px;
@@ -699,7 +699,7 @@ dt {
 .side-menu {
   width: 240px;
   z-index: 10;
-  background: #212121;
+  background: #d63031;
   bottom: 0;
   margin-top: 0;
   padding-bottom: 30px;
@@ -737,7 +737,7 @@ dt {
 }
 
 #sidebar-menu > ul > li > a {
-  color: #8699ad;
+  color: #fdb4b4;
   display: block;
   padding: 12.5px 20px;
   font-size: 15.7px;
@@ -779,7 +779,7 @@ dt {
 
 #sidebar-menu > ul > li > a.mm-active {
   color: #ffffffdb !important;
-  background-color: #292929;
+  background-color: #ca5a5b;
 }
 
 .menu-title {
@@ -1199,8 +1199,8 @@ button:focus {
 }
 
 .btn-success {
-  background-color: #02a499;
-  border: 1px solid #02a499;
+  background-color: #dc3a40;
+  border: 1px solid #dc3a40;
 }
 
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active,
@@ -3709,7 +3709,7 @@ Invoice
   line-height: 74px;
   background: #ffffff;
   border-radius: 50%;
-  border-bottom: 2px solid #02a499;
+  border-bottom: 2px solid #dc3a40;
 }
 
 .account-card .account-card-content {

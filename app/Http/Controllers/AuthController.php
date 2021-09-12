@@ -13,13 +13,8 @@ class AuthController extends Controller
 {
     public function login()
     {
-        if (Auth::check()){
-            if (Auth::user()->jenis_pengguna === 'pemilik'){
-                return Redirect::route('user.dashboard');
-            }elseif (Auth::user()->jenis_pengguna === 'admin-pengelola'){
-                return Redirect::route('admin.dashboard');
-            }
-        }
+
+        if (Auth::check()) return Redirect::route('pengelola.dashboard');
         return view('backend.auth.login');
     }
 
@@ -28,10 +23,10 @@ class AuthController extends Controller
          if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
              $user = $request->user();
              $request->session()->regenerate();
-             if ($user->jenis_pengguna === 'pemilik'){
+             if ($user->jenis_pengguna === 'admin'){
                  return Redirect::route('user.dashboard')->with('info','Selamat Datang '.$user->nama_lengkap);
-             }elseif ($user->jenis_pengguna === 'admin-pengelola'){
-                 return Redirect::route('admin.dashboard')->with('info','Selamat Datang '.$user->nama_lengkap);
+             }elseif ($user->jenis_pengguna === 'pengelola'){
+                 return Redirect::route('pengelola.dashboard')->with('info','Selamat Datang '.$user->nama_lengkap);
              }
          }
          return Redirect::route('auth.login')->with('error','Username dan Password tidak valid');

@@ -5,20 +5,20 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Kost Kita - Cari Kost Mudah dan Murah</title>
+    <title>E-Tiket Asia Farm - Booking tiket layanan Asia Farm dengan mudah</title>
     <meta content="Admin Dashboard" name="description"/>
     <meta content="Themesbrand" name="author"/>
-    <link rel="shortcut icon" href="{{url('/images/kost-kita-icon.ico')}}">
+    <link rel="shortcut icon" href="{{url('/images/asia-farm.ico')}}">
 
 
     <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{url('/css/metismenu.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ url('/css/icons.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{url('/css/style.css?v=1.0.3')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/css/style.css?v=1.1.0')}}" rel="stylesheet" type="text/css">
 
     <style>
         #bg-login{
-            background: #02a499;
+            background: #dc3a40;
         }
     </style>
 </head>
@@ -31,10 +31,10 @@
         <div class="card overflow-hidden account-card mx-3">
 
             <div class=" p-4 text-white text-center position-relative" id="bg-login">
-                <h4 class="font-20 m-b-5">KOST KITA</h4>
-                <p class="text-white-50 mb-4">Cari Kost Murah dan Mudah </p>
+                <h4 class="font-20 m-b-5">E-Tiket Asia Farm</h4>
+                <p class="text-white-50 mb-4">Booking Tiket Layanan Asia Farm Dengan Mudah</p>
                 <a href="{{ url('/') }}" class="logo logo-admin">
-                    <kk-icon />
+                    <img src="{{ url('/images/asia-farm-logo.png') }}" alt="" width="100%" height="100%">
                 </a>
             </div>
             <div class="account-card-content">
@@ -61,8 +61,8 @@
 
 
                     <div class="form-group">
-                        <label for="email">Nama Pengguna</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Isikan email ">
+                        <label for="email">Nama Pengelola</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Isikan email">
                     </div>
 
                     <div class="form-group">
@@ -92,17 +92,16 @@
             </div>
         </div>
 
-        <div class="m-t-40 text-center">
-            <p>Belum Memiliki Akun ? <a href="{{ url('register') }}" class="font-500 text-success"> Daftar Sekarang </a> </p>
-
-        </div>
+{{--        <div class="m-t-40 text-center">--}}
+{{--            <p>Belum Memiliki Akun ? <a href="{{ url('register') }}" class="font-500 text-success"> Daftar Sekarang </a> </p>--}}
+{{--        </div>--}}
 
     </div>
     <!-- end wrapper-page -->
 
 
     <!-- App js -->
-    <script src="{{url('/js/app.js?v=1.0.3')}}"></script>
+    <script src="{{url('/js/app.js?v=1.1.0')}}"></script>
     <!-- jQuery  -->
     <script src="{{url('/js/app/jquery.min.js')}}"></script>
     <script src="{{url('/js/app/bootstrap.bundle.min.js')}}"></script>

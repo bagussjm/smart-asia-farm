@@ -5,16 +5,16 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Kost Kita - Cari Kost Mudah dan Murah</title>
+    <title>E-Tiket Asia Farm - Booking tiket layanan Asia Farm dengan mudah</title>
     <meta content="Admin Dashboard" name="description"/>
     <meta content="Themesbrand" name="author"/>
-    <link rel="shortcut icon" href="{{url('/images/kost-kita-icon.ico')}}">
+    <link rel="shortcut icon" href="{{url('/images/asia-farm-logo.ico')}}">
 
 
     <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{url('/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ url('/css/icons.css?v=1.0.4') }}" rel="stylesheet" type="text/css">
-    <link href="{{url('/css/style.css?v=1.0.4')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/css/style.css?v=1.1.0')}}" rel="stylesheet" type="text/css">
 
     <style>
         #table_filter{
@@ -39,69 +39,22 @@
             <div class="topbar-left px-3">
                 <a href="{{  url('/') }}" class="logo">
                     <span>
-                        <img src="{{url('/images/kost-kita-text-large.png')}}" alt="" width="116px">
+                        <img src="{{url('/images/e-ticket-af.png')}}" alt="" width="100%"  height="auto">
                     </span>
                     <i>
-                        <img src="{{url('/images/kost-kita-icon.png')}}" alt="" >
+                        <img src="{{url('/images/e-ticket-af.png')}}" alt="" width="100%"  height="auto">
                     </i>
                 </a>
             </div>
 
             <nav class="navbar-custom">
                 <ul class="navbar-right list-inline float-right mb-0">
-                    @if (\Illuminate\Support\Facades\Auth::user()->jenis_pengguna === 'pemilik')
-                        <!-- notification -->
-                        <li class="dropdown notification-list list-inline-item">
-                            <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#"
-                               role="button" aria-haspopup="false" aria-expanded="false">
-                                <i class="mdi mdi-bell-outline noti-icon"></i>
-    {{--                            <span class="badge badge-pill badge-danger noti-icon-badge">2</span>--}}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
-                                <!-- item-->
-
-                                    <h6 class="dropdown-item-text">
-                                        Notifikasi Pemesanan Kamar Kos
-                                    </h6>
-                                    <div class="slimscroll notification-item-list">
-                                        @foreach(
-                                            \Illuminate\Support\Facades\Auth::user()
-                                            ->notifikasi()
-                                            ->orderBy('created_at','DESC')
-                                            ->limit(5)
-                                            ->get() as $item)
-                                        <!-- item-->
-                                        <a href="{{ route('notifikasi.read',$item->pivot->id_notifikasi) }}" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-primary">
-                                                <i class="mdi mdi-room-service"></i>
-                                            </div>
-                                            <p class="notify-details">
-                                                {{ $item->nama_kamar }}
-
-                                                @if ($item->pivot->dibaca)
-                                                    <i class="mdi mdi-check-circle text-success"></i>
-                                                @endif
-                                                <span >
-                                                    {{ $item->pivot->pesan_notifikasi }} {{ $item->nama_kamar }}
-                                                </span>
-                                                <span class="text-muted">
-                                                    {{ \Carbon\Carbon::make($item->pivot->created_at)->isoFormat('D MMMM Y HH:SS') }} WIB
-                                                </span>
-                                            </p>
-                                        </a>
-                                        @endforeach
-
-                                    </div>
-                            </div>
-                        </li>
-                    @endif
                     <li class="dropdown notification-list list-inline-item">
                         @if (\Illuminate\Support\Facades\Auth::check())
                             <div class="dropdown notification-list nav-pro-img">
                                 <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown"
                                    href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                    <img src="{{url('/images/kost-kita-icon.ico')}}" alt="user" class="rounded-circle">
+                                    <img src="{{url('/images/e-ticket-af-rounded.png')}}" alt="user" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                     <!-- item-->
@@ -140,23 +93,23 @@
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu" id="side-menu">
-                        @if (\Illuminate\Support\Facades\Auth::user()->jenis_pengguna === 'admin-pengelola')
+                        @if (\Illuminate\Support\Facades\Auth::user()->jenis_pengguna === 'pengelola')
                             <li>
-                                <a href="{{ route('admin.dashboard') }}" class="waves-effect">
-                                    <i class="ti-home"></i>
+                                <a href="{{ route('pengelola.dashboard') }}" class="waves-effect">
+                                    <i class="fa fa-home"></i>
                                     <span> Dashboard </span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.data-pencari') }}" class="waves-effect">
-                                    <i class="fa fa-users"> </i>
-                                    <span> Data Pencari Kos</span>
+                                <a href="#" class="waves-effect">
+                                    <i class="fa fa-democrat"> </i>
+                                    <span> Data Wahana</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.data-pemilik') }}" class="waves-effect">
-                                    <i class="mdi mdi-account-circle"> </i>
-                                    <span> Data Pemilik Kos</span>
+                                <a href="#" class="waves-effect">
+                                    <i class="fa fa-landmark"> </i>
+                                    <span> Data Landmark</span>
                                 </a>
                             </li>
                         @endif
@@ -181,13 +134,6 @@
                                 <span> Data Pemesanan Kos</span>
                             </a>
                         </li>
-
-{{--                        <li>--}}
-{{--                            <a href="#" class="waves-effect">--}}
-{{--                                <i class="ti-write"> </i>--}}
-{{--                                <span> Data Kontrak </span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
                         @endif
 
                     </ul>
@@ -276,7 +222,7 @@
             <!-- content -->
 
             <footer class="footer">
-                © 2021 kost kita
+                © 2021 E-Tiket Asia Farm
             </footer>
 
         </div>
@@ -289,7 +235,7 @@
     <!-- END wrapper -->
 
     <!-- App js -->
-    <script src="{{url('/js/app.js?v=1.0.3')}}"></script>
+    <script src="{{url('/js/app.js?v=1.1.0')}}"></script>
     <!-- jQuery  -->
     <script src="{{url('/js/app/jquery.min.js')}}"></script>
     <script src="{{url('/js/app/bootstrap.bundle.min.js')}}"></script>
