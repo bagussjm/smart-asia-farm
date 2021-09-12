@@ -5,7 +5,6 @@
             ref="imageInput"
             :options="dropzoneOptions"
             id="imageInput"
-            placeholder="Pilih satu atau lebih gambar"
             @vdropzone-file-added="fileAdded"
             @vdropzone-removed-file="fileRemoved"/>
     </div>
@@ -62,14 +61,14 @@
         data(){
             return {
                 dropzoneOptions: {
-                    url: config.AppUrl+'/images/kost-kita-icon.png',
+                    url: config.AppUrl+'/images/asia-farm-logo.ico',
                     thumbnailWidth: 150,
                     maxFilesize: 8,
                     duplicateCheck: true,
                     acceptedFiles: 'image/*',
                     uploadMultiple: true,
                     addRemoveLinks: true,
-                    dictDefaultMessage: '<i class="mdi mdi-upload"></i> '+this.placeholder+' ',
+                    dictDefaultMessage: '<i class="mdi mdi-image"></i> '+this.placeholder+' ',
                     headers: { "My-Awesome-Header": "header value" }
                 },
                 images: []

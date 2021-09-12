@@ -13,7 +13,7 @@ class KostImageController extends Controller
     {
         $path = '';
         if ($request->hasFile('image')){
-            $path = $request->file('image')->store('uploads/kost/fasilitas');
+            $path = $request->file('image')->store('uploads/public/landmark');
         }
         if ($path !== ''){
             return json_encode(array(
