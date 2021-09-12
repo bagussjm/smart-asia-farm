@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\WahanaController;
 
 // authentication
 Route::get('login',[AuthController::class,'login'])->name('auth.login');
@@ -22,10 +23,11 @@ Route::middleware('role:pengelola')->group(function (){
 
     Route::get('/dashboard',[DashboardController::class,'index'])->name('pengelola.dashboard');
 
-});
-
-Route::middleware('role:pemilik')->group(function (){
-
+    Route::prefix('/wahana')->group(function (){
+        Route::get('/',[WahanaController::class,'index'])->name('playground.index');
+        Route::get('tambah',[WahanaController::class,'create'])->name('playground.create');
+        Route::post('tambah',[WahanaController::class,'store'])->name('playground.store');
+    });
 });
 
 

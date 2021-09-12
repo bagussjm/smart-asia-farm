@@ -2148,7 +2148,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2206,14 +2205,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       dropzoneOptions: {
-        url: _config__WEBPACK_IMPORTED_MODULE_2__.default.AppUrl + '/images/kost-kita-icon.png',
+        url: _config__WEBPACK_IMPORTED_MODULE_2__.default.AppUrl + '/images/asia-farm-logo.ico',
         thumbnailWidth: 150,
         maxFilesize: 8,
         duplicateCheck: true,
         acceptedFiles: 'image/*',
         uploadMultiple: true,
         addRemoveLinks: true,
-        dictDefaultMessage: '<i class="mdi mdi-upload"></i> ' + this.placeholder + ' ',
+        dictDefaultMessage: '<i class="mdi mdi-image"></i> ' + this.placeholder + ' ',
         headers: {
           "My-Awesome-Header": "header value"
         }
@@ -52207,11 +52206,7 @@ var render = function() {
       _vm._v(" "),
       _c("vue-dropzone", {
         ref: "imageInput",
-        attrs: {
-          options: _vm.dropzoneOptions,
-          id: "imageInput",
-          placeholder: "Pilih satu atau lebih gambar"
-        },
+        attrs: { options: _vm.dropzoneOptions, id: "imageInput" },
         on: {
           "vdropzone-file-added": _vm.fileAdded,
           "vdropzone-removed-file": _vm.fileRemoved

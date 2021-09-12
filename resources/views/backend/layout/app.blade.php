@@ -101,7 +101,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="waves-effect">
+                                <a href="{{ route('playground.index') }}" class="waves-effect">
                                     <i class="fa fa-democrat"> </i>
                                     <span> Data Wahana</span>
                                 </a>
