@@ -650,7 +650,7 @@ dt {
 }
 
 .topbar .topbar-left {
-  background: #d63031;
+  background: #ec4561;
   float: left;
   /*text-align: center;*/
   height: 70px;
@@ -699,7 +699,7 @@ dt {
 .side-menu {
   width: 240px;
   z-index: 10;
-  background: #d63031;
+  background: #ec4561;
   bottom: 0;
   margin-top: 0;
   padding-bottom: 30px;
@@ -779,7 +779,7 @@ dt {
 
 #sidebar-menu > ul > li > a.mm-active {
   color: #ffffffdb !important;
-  background-color: #ca5a5b;
+  background-color: #e6647a;
 }
 
 .menu-title {
