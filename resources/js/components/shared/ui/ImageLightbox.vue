@@ -15,7 +15,7 @@
             <div class="gallery-popup" >
                 <div class="project-item">
                     <div class="overlay-container">
-                        <img :src="image" alt="img" class="gallery-thumb-img" width="100%" style="width: 100%;height: 124px!important;">
+                        <img :src="image" alt="img" class="gallery-thumb-img" width="100%" style="width: 100%;height: 104px!important;">
                     </div>
                 </div>
             </div >
