@@ -107,33 +107,11 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="waves-effect">
+                                <a href="{{ route('landmark.index') }}" class="waves-effect">
                                     <i class="fa fa-landmark"> </i>
                                     <span> Data Landmark</span>
                                 </a>
                             </li>
-                        @endif
-
-                        @if (\Illuminate\Support\Facades\Auth::user()->jenis_pengguna === 'pemilik')
-                        <li>
-                            <a href="{{ route('user.dashboard') }}" class="waves-effect">
-                                <i class="ti-home"></i>
-                                <span> Dashboard </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('kost.index') }}" class="waves-effect">
-                                <i class="ti-agenda"> </i>
-                                <span> Data Kos</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('pemesanan.index') }}" class="waves-effect">
-                                <i class="ti-receipt"> </i>
-                                <span> Data Pemesanan Kos</span>
-                            </a>
-                        </li>
                         @endif
 
                     </ul>
