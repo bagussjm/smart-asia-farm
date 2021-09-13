@@ -96,7 +96,7 @@
                         formData.append('url',file.name);
                         formData.append('column',this.column);
                         axios({
-                            url: config.AppUrl+'/api/image/'+this.kost.id_kost+'/pull',
+                            url: config.AppUrl+'/api/image/'+this.kost.id+'/pull',
                             method: 'POST',
                             data: formData
                         }).then(function (response) {
