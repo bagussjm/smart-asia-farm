@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kost;
+use App\Models\Wahana;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +20,7 @@ class KostImageController extends Controller
             return json_encode(array(
                 'code' => 200,
                 'status' => 'Post image successful',
-                'data' => $path
+                'data' => Storage::url($path)
             ));
         }
 
@@ -47,11 +48,11 @@ class KostImageController extends Controller
         ));
     }
 
-    public function pull(Request $request,Kost $kost)
+    public function pull(Request $request,Wahana $wahana)
     {
 
         $column = $request->input('column');
-        $kostData = $kost->toArray();
+        $kostData = $wahana->toArray();
         $pullIndex = array_search($request->input('url'),$kostData[$column]);
         if (in_array($request->input('url'),$kostData[$column])){
             $img = $kostData[$column];
@@ -64,7 +65,7 @@ class KostImageController extends Controller
                 $img = [];
             }
 
-            $kost->update([
+            $wahana->update([
                 $column => $img
             ]);
             return json_encode(array(

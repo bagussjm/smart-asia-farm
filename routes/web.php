@@ -27,6 +27,10 @@ Route::middleware('role:pengelola')->group(function (){
         Route::get('/',[WahanaController::class,'index'])->name('playground.index');
         Route::get('tambah',[WahanaController::class,'create'])->name('playground.create');
         Route::post('tambah',[WahanaController::class,'store'])->name('playground.store');
+        Route::get('/{wahana}',[WahanaController::class,'show'])->name('playground.show');
+        Route::get('/{wahana}/edit',[WahanaController::class,'edit'])->name('playground.edit');
+        Route::put('/{wahana}/edit',[WahanaController::class,'update'])->name('playground.update');
+        Route::delete('/{wahana}/delete',[WahanaController::class,'delete'])->name('playground.delete');
     });
 });
 

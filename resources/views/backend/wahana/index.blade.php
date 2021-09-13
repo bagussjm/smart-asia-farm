@@ -42,17 +42,22 @@
                                     <td>{{ $playground->syarat_ketentuan }}</td>
                                     <td>
                                         <div class="d-flex justify-content-between">
-                                            <a href="#" class="btn btn-info btn-sm">
+                                            <a href="{{ route('playground.show',$playground->id) }}" class="btn btn-info btn-sm">
                                                 <i class="ti ti-view-list"></i>
                                             </a>
 
-                                            <a href="#" class="btn btn-sm btn-warning">
+                                            <a href="{{ route('playground.edit',$playground->id) }}" class="btn btn-sm btn-warning">
                                                 <i class="ti ti-pencil" ></i>
                                             </a>
 
-                                            <a href="#" onclick="return confirm('Yakin ingin menghapus data wahana?')" class="btn btn-sm btn-danger">
-                                                <i class="ti ti-trash" ></i>
-                                            </a>
+                                            <form action="{{ route('playground.delete',$playground->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('Yakin ingin menghapus data wahana?')" class="btn btn-sm btn-danger">
+                                                    <i class="ti ti-trash" ></i>
+                                                </button>
+                                            </form>
+
                                         </div>
                                     </td>
                                 </tr>

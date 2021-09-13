@@ -2242,7 +2242,7 @@ __webpack_require__.r(__webpack_exports__);
         formData.append('url', file.name);
         formData.append('column', this.column);
         axios({
-          url: _config__WEBPACK_IMPORTED_MODULE_2__.default.AppUrl + '/api/image/' + this.kost.id_kost + '/pull',
+          url: _config__WEBPACK_IMPORTED_MODULE_2__.default.AppUrl + '/api/image/' + this.kost.id + '/pull',
           method: 'POST',
           data: formData
         }).then(function (response) {
@@ -53019,7 +53019,7 @@ var render = function() {
                 _c("div", { staticClass: "overlay-container" }, [
                   _c("img", {
                     staticClass: "gallery-thumb-img",
-                    staticStyle: { width: "100%", height: "124px!important" },
+                    staticStyle: { width: "100%", height: "104px!important" },
                     attrs: { src: image, alt: "img", width: "100%" }
                   })
                 ])

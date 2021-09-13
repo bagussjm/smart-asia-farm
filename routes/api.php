@@ -15,7 +15,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/image/post', [KostImageController::class,'post']);
 Route::post('/image/remove', [KostImageController::class,'remove']);
-Route::post('/image/{kost}/pull', [KostImageController::class,'pull']);
+Route::post('/image/{wahana}/pull', [KostImageController::class,'pull']);
 
 Route::post('/video/post',[KostVideoController::class,'post']);
 Route::post('/video/remove',[KostVideoController::class,'remove']);
