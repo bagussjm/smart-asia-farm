@@ -3959,8 +3959,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   AppName: 'Smart Asia Farm',
   Environment: 'development',
-  // AppUrl: window.location.origin+'/smart-asia-farm/public',
-  AppUrl: window.location.origin
+  AppUrl: window.location.origin + '/smart-asia-farm/public' // AppUrl: window.location.origin,
+
 });
 
 /***/ }),
