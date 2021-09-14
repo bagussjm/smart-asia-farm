@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Region;
+namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class KecamatanResource extends JsonResource
+class LandmarkResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
