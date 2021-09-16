@@ -16,4 +16,21 @@ class LandmarkApiController extends ApiController
             LandmarkResource::collection(Landmark::all()),
             'showing landmark');
     }
+
+    public function show($landmark)
+    {
+        try{
+            $landmark = Landmark::findOrFail($landmark);
+
+            return $this->successResponse(
+                $landmark,
+                'success'
+            );
+        }catch (\Exception $e){
+            return $this->errorResponse(
+                [],
+                $e->getMessage()
+            );
+        }
+    }
 }

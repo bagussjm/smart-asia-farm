@@ -1,0 +1,22 @@
+### show all wahana success test
+
+GET http://localhost/smart-asia-farm/public/api/landmark
+Accept: application/json
+
+###
+
+### show wahana success test
+
+GET http://localhost/smart-asia-farm/public/api/landmark/1
+Accept: application/json
+
+###
+
+### show wahana not found test
+
+GET http://localhost/smart-asia-farm/public/api/landmark/ol
+Accept: application/json
+
+###
+
+

@@ -18,6 +18,7 @@ Route::get('users',[UserApiController::class,'index']);
 
 Route::prefix('/landmark')->group(function (){
     Route::get('/',[LandmarkApiController::class,'index']);
+    Route::get('/{landmark}',[LandmarkApiController::class,'show']);
 });
 
 Route::prefix('/wahana')->group(function (){
