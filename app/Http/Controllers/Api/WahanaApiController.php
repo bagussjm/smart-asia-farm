@@ -16,4 +16,21 @@ class WahanaApiController extends ApiController
             'showing wahana'
         );
     }
+
+    public function show($wahana)
+    {
+        try{
+            $wahana = Wahana::findOrFail($wahana);
+
+            return $this->successResponse(
+                $wahana,
+                'success'
+            );
+        }catch (\Exception $e){
+            return $this->errorResponse(
+                [],
+                $e->getMessage()
+            );
+        }
+    }
 }

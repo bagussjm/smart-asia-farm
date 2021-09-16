@@ -22,6 +22,7 @@ Route::prefix('/landmark')->group(function (){
 
 Route::prefix('/wahana')->group(function (){
     Route::get('/',[WahanaApiController::class,'index']);
+    Route::get('/{wahana}',[WahanaApiController::class,'show']);
 });
 
 Route::prefix('/keranjang')->group(function (){

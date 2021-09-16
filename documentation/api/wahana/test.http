@@ -1,0 +1,15 @@
+### show wahana success test
+
+GET http://localhost/smart-asia-farm/public/api/wahana/1
+Accept: application/json
+
+###
+
+### show wahana not found test
+
+GET http://localhost/smart-asia-farm/public/api/wahana/ol 
+Accept: application/json
+
+###
+
+
