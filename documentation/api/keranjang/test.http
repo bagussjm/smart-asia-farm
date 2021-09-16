@@ -1,0 +1,38 @@
+### inCart true test
+
+POST http://localhost/smart-asia-farm/public/api/keranjang/inCart
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_user" : "1",
+  "id_wahana" : "1"
+}
+
+###
+
+### inCart false test
+
+POST http://localhost/smart-asia-farm/public/api/keranjang/inCart
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_user" : "abc",
+  "id_wahana" : "def"
+}
+
+###
+
+### inCart true invalid test
+
+POST http://localhost/smart-asia-farm/public/api/keranjang/inCart
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_user" : "",
+  "id_wahana" : ""
+}
+
+###

@@ -10,7 +10,7 @@ trait WebResponse
     {
         return response()->json([
             'code' => $code,
-            'message' => $message,
+            'status' => $message,
             'data' => $data
         ]);
     }
@@ -19,7 +19,7 @@ trait WebResponse
     {
         return response()->json([
             'code' => $code,
-            'messsage' => $message,
+            'status' => $message,
             'data' => $data
         ]);
     }

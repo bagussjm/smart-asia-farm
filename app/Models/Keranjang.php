@@ -19,6 +19,11 @@ class Keranjang extends Model
         'status_keranjang',
     ];
 
+    public function scopeUnprocessed($query)
+    {
+        return $query->where('status_keranjang','belum diproses');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class,'id_user','id')->withDefault([

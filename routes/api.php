@@ -27,6 +27,7 @@ Route::prefix('/wahana')->group(function (){
 Route::prefix('/keranjang')->group(function (){
     Route::get('/',[KeranjangApiController::class,'index']);
     Route::post('/',[KeranjangApiController::class,'store']);
+    Route::post('/inCart',[KeranjangApiController::class,'inCart']);
 });
 
 // utils

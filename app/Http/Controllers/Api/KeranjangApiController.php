@@ -68,4 +68,37 @@ class KeranjangApiController extends ApiController
         );
     }
 
+    public function inCart(Request $request)
+    {
+        try{
+            $request->validate([
+                'id_user' => 'required',
+                'id_wahana' => 'required'
+            ]);
+
+            $incart = Keranjang::where('id_user', $request->id_user)
+                ->where('id_wahana',$request->id_wahana)
+                ->unprocessed()
+                ->count();
+
+            if ($incart > 0){
+                return $this->successResponse(
+                    true,
+                    $incart
+                );
+            }else{
+                return $this->successResponse(
+                    false,
+                    $incart
+                );
+            }
+        }catch (\Exception $e){
+            return $this->errorResponse(
+                false,
+                $e->getMessage()
+            );
+        }
+
+    }
+
 }
