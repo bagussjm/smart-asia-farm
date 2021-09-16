@@ -23,7 +23,7 @@ class WahanaApiController extends ApiController
             $wahana = Wahana::findOrFail($wahana);
 
             return $this->successResponse(
-                $wahana,
+                new WahanaResource($wahana),
                 'success'
             );
         }catch (\Exception $e){
