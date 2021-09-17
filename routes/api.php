@@ -14,7 +14,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('users',[UserApiController::class,'index']);
+Route::prefix('/user')->group(function (){
+    Route::get('/',[UserApiController::class,'index']);
+    Route::get('/{user}/keranjang',[UserApiController::class,'charts']);
+});
 
 Route::prefix('/landmark')->group(function (){
     Route::get('/',[LandmarkApiController::class,'index']);
