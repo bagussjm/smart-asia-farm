@@ -15,6 +15,7 @@ class KeranjangResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'id_user' => $this->id_user,
             'id_wahana' => $this->id_wahana,
             'id_tiket' => $this->id_tiket,
