@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Keranjang::class,'id_user','id');
     }
+
+    public function cartsUnprocessed()
+    {
+        return $this->hasMany(Keranjang::class,'id_user','id')->unprocessed();
+    }
 }
