@@ -1,0 +1,7 @@
+### checkout midtrans payment test success
+
+GET http://localhost/smart-asia-farm/public/api/pay
+
+Accept: application/json
+
+###

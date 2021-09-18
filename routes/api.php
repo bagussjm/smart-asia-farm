@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\LandmarkApiController;
 use App\Http\Controllers\Api\WahanaApiController;
 use App\Http\Controllers\Api\KeranjangApiController;
+use Midtrans\Config;
+use Midtrans\Transaction;
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -33,6 +35,17 @@ Route::prefix('/keranjang')->group(function (){
     Route::get('/',[KeranjangApiController::class,'index']);
     Route::post('/',[KeranjangApiController::class,'store']);
     Route::post('/inCart',[KeranjangApiController::class,'inCart']);
+});
+
+Route::get('pay',function (){
+    Config::$serverKey = 'SB-Mid-server-Vucxcv6_ySUi_dC1Eue9h2Dq';
+    Config::$clientKey = 'SB-Mid-client-08UP2Fy1QBzxofOH';
+    Config::$isProduction = false;
+    Config::$isSanitized = true;
+
+    $tf = Transaction::status('1303625412');
+
+    dd($tf);
 });
 
 // utils
