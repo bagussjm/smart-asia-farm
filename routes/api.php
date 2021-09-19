@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AuthApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\KostImageController;
@@ -15,6 +16,9 @@ use Midtrans\Transaction;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/login',[AuthApiController::class,'login']);
+Route::post('/register',[AuthApiController::class,'register']);
 
 Route::prefix('/user')->group(function (){
     Route::get('/',[UserApiController::class,'index']);
