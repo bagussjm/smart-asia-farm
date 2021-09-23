@@ -36,3 +36,48 @@ Accept: application/json
 }
 
 ###
+
+### checkout process success test
+
+POST http://localhost/smart-asia-farm/public/api/keranjang/checkout
+Content-Type: application/json
+Accept: application/json
+
+{
+  "order_id" : "1632384497774-1632384483697",
+  "user_id" : "1",
+  "book_date" : "2021-09-28",
+  "book_time" : "08:00"
+}
+
+###
+
+### checkout process invalid data test
+
+POST http://localhost/smart-asia-farm/public/api/keranjang/checkout
+Content-Type: application/json
+Accept: application/json
+
+{
+  "order_id" : "",
+  "user_id" : "",
+  "book_date" : "",
+  "book_time" : ""
+}
+
+###
+
+### checkout process order not found test
+
+POST http://localhost/smart-asia-farm/public/api/keranjang/checkout
+Content-Type: application/json
+Accept: application/json
+
+{
+  "order_id" : "abc.xyz",
+  "user_id" : "1",
+  "book_date" : "2021-09-28",
+  "book_time" : "ojiads"
+}
+
+###

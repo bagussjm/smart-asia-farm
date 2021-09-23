@@ -280,3 +280,39 @@ Response :
   "data" : "boolean"
 }   
 ```
+
+## Checkout Keranjang
+
+Description : 
+Checkout all wahana in user chart if `Midtrans TransactionResult.getStatus() === TransactionResult.STATUS_SUCCESS`
+
+Request : 
+- Method : POST
+- Endpoint : `/api/keranjang/checkout`
+- Header : 
+    - Content-Type: application/json
+    - Accept: application/json
+- Body : 
+
+```json
+{
+  "order_id" : "string",
+  "user_id" : "bigint",
+  "book_date" : "date",
+  "book_time" : "time"
+}
+```
+
+Response : 
+
+```json
+{
+  "code" : "number",
+  "status" : "string",
+  "data" : {
+      "order_id" : "string",
+      "gross_amount" : "integer",
+      "payment_type" : "string"
+  }
+}   
+```

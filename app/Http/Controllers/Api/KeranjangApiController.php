@@ -5,21 +5,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
 use App\Models\Keranjang;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\User;
+use App\Repositories\TicketRepository;
+use App\Repositories\MidtransRepository;
 use Illuminate\Http\Request;
 use App\Http\Resources\KeranjangResource;
 use Illuminate\Support\Facades\DB;
 
 class KeranjangApiController extends ApiController
 {
-    private $insert = false;
 
-    private $request = null;
+    private $MidtransRepository;
+
+    private $TicketRepository;
 
     public function __construct()
     {
-        $this->request = Request::class;
+        $this->MidtransRepository = new MidtransRepository();
+        $this->TicketRepository = new TicketRepository();
     }
 
     public function index()
@@ -84,12 +87,12 @@ class KeranjangApiController extends ApiController
             if ($incart > 0){
                 return $this->successResponse(
                     true,
-                    $incart
+                    'item found in chart'
                 );
             }else{
                 return $this->successResponse(
                     false,
-                    $incart
+                    'ite not found in chart'
                 );
             }
         }catch (\Exception $e){
@@ -101,9 +104,62 @@ class KeranjangApiController extends ApiController
 
     }
 
-    public function midtransPay()
+    public function checkout(Request $request)
     {
+        try{
+            $request->validate([
+                'order_id' => 'required',
+                'user_id' => 'required',
+                'book_date' => 'required|date',
+                'book_time' => 'required|date_format:H:i'
+            ]);
+            $mtsOrder = $this->MidtransRepository->orderStatus($request->order_id)->getOrder();
 
+            if (!empty($mtsOrder)){
+                DB::beginTransaction();
+                $ticket = $this->TicketRepository->insert([
+                    'id' => $request->order_id,
+                    'tanggal_masuk' => $request->book_date,
+                    'jam_masuk' => $request->book_time,
+                    'status' => 'pending',
+                    'total_bayar' => (double)$mtsOrder->gross_amount,
+                    'kode_qr' => null,
+                ]);
+                if ($ticket){
+                    $cartUpdate = Keranjang::where('id_user',$request->user_id)
+                        ->unprocessed()->update([
+                            'status_keranjang' => 'diproses',
+                            'id_tiket' => $request->order_id
+                        ]);
+                    if ($cartUpdate){
+                        DB::commit();
+                    }else{
+                        DB::rollBack();
+                    }
+                }
+
+                return $this->successResponse(
+                    array(
+                        'order_id' => $mtsOrder->order_id,
+                        'gross_amount' => (double)$mtsOrder->gross_amount,
+                        'payment_type' => $mtsOrder->payment_type
+                    ),
+                    'success'
+                );
+            }else{
+                return $this->errorResponse(
+                    [],
+                    'failed create ticket data, order data not found',
+                    404
+                );
+            }
+
+        }catch (\Exception $exception){
+            return $this->errorResponse(
+                [],
+                $exception->getMessage().$exception->getTraceAsString()
+            );
+        }
     }
 
 }
