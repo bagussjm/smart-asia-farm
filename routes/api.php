@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\LandmarkApiController;
 use App\Http\Controllers\Api\WahanaApiController;
 use App\Http\Controllers\Api\KeranjangApiController;
 use App\Http\Controllers\Api\TicketApiController;
+use App\Http\Controllers\Api\PaymentNotificationHandlerController;
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -46,7 +47,7 @@ Route::prefix('/tiket')->group(function (){
 });
 
 Route::prefix('/payment')->group(function (){
-    Route::post('/payment-notification-handler',[TicketApiController::class,'handler']);
+    Route::post('/payment-notification-handler',[PaymentNotificationHandlerController::class,'handle']);
 });
 // utils
 Route::post('/image/post', [KostImageController::class,'post']);
