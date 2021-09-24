@@ -5,12 +5,15 @@ namespace App\Repositories;
 
 use Midtrans\Config;
 use Midtrans\Transaction;
+use Midtrans\Notification;
 
 
 class MidtransRepository
 {
 
     private $order;
+
+    private $notificationResponse;
 
     public function __construct()
     {
@@ -36,5 +39,21 @@ class MidtransRepository
         return $this->order;
     }
 
+    /**
+     * @return MidtransRepository
+     * */
+    public function setNotification()
+    {
+        $notification = new Notification();
+        $this->notificationResponse = $notification->getResponse();
+        return $this;
+    }
 
+    /**
+     * @return Notification
+     * */
+    public function notificationResponse()
+    {
+        return $this->notificationResponse;
+    }
 }

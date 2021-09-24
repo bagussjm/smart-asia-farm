@@ -1,0 +1,15 @@
+### webhook handle notification process success test
+
+GET http://localhost/smart-asia-farm/public/api/tiket/1632384497774-1632384483697
+Content-Type: application/json
+Accept: application/json
+
+###
+
+### webhook handle notification process fail test
+
+GET http://localhost/smart-asia-farm/public/api/tiket/1632384497774
+Content-Type: application/json
+Accept: application/json
+
+###

@@ -9,8 +9,7 @@ use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\LandmarkApiController;
 use App\Http\Controllers\Api\WahanaApiController;
 use App\Http\Controllers\Api\KeranjangApiController;
-use Midtrans\Config;
-use Midtrans\Transaction;
+use App\Http\Controllers\Api\TicketApiController;
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -42,7 +41,9 @@ Route::prefix('/keranjang')->group(function (){
     Route::post('/checkout',[KeranjangApiController::class,'checkout']);
 });
 
-
+Route::prefix('/tiket')->group(function (){
+    Route::post('/orderNotificationHandler',[TicketApiController::class,'handleOrder']);
+});
 // utils
 Route::post('/image/post', [KostImageController::class,'post']);
 Route::post('/image/remove', [KostImageController::class,'remove']);

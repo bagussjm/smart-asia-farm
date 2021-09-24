@@ -177,3 +177,22 @@ Response :
     "status" : "string"
 }
 ```
+
+## Handle Order Notification
+
+Description : Receive HTTP POST notification callback/webhook from Midtrans
+
+Request : 
+- Method : POST
+- Endpoint : `/api/tiket/orderNotificationHandler`
+- Header :
+    - Content-Type: application/json
+    - Accept: application/json
+
+Response :
+```json 
+{
+    "code" : "number",
+    "status" : "string"
+}
+```
