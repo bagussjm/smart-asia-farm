@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\TicketRepository;
+use Illuminate\Http\Request;
 use Midtrans;
 use Illuminate\Support\Facades\Log;
 
@@ -11,26 +12,22 @@ class PaymentNotificationHandlerController extends Controller
 {
     private $TicketRepository;
 
-    private $MidtransRepository;
 
     public function __construct(TicketRepository $TicketRepository)
     {
         $this->TicketRepository = $TicketRepository;
     }
 
-    public function handle()
+    public function handle(Request $request)
     {
         try{
-            Midtrans\Config::$serverKey = env('MTS_SERVER_KEY');
-            Midtrans\Config::$isProduction = false;
-            $notification = new Midtrans\Notification();
-            $notif = $notification->getResponse();
-            $transaction = $notif->transaction_status;
-            $type = $notif->payment_type;
-            $order_id = $notif->order_id;
-            $fraud = $notif->fraud_status;
-            Log::info('handling notification order : '.$order_id.
-            'status '.$transaction.' type: '.$type.' fraud : '.$fraud);
+            $notification_body = json_decode($request->getContent(), true);
+            $invoice = $notification_body['order_id'];
+            $transaction_id = $notification_body['transaction_id'];
+            $status_code = $notification_body['status_code'];
+            Log::info('handling notification order : '.$invoice.
+            'status '.$status_code.' transaction_id: '.$transaction_id);
+            echo "OK";
         }catch (\Exception $exception){
             Log::error($exception->getMessage());
         }
