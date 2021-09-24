@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\MidtransRepository;
 use App\Repositories\TicketRepository;
-use Illuminate\Http\Request;
+use Midtrans;
 use Illuminate\Support\Facades\Log;
 
 class PaymentNotificationHandlerController extends Controller
@@ -14,16 +13,18 @@ class PaymentNotificationHandlerController extends Controller
 
     private $MidtransRepository;
 
-    public function __construct(TicketRepository $TicketRepository,MidtransRepository $midtransRepository)
+    public function __construct(TicketRepository $TicketRepository)
     {
         $this->TicketRepository = $TicketRepository;
-        $this->MidtransRepository = $midtransRepository;
     }
 
     public function handle()
     {
         try{
-            $notif = $this->MidtransRepository->setNotification()->notificationResponse();
+            Midtrans\Config::$serverKey = env('MTS_SERVER_KEY');
+            Midtrans\Config::$isProduction = false;
+            $notification = new Midtrans\Notification();
+            $notif = $notification->getResponse();
             $transaction = $notif->transaction_status;
             $type = $notif->payment_type;
             $order_id = $notif->order_id;
