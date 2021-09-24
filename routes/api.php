@@ -44,6 +44,10 @@ Route::prefix('/keranjang')->group(function (){
 Route::prefix('/tiket')->group(function (){
     Route::post('/orderNotificationHandler',[TicketApiController::class,'handleOrder']);
 });
+
+Route::prefix('/payment')->group(function (){
+    Route::post('/payment-notification-handler',[TicketApiController::class,'handler']);
+});
 // utils
 Route::post('/image/post', [KostImageController::class,'post']);
 Route::post('/image/remove', [KostImageController::class,'remove']);

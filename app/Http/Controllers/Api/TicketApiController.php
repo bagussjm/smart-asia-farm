@@ -8,6 +8,7 @@ use App\Repositories\TicketRepository;
 use App\Models\Tiket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class TicketApiController extends ApiController
 {
@@ -18,45 +19,31 @@ class TicketApiController extends ApiController
         $this->TicketRepository = new TicketRepository();
     }
 
-//    public function ticketUpdate($ticket,MidtransRepository $midtransRepository)
-//    {
-//        try{
-//            $ticketOrder = $this->TicketRepository->find($ticket)->update([
-//               'status' => 'success',
-//            ]);
-//
-//            $mtsOrder = $midtransRepository->orderStatus($ticket)->getOrder();
-//
-//            return $this->successResponse(
-//                $ticketOrder,
-//                'showing ticket data'
-//            );
-//        }catch (\Exception $exception){
-//            return $this->errorResponse(
-//                [],
-//                $exception->getMessage()
-//            );
-//        }
-//    }
+    public function handler()
+    {
+        Log::info('midtrans webhook called');
+
+    }
 
     public function handleOrder(MidtransRepository $midtransRepository)
     {
         try{
+
             $notification = $midtransRepository->setNotification()->notificationResponse();
-
-            $successTransaction = $this->notificationResponseHandler($notification);
-
-            if ($successTransaction){
-                return $this->successResponse(
-                    [],
-                    'Ok'
-                );
-            }else{
-                return $this->errorResponse(
-                    [],
-                    'Failed'
-                );
-            }
+            Log::info('midtrans webhook called '.$notification->order_id.' status : ');
+//            $successTransaction = $this->notificationResponseHandler($notification);
+//
+//            if ($successTransaction){
+//                return $this->successResponse(
+//                    [],
+//                    'Ok'
+//                );
+//            }else{
+//                return $this->errorResponse(
+//                    [],
+//                    'Failed'
+//                );
+//            }
 
         }catch (\Exception $exception){
             $this->errorResponse(
