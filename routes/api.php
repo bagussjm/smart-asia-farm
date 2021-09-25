@@ -42,9 +42,7 @@ Route::prefix('/keranjang')->group(function (){
     Route::post('/checkout',[KeranjangApiController::class,'checkout']);
 });
 
-Route::prefix('/tiket')->group(function (){
-    Route::post('/orderNotificationHandler',[TicketApiController::class,'handleOrder']);
-});
+
 
 Route::prefix('/payment')->group(function (){
     Route::post('/payment-notification-handler',[PaymentNotificationHandlerController::class,'handle']);

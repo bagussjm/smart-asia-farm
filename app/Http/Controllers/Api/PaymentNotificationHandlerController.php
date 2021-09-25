@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Repositories\TicketRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Midtrans;
 use Illuminate\Support\Facades\Log;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PaymentNotificationHandlerController extends Controller
 {
@@ -58,7 +60,7 @@ class PaymentNotificationHandlerController extends Controller
                 try{
                     $this->TicketRepository->find($notification['order_id'])->update([
                         'status' => 'success',
-                        'kode_qr' => $this->TicketRepository->generateQr($notification['order_id'])
+                        'kode_qr' => $this->generateQr($notification['order_id'])
                     ]);
                     Log::info('transaction '.$notification['order_id'].' is completed by user');
                 }catch (\Exception $exception){
@@ -72,7 +74,7 @@ class PaymentNotificationHandlerController extends Controller
         try{
             $this->TicketRepository->find($notification['order_id'])->update([
                 'status' => 'success',
-                'kode_qr' => $this->TicketRepository->generateQr($notification['order_id'])
+                'kode_qr' => $this->generateQr($notification['order_id'])
             ]);
             Log::info('transaction '.$notification['order_id'].' is completed by user');
         }catch (\Exception $exception){
@@ -90,6 +92,14 @@ class PaymentNotificationHandlerController extends Controller
         }catch (\Exception $exception){
             Log::error($exception->getMessage());
         }
+    }
+
+    private function generateQr($ticketId)
+    {
+        $fileName = $ticketId.'.svg';
+        $svg = QrCode::generate($ticketId);
+        Storage::put('public/qr/'.$fileName,$svg);
+        return  Storage::url('/qr/'.$fileName);
     }
 
 }
