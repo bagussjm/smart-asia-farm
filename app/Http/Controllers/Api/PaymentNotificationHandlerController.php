@@ -21,15 +21,75 @@ class PaymentNotificationHandlerController extends Controller
     public function handle(Request $request)
     {
         try{
-            $notification_body = json_decode($request->getContent(), true);
-            $invoice = $notification_body['order_id'];
-            $transaction_id = $notification_body['transaction_id'];
-            $status_code = $notification_body['status_code'];
-            Log::info('handling notification order : '.$invoice.
-            'status '.$status_code.' transaction_id: '.$transaction_id);
+            $notificationBody = json_decode($request->getContent(), true);
+            $transactionStatus = $notificationBody['transaction_status'];
+           switch ($transactionStatus){
+               case 'capture':
+                   $this->processCaptureTransaction($notificationBody);break;
+               case 'settlement':
+                   $this->processSettlementTransaction($notificationBody);break;
+               case 'pending':
+                   Log::info('new transaction for '.$notificationBody['order_id']);
+                   break;
+               case 'deny':
+                   Log::info('transaction '.$notificationBody['order_id'].
+                       ' denied reason '.$notificationBody['status_message']);
+                   $this->processExpireTransaction($notificationBody);break;
+               case 'expire':
+                   $this->processExpireTransaction($notificationBody);break;
+               case 'cancel':
+                   //TODO handle ticket data if cancel
+                   break;
+           }
             echo "OK";
         }catch (\Exception $exception){
             Log::error($exception->getMessage());
         }
     }
+
+    public function processCaptureTransaction(array $notification)
+    {
+        $type = $notification['payment_type'];
+        $fraud = $notification['fraud_status'];
+        if ($type == 'credit_card') {
+            if ($fraud == 'challenge') {
+                Log::info('transaction is challenged by Midtrans FDS');
+            } else {
+                try{
+                    $this->TicketRepository->find($notification['order_id'])->update([
+                        'status' => 'success',
+                        'kode_qr' => $this->TicketRepository->generateQr($notification['order_id'])
+                    ]);
+                    Log::info('transaction '.$notification['order_id'].' is completed by user');
+                }catch (\Exception $exception){
+                    Log::error($exception->getMessage());
+                }
+            }
+        }
+    }
+
+    public function processSettlementTransaction(array $notification){
+        try{
+            $this->TicketRepository->find($notification['order_id'])->update([
+                'status' => 'success',
+                'kode_qr' => $this->TicketRepository->generateQr($notification['order_id'])
+            ]);
+            Log::info('transaction '.$notification['order_id'].' is completed by user');
+        }catch (\Exception $exception){
+            Log::error($exception->getMessage());
+        }
+    }
+
+    public function processExpireTransaction(array $notification)
+    {
+        try{
+            $this->TicketRepository->find($notification['order_id'])->update([
+                'status' => 'failed'
+            ]);
+            Log::info('transaction '.$notification['order_id'].' is expire. ticket order canceled');
+        }catch (\Exception $exception){
+            Log::error($exception->getMessage());
+        }
+    }
+
 }
