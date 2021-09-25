@@ -54,3 +54,11 @@ Route::middleware('role:pengelola')->group(function (){
 Route::get('storage-link',function (){
    Artisan::call('storage:link');
 });
+
+Route::get('clear-cache',function (){
+   Artisan::call('cache:clear');
+});
+
+Route::get('clear-config',function (){
+    Artisan::call('config:clear');
+});
