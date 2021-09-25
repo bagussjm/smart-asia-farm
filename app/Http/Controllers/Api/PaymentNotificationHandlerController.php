@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Midtrans;
 use Illuminate\Support\Facades\Log;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use SimpleSoftwareIO\QrCode\Generator;
 
 class PaymentNotificationHandlerController extends Controller
 {
@@ -96,10 +97,16 @@ class PaymentNotificationHandlerController extends Controller
 
     private function generateQr($ticketId)
     {
-        $fileName = $ticketId.'.svg';
-        $svg = QrCode::generate($ticketId);
-        Storage::put('public/qr/'.$fileName,$svg);
-        return  Storage::url('/qr/'.$fileName);
+       try{
+           $generator = new Generator();
+           $fileName = $ticketId.'.svg';
+           $svg = $generator->generate($ticketId);
+           Storage::put('public/qr/'.$fileName,$svg);
+           return  Storage::url('/qr/'.$fileName);
+       }catch (\Exception $exception){
+           Log::error($exception->getMessage());
+       }
+       return '';
     }
 
 }
