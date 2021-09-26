@@ -114,7 +114,7 @@ Accept: application/json
   "user_id" : "1",
   "book_date" : "2021-09-28",
   "book_time" : "08:00",
-  "pdf_url" : "http://"
+  "pdf_url" : ""
 }
 
 ###

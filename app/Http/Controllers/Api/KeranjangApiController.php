@@ -114,7 +114,7 @@ class KeranjangApiController extends ApiController
                 'user_id' => 'required',
                 'book_date' => 'required|date',
                 'book_time' => 'required|date_format:H:i',
-                'pdf_url' => 'string'
+                'pdf_url' => 'string|nullable'
             ]);
             $mtsOrder = $this->MidtransRepository->orderStatus($request->order_id)->getOrder();
 
