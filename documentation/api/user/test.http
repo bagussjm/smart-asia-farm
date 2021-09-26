@@ -12,3 +12,10 @@ GET http://localhost/smart-asia-farm/public/api/user/ol/keranjang
 Accept: application/json
 
 ###
+
+### get authenticated user carts success
+
+GET http://localhost/smart-asia-farm/public/api/user/1/keranjang
+Accept: application/json
+
+###

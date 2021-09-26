@@ -20,6 +20,7 @@ class CreateTiketsTable extends Migration
             $table->enum('status',['pending','success','failed']);
             $table->integer('total_bayar')->default(0);
             $table->text('kode_qr')->nullable();
+            $table->text('instruksi_pembayaran')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

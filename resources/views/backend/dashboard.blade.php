@@ -100,7 +100,6 @@
                     <div class="row">
                         <div class="col-lg-7">
                             <div>
-                                {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate(url('')); !!}
                                 <div id="chart-with-area" class="ct-chart earning ct-golden-section"></div>
                             </div>
                         </div>

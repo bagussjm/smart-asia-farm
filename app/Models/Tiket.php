@@ -21,6 +21,7 @@ class Tiket extends Model
         'status',
         'total_bayar',
         'kode_qr',
+        'instruksi_pembayaran'
     ];
 
     public function carts()

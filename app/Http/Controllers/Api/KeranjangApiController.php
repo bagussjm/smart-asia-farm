@@ -113,7 +113,8 @@ class KeranjangApiController extends ApiController
                 'order_id' => 'required',
                 'user_id' => 'required',
                 'book_date' => 'required|date',
-                'book_time' => 'required|date_format:H:i'
+                'book_time' => 'required|date_format:H:i',
+                'pdf_url' => 'string'
             ]);
             $mtsOrder = $this->MidtransRepository->orderStatus($request->order_id)->getOrder();
 
@@ -126,6 +127,7 @@ class KeranjangApiController extends ApiController
                     'status' => 'pending',
                     'total_bayar' => (double)$mtsOrder->gross_amount,
                     'kode_qr' => null,
+                    'instruksi_pembayaran' => $request->pdf_url
                 ]);
                 if ($ticket){
                     $cartUpdate = Keranjang::where('id_user',$request->user_id)
@@ -144,7 +146,8 @@ class KeranjangApiController extends ApiController
                     array(
                         'order_id' => $mtsOrder->order_id,
                         'gross_amount' => (double)$mtsOrder->gross_amount,
-                        'payment_type' => $mtsOrder->payment_type
+                        'payment_type' => $mtsOrder->payment_type,
+                        'payment_instruction' => $request->pdf_url
                     ),
                     'success'
                 );

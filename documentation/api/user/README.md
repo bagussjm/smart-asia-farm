@@ -267,6 +267,7 @@ Response :
                  "status" : "enum['pending','success','failed']",
                  "total_bayar" : "integer",
                  "kode_qr" : "text",
+                 "instruksi_pembayaran" : "text",
                  "created_at" : "timestamps",
                  "updated_at" : "timestamps",
                  "deleted_at" : "timestamps"
@@ -318,6 +319,7 @@ Response :
                  "status" : "enum['pending','success','failed']",
                  "total_bayar" : "integer",
                  "kode_qr" : "text",
+                 "instruksi_pembayaran" : "text",
                  "created_at" : "timestamps",
                  "updated_at" : "timestamps",
                  "deleted_at" : "timestamps"

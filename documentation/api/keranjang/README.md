@@ -297,7 +297,8 @@ Request :
   "order_id" : "string",
   "user_id" : "bigint",
   "book_date" : "date",
-  "book_time" : "time"
+  "book_time" : "time",
+  "pdf_url" : "text"
 }
 ```
 
@@ -310,7 +311,8 @@ Response :
   "data" : {
       "order_id" : "string",
       "gross_amount" : "integer",
-      "payment_type" : "string"
+      "payment_type" : "string",
+      "payment_instruction" : "text"
   }
 }   
 ```
