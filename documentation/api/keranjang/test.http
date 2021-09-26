@@ -1,3 +1,37 @@
+### list keranjang
+
+GET http://localhost/smart-asia-farm/public/api/keranjang/
+Content-Type: application/json
+Accept: application/json
+
+###
+
+### create keranjang success test
+
+POST http://localhost/smart-asia-farm/public/api/keranjang/create
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_user" : "1",
+  "id_wahana" : "1"
+}
+
+###
+
+### create keranjang invalid test
+
+POST http://localhost/smart-asia-farm/public/api/keranjang/create
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_user" : "",
+  "id_wahana" : ""
+}
+
+###
+
 ### inCart true test
 
 POST http://localhost/smart-asia-farm/public/api/keranjang/inCart
@@ -24,7 +58,7 @@ Accept: application/json
 
 ###
 
-### inCart true invalid test
+### inCart  invalid test
 
 POST http://localhost/smart-asia-farm/public/api/keranjang/inCart
 Content-Type: application/json

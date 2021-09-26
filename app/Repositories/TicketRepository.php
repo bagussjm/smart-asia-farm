@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Models\Tiket;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Exception;
@@ -16,11 +17,18 @@ class TicketRepository
 
     /**
      * @param array $ticket
-     * @return Collection
-     * */
+     * @return boolean
+     * @throws Exception
+     */
     public function insert(array $ticket)
     {
-        return Tiket::create($ticket);
+        try{
+            Log::info('ticket created'. json_encode($ticket));
+            return Tiket::create($ticket);
+        }catch (Exception $exception){
+            Log::info($exception->getMessage());
+            throw new Exception($exception->getMessage());
+        }
     }
 
     /**
@@ -67,6 +75,7 @@ class TicketRepository
             throw new \Exception($this->ticket->getMessage());
         }else{
             try{
+                Log::info('update ticket : '.json_encode($this->ticket));
                 return $this->ticket->update($ticketUpdate);
             }catch (\Exception $exception){
                 throw new \Exception($exception->getMessage());

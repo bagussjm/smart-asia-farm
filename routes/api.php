@@ -37,12 +37,14 @@ Route::prefix('/wahana')->group(function (){
 
 Route::prefix('/keranjang')->group(function (){
     Route::get('/',[KeranjangApiController::class,'index']);
-    Route::post('/',[KeranjangApiController::class,'store']);
+    Route::post('/create',[KeranjangApiController::class,'store']);
     Route::post('/inCart',[KeranjangApiController::class,'inCart']);
     Route::post('/checkout',[KeranjangApiController::class,'checkout']);
 });
 
+Route::prefix('/tiket')->group(function (){
 
+});
 
 Route::prefix('/payment')->group(function (){
     Route::post('/payment-notification-handler',[PaymentNotificationHandlerController::class,'handle']);

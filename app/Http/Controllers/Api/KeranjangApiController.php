@@ -39,14 +39,16 @@ class KeranjangApiController extends ApiController
     {
         try{
             $request->validate([
-                    'id_user' => 'required',
-                    'id_wahana' => 'required'
+                'id_user' => 'required',
+                'id_wahana' => 'required'
             ]);
 
             DB::beginTransaction();
             $insert = Keranjang::create([
                 'id_user' => $request->id_user,
                 'id_wahana' => $request->id_wahana,
+                'status_keranjang' => 'belum diproses',
+                'id_tiket' => null
             ]);
 
             if (!$insert) {
@@ -157,7 +159,7 @@ class KeranjangApiController extends ApiController
         }catch (\Exception $exception){
             return $this->errorResponse(
                 [],
-                $exception->getMessage().$exception->getTraceAsString()
+                $exception->getMessage()
             );
         }
     }

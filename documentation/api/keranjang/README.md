@@ -12,7 +12,7 @@ No authentication needed to use this API
 
 Request :
 - Method : POST
-- Endpoint : `/api/keranjang`
+- Endpoint : `/api/keranjang/create`
 - Header :
     - Content-Type: application/json
     - Accept: application/json
@@ -22,8 +22,6 @@ Request :
 {
       "id_user" : "bigint",
       "id_wahana" : "bigint",
-      "id_tiket" : "string",
-      "status_keranjang" : "enum['belum diproses','diproses']",
 }
 ```
 
