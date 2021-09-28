@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\KeranjangResource;
+use App\Http\Resources\TiketResource;
+use App\Models\Keranjang;
+use App\Models\Tiket;
 use App\Models\User;
+use App\Repositories\TicketRepository;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserApiController extends ApiController
 {
@@ -34,6 +38,27 @@ class UserApiController extends ApiController
             return $this->errorResponse(
                 [],
                 $e->getMessage()
+            );
+        }
+    }
+
+    public function tickets($user, Request $request,TicketRepository $ticketRepository)
+    {
+        try{
+            $request->validate([
+               'status' => [
+                   Rule::in(['pending','success','failed'])
+               ]
+            ]);
+            $ticket = $ticketRepository->userTicket($user,$request->query('status'));
+            return $this->successResponse(
+                $ticket,
+                'showing user tickets'
+            );
+        }catch (\Exception $exception){
+            return $this->errorResponse(
+                [],
+                $exception->getMessage()
             );
         }
     }

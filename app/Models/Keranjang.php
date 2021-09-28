@@ -24,6 +24,16 @@ class Keranjang extends Model
         return $query->where('status_keranjang','belum diproses');
     }
 
+    public function scopeProcessed($query)
+    {
+        return $query->where('status_keranjang','diproses');
+    }
+
+    public function scopeUserCarts($query,$param)
+    {
+        return $query->where('id_user',$param);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class,'id_user','id')->withDefault([

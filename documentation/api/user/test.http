@@ -19,3 +19,31 @@ GET http://localhost/smart-asia-farm/public/api/user/1/keranjang
 Accept: application/json
 
 ###
+
+### get authenticated user tickets success
+
+GET http://localhost/smart-asia-farm/public/api/user/1/tiket
+Accept: application/json
+
+###
+
+### get authenticated user tickets with filter success
+
+GET http://localhost/smart-asia-farm/public/api/user/1/tiket?status=success
+Accept: application/json
+
+###
+
+### get authenticated user tickets, user not found test
+
+GET http://localhost/smart-asia-farm/public/api/user/abc/tiket
+Accept: application/json
+
+###
+
+### get authenticated user tickets with invalid enum filter not found
+
+GET http://localhost/smart-asia-farm/public/api/user/1/tiket?status=kambing
+Accept: application/json
+
+###

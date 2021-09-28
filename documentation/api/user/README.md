@@ -328,3 +328,48 @@ Response :
   ]
 }   
 ```
+
+## Show Authenticated User Ticket
+Description : Default Is showing unprocessed user carts
+
+Request : 
+- Method : GET
+- Endpoint : `/api/user/{id}/keranjang`
+- Query Param : 
+    - status: enum ['pending','success','failed']
+- Header : 
+    - Accept: application/json
+
+- Response 
+```json
+{
+  "code" : "number",
+  "status" : "string",
+  "data" : [
+      {
+          "id" :  "string,unique",
+          "tanggal_masuk" : "date",
+          "jam_masuk" :  "time",
+          "status" : "enum['pending','success','failed']",
+          "total_bayar" :  "int",
+          "kode_qr" : "text",
+          "instruksi_pembayaran" :  "text",
+          "created_at" : "timestamps",
+          "updated_at" :  "timestamps",
+          "deleted_at" : "timestamps"
+      },
+      {
+         "id" :  "string,unique",
+         "tanggal_masuk" : "date",
+         "jam_masuk" :  "time",
+         "status" : "enum['pending','success','failed']",
+         "total_bayar" :  "int",
+         "kode_qr" : "text",
+         "instruksi_pembayaran" :  "text",
+         "created_at" : "timestamps",
+         "updated_at" :  "timestamps",
+         "deleted_at" : "timestamps"
+      } 
+  ]
+}
+```

@@ -4,8 +4,11 @@
 namespace App\Repositories;
 
 
+use App\Models\Keranjang;
 use App\Models\Tiket;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -93,5 +96,33 @@ class TicketRepository
         $svg = QrCode::generate($ticketId);
         Storage::put('public/qr/'.$fileName,$svg);
         return  Storage::url('/qr/'.$fileName);
+    }
+
+    /**
+     * @return Collection
+     * @throws Exception
+     */
+    public function userTicket($user, $status = null)
+    {
+        try{
+            User::findOrFail($user);
+            $userTicket = Keranjang::with(['ticket'])
+                ->userCarts($user)
+                ->distinct()
+                ->get('id_tiket');
+            $ticket = [];
+            foreach ($userTicket as $item) {
+                array_push($ticket,$item->ticket);
+            }
+            if ($status !== null){
+
+                return collect($ticket)->where('status',$status);
+            }
+            Log::info('showing user tickets');
+            return collect($ticket);
+        }catch (Exception $exception){
+            Log::error($exception->getMessage());
+            throw new Exception($exception->getMessage());
+        }
     }
 }
