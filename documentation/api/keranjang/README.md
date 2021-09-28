@@ -282,7 +282,7 @@ Response :
 ## Checkout Keranjang
 
 Description : 
-Checkout all wahana in user chart if `Midtrans TransactionResult.getStatus() === TransactionResult.STATUS_SUCCESS`
+Checkout all wahana in user cart if `Midtrans TransactionResult.getStatus() === TransactionResult.STATUS_SUCCESS`
 
 Request : 
 - Method : POST

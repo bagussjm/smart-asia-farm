@@ -206,7 +206,7 @@ Response :
 ```
 ## Show Authenticated User charts
 
-Description : Showing unprocessed user charts
+Description : Showing unprocessed user carts
 
 Request : 
 - Method : GET
