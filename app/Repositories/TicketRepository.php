@@ -110,6 +110,8 @@ class TicketRepository
         try{
             User::findOrFail($user);
             $userTicket = Keranjang::with(['ticket'])
+                ->where('id_tiket','!=', null)
+                ->processed()
                 ->userCarts($user)
                 ->distinct()
                 ->get('id_tiket');
