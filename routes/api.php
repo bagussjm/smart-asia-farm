@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\api\AuthApiController;
+use App\Http\Controllers\Api\AuthApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\api\KostImageController;
-use App\Http\Controllers\api\KostVideoController;
+use App\Http\Controllers\Api\KostImageController;
+use App\Http\Controllers\Api\KostVideoController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\LandmarkApiController;
 use App\Http\Controllers\Api\WahanaApiController;
