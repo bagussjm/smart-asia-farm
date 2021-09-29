@@ -8,6 +8,7 @@ use App\Models\Keranjang;
 use App\Models\Tiket;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -99,6 +100,8 @@ class TicketRepository
     }
 
     /**
+     * @param int $user
+     * @param string $status
      * @return Collection
      * @throws Exception
      */
@@ -115,13 +118,15 @@ class TicketRepository
                 array_push($ticket,$item->ticket);
             }
             if ($status !== null){
-
                 return collect($ticket)->where('status',$status);
             }
             Log::info('showing user tickets');
             return collect($ticket);
         }catch (Exception $exception){
             Log::error($exception->getMessage());
+            if ($exception instanceof ModelNotFoundException){
+                throw new ModelNotFoundException('tidak dapat menemukan pengguna dengan id '.$user);
+            }
             throw new Exception($exception->getMessage());
         }
     }

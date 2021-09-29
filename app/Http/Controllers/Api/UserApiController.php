@@ -52,7 +52,7 @@ class UserApiController extends ApiController
             ]);
             $ticket = $ticketRepository->userTicket($user,$request->query('status'));
             return $this->successResponse(
-                $ticket,
+                TiketResource::collection($ticket),
                 'showing user tickets'
             );
         }catch (\Exception $exception){

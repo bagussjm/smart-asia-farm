@@ -329,12 +329,13 @@ Response :
 }   
 ```
 
-## Show Authenticated User Ticket
-Description : Default Is showing unprocessed user carts
+## Show Authenticated User Tickets
+Description : list of tickets that the user has booked 
+by mobile built in midtrans snap payment 
 
 Request : 
 - Method : GET
-- Endpoint : `/api/user/{id}/keranjang`
+- Endpoint : `/api/user/{id}/tiket`
 - Query Param : 
     - status: enum ['pending','success','failed']
 - Header : 
