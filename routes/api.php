@@ -44,7 +44,7 @@ Route::prefix('/keranjang')->group(function (){
 });
 
 Route::prefix('/tiket')->group(function (){
-
+    Route::get('/{tiket}',[TicketApiController::class,'show']);
 });
 
 Route::prefix('/payment')->group(function (){

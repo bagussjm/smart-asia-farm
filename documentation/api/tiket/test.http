@@ -1,4 +1,4 @@
-### webhook handle notification process success test
+### get spesific ticket success test
 
 GET http://localhost/smart-asia-farm/public/api/tiket/1632384497774-1632384483697
 Content-Type: application/json
@@ -6,9 +6,9 @@ Accept: application/json
 
 ###
 
-### webhook handle notification process fail test
+### get spesific ticket not found test
 
-GET http://localhost/smart-asia-farm/public/api/tiket/1632384497774
+GET http://localhost/smart-asia-farm/public/api/tiket/abc
 Content-Type: application/json
 Accept: application/json
 
