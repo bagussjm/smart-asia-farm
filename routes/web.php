@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WahanaController;
 use App\Http\Controllers\LandMarkController;
 use App\Http\Controllers\PaymentCheckoutController;
+use App\Http\Controllers\PemesananController;
 
 // authentication
 Route::get('login',[AuthController::class,'login'])->name('auth.login');
@@ -43,6 +44,11 @@ Route::middleware('role:pengelola')->group(function (){
         Route::get('/{landmark}/edit',[LandMarkController::class,'edit'])->name('landmark.edit');
         Route::put('/{landmark}/update',[LandMarkController::class,'update'])->name('landmark.update');
         Route::delete('/{landmark}/delete',[LandMarkController::class,'delete'])->name('landmark.delete');
+    });
+
+    Route::prefix('pemesanan')->group(function (){
+        Route::get('/',[PemesananController::class,'index'])->name('pemesanan.index');
+        Route::get('/{ticket}',[PemesananController::class,'show'])->name('pemesanan.show');
     });
 
     Route::get('payment',[PaymentCheckoutController::class,'pay'])->name('payment.index');

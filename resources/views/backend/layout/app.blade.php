@@ -112,6 +112,12 @@
                                     <span> Data Landmark</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('pemesanan.index') }}" class="waves-effect">
+                                    <i class="fa fa-ticket-alt"></i>
+                                    <span> Data Pemesanan Tiket</span>
+                                </a>
+                            </li>
                         @endif
 
                     </ul>
