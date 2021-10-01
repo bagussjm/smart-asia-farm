@@ -96,13 +96,6 @@
                                                 </tr>
                                             @endforeach
                                             <tr>
-                                                <td class="thick-line"></td>
-                                                <td class="thick-line"></td>
-                                                <td class="thick-line text-center">
-                                                    <strong>Subtotal</strong></td>
-                                                <td class="thick-line text-right">$670.99</td>
-                                            </tr>
-                                            <tr>
                                                 <td class="no-line"></td>
                                                 <td class="no-line"></td>
                                                 <td class="no-line text-center">

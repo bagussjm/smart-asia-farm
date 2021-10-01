@@ -49,6 +49,7 @@ Route::middleware('role:pengelola')->group(function (){
     Route::prefix('pemesanan')->group(function (){
         Route::get('/',[PemesananController::class,'index'])->name('pemesanan.index');
         Route::get('/{ticket}',[PemesananController::class,'show'])->name('pemesanan.show');
+        Route::post('/tiket-masuk',[PemesananController::class,'entranceTicket'])->name('pemesanan.tiket-masuk');
     });
 
     Route::get('payment',[PaymentCheckoutController::class,'pay'])->name('payment.index');
