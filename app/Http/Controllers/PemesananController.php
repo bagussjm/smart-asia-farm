@@ -45,13 +45,13 @@ class PemesananController extends Controller
         try{
             $data['tiket'] = Tiket::with(['carts' => function($c){
                 $c->with(['user','playground'])->processed();
-            }])->findOrFail($ticket);
+            },'entranceTicket'])->findOrFail($ticket);
             $data['tiketMasuk'] = TiketMasuk::first() !== null ?
                 TiketMasuk::first() : (object)['harga_tiket_masuk' => null,'nama_tiket_masuk' => null];
             $data['detail'] = $this->midtransRepository->orderStatus($ticket)->getOrder();
             $data['payment'] = $this->payment($data['detail']);
 
-//            dd($data['tiket']);
+//            dd($data['tiket']->entranceTicket->formatted_harga_tiket_masuk);
 //            dd($data['payment']);
 
             return view('backend.pemesanan.view',$data);

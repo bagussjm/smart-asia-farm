@@ -75,13 +75,13 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <!-- foreach ($order->lineItems as $line) or some such thing here -->
-{{--                                            <tr>--}}
-{{--                                                <td>{{ $tiketMasuk->nama_tiket_masuk }}</td>--}}
-{{--                                                <td class="text-center">{{ $tiketMasuk->formatted_harga_tiket_masuk }}</td>--}}
-{{--                                                <td class="text-center">1</td>--}}
-{{--                                                <td class="text-right">{{ $tiketMasuk->formatted_harga_tiket_masuk }}</td>--}}
-{{--                                            </tr>--}}
+
+                                            <tr>
+                                                <td>{{ $tiket->entranceTicket->nama_tiket_masuk }}</td>
+                                                <td class="text-center">{{ $tiket->entranceTicket->formatted_harga_tiket_masuk }}</td>
+                                                <td class="text-center">1</td>
+                                                <td class="text-right">{{ $tiket->entranceTicket->formatted_harga_tiket_masuk }}</td>
+                                            </tr>
                                             @foreach($tiket->carts as $keranjang)
                                                 <tr>
                                                     <td>{{ $keranjang->playground->nama_wahana }}</td>
