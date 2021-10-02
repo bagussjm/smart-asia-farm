@@ -14,6 +14,7 @@ class TiketMasuk extends Model
 
     protected $fillable = [
         'id_tiket',
+        'id_user',
         'nama_tiket_masuk',
         'harga_tiket_masuk'
     ];
@@ -36,6 +37,14 @@ class TiketMasuk extends Model
             'created_at' => null,
             'updated_at' => null,
             'deleted_at' => null,
+        ]);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'id_user','id')->withDefault([
+            'id' => null,
+            'nama_lengkap' => ''
         ]);
     }
 

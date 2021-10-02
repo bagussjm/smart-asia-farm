@@ -109,6 +109,7 @@ class KeranjangApiController extends ApiController
 
     public function checkout(Request $request)
     {
+        DB::beginTransaction();
         try{
             $request->validate([
                 'order_id' => 'required',
@@ -120,7 +121,6 @@ class KeranjangApiController extends ApiController
             $mtsOrder = $this->MidtransRepository->orderStatus($request->order_id)->getOrder();
 
             if (!empty($mtsOrder)){
-                DB::beginTransaction();
                 $ticket = $this->TicketRepository->insert([
                     'id' => $request->order_id,
                     'tanggal_masuk' => $request->book_date,
@@ -131,21 +131,18 @@ class KeranjangApiController extends ApiController
                     'instruksi_pembayaran' => $request->pdf_url
                 ]);
                 if ($ticket){
-                    $cartUpdate = Keranjang::where('id_user',$request->user_id)
+                    Keranjang::where('id_user',$request->user_id)
                         ->unprocessed()->update([
                             'status_keranjang' => 'diproses',
                             'id_tiket' => $request->order_id
                         ]);
                     TiketMasuk::create([
                         'id_tiket' => $request->order_id,
+                        'id_user' => $request->user_id,
                         'nama_tiket_masuk' => 'Tiket Masuk',
                         'harga_tiket_masuk' => (int)env('ENTRANCE_TICKET','25000'),
                     ]);
-                    if ($cartUpdate){
-                        DB::commit();
-                    }else{
-                        DB::rollBack();
-                    }
+                    DB::commit();
                 }
 
                 return $this->successResponse(
@@ -166,6 +163,7 @@ class KeranjangApiController extends ApiController
             }
 
         }catch (\Exception $exception){
+            DB::rollBack();
             return $this->errorResponse(
                 [],
                 $exception->getMessage()

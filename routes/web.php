@@ -47,7 +47,8 @@ Route::middleware('role:pengelola')->group(function (){
     });
 
     Route::prefix('pemesanan')->group(function (){
-        Route::get('/',[PemesananController::class,'index'])->name('pemesanan.index');
+        Route::get('/tiket/wahana',[PemesananController::class,'index'])->name('pemesanan.index');
+        Route::get('/tiket/masuk',[PemesananController::class,'tiketMasuk'])->name('pemesanan.masuk');
         Route::get('/{ticket}',[PemesananController::class,'show'])->name('pemesanan.show');
         Route::post('/tiket-masuk',[PemesananController::class,'entranceTicket'])->name('pemesanan.tiket-masuk');
     });

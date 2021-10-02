@@ -30,14 +30,23 @@ class PemesananController extends Controller
 
     public function index()
     {
-        $data['tiketMasuk'] = TiketMasuk::first() !== null ?
-            TiketMasuk::first() : (object)['harga_tiket_masuk' => null,'nama_tiket_masuk' => null];
-//        dd($data['tiketMasuk']);
-        $data['pemesanan'] = Tiket::with(['carts' => function($c){
+        $data['tickets'] = Tiket::with(['carts' => function($c){
             $c->with(['user','playground'])->processed();
         }])->get();
 
+        $data['pemesanan'] = count($data['tickets']->first()->carts) > 0 ? $data['tickets'] : [];
+
+
         return view('backend.pemesanan.index',$data);
+    }
+
+    public function tiketMasuk()
+    {
+        $data['pemesanan'] = TiketMasuk::with(['user','ticket'])->get();
+
+//        return response()->json($data['pemesanan']);
+
+        return view('backend.pemesanan.masuk',$data);
     }
 
     public function show($ticket)
@@ -46,12 +55,10 @@ class PemesananController extends Controller
             $data['tiket'] = Tiket::with(['carts' => function($c){
                 $c->with(['user','playground'])->processed();
             },'entranceTicket'])->findOrFail($ticket);
-            $data['tiketMasuk'] = TiketMasuk::first() !== null ?
-                TiketMasuk::first() : (object)['harga_tiket_masuk' => null,'nama_tiket_masuk' => null];
             $data['detail'] = $this->midtransRepository->orderStatus($ticket)->getOrder();
             $data['payment'] = $this->payment($data['detail']);
 
-//            dd($data['tiket']->entranceTicket->formatted_harga_tiket_masuk);
+//            dd($data['tiket']->entranceTicket);
 //            dd($data['payment']);
 
             return view('backend.pemesanan.view',$data);

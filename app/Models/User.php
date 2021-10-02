@@ -59,4 +59,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Keranjang::class,'id_user','id')->unprocessed();
     }
+
+    public function entranceTicket()
+    {
+        return $this->hasOne(TiketMasuk::class,'id_user','id')->withDefault([
+            'id' => null,
+            'id_tiket' => null,
+            'nama_tiket_masuk' => '',
+            'harga_tiket_masuk' => 0,
+            'tipe_tiket' => '',
+            'created_at' => null,
+            'updated_at' => null,
+            'deleted_at' => null,
+        ]);
+    }
 }
