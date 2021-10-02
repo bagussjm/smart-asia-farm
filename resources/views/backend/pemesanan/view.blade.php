@@ -77,10 +77,10 @@
                                             <tbody>
                                             <!-- foreach ($order->lineItems as $line) or some such thing here -->
                                             <tr>
-                                                <td>Tiket Masuk</td>
-                                                <td class="text-center">Rp 25.000</td>
+                                                <td>{{ $tiketMasuk->nama_tiket_masuk }}</td>
+                                                <td class="text-center">{{ $tiketMasuk->formatted_harga_tiket_masuk }}</td>
                                                 <td class="text-center">1</td>
-                                                <td class="text-right">Rp 25.000</td>
+                                                <td class="text-right">{{ $tiketMasuk->formatted_harga_tiket_masuk }}</td>
                                             </tr>
                                             @foreach($tiket->carts as $keranjang)
                                                 <tr>
@@ -100,7 +100,9 @@
                                                 <td class="no-line"></td>
                                                 <td class="no-line text-center">
                                                     <strong>Total</strong></td>
-                                                <td class="no-line text-right"><h4 class="m-0">$685.99</h4></td>
+                                                <td class="no-line text-right"><h4 class="m-0">
+                                                    {{ $tiket->formatted_total_bayar }}
+                                                </h4></td>
                                             </tr>
                                             </tbody>
                                         </table>

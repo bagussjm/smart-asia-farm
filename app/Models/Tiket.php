@@ -24,6 +24,11 @@ class Tiket extends Model
         'instruksi_pembayaran'
     ];
 
+    public function getFormattedTotalBayarAttribute()
+    {
+        return 'Rp '.number_format($this->total_bayar,0,'','.');
+    }
+
     public function carts()
     {
         return $this->hasMany(Keranjang::class,'id_tiket','id');
