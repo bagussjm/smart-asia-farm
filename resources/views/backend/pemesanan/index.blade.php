@@ -4,12 +4,12 @@
     Data Pemesanan Tiket
 @endsection
 
-@section('page-tools')
-    <button class="btn btn-info float-right" data-toggle="modal" data-target="#ticket-price">
-        <i class="fa fa-ticket-alt"></i>
-        TIKET MASUK - {{ $tiketMasuk->formatted_harga_tiket_masuk }}
-    </button>
-@stop
+{{--@section('page-tools')--}}
+{{--    <button class="btn btn-info float-right" data-toggle="modal" data-target="#ticket-price">--}}
+{{--        <i class="fa fa-ticket-alt"></i>--}}
+{{--        TIKET MASUK - {{ $tiketMasuk->formatted_harga_tiket_masuk }}--}}
+{{--    </button>--}}
+{{--@stop--}}
 
 @section('content')
     {{-- dynamic content--}}

@@ -118,12 +118,7 @@ class KeranjangApiController extends ApiController
                 'pdf_url' => 'string|nullable'
             ]);
             $mtsOrder = $this->MidtransRepository->orderStatus($request->order_id)->getOrder();
-            $entranceTicket = TiketMasuk::first() !== null ?
-                TiketMasuk::first() : (object)['harga_tiket_masuk' => null,'nama_tiket_masuk' => null];
 
-            $grossAmount = $entranceTicket->harga_tiket_masuk !== null ?
-                ((double)$mtsOrder->gross_amount + $entranceTicket->harga_tiket_masuk) : (double)$mtsOrder->gross_amount;
-            
             if (!empty($mtsOrder)){
                 DB::beginTransaction();
                 $ticket = $this->TicketRepository->insert([
@@ -131,7 +126,7 @@ class KeranjangApiController extends ApiController
                     'tanggal_masuk' => $request->book_date,
                     'jam_masuk' => $request->book_time,
                     'status' => 'pending',
-                    'total_bayar' => $grossAmount,
+                    'total_bayar' => (double)$mtsOrder->gross_amount,
                     'kode_qr' => null,
                     'instruksi_pembayaran' => $request->pdf_url
                 ]);
@@ -151,7 +146,7 @@ class KeranjangApiController extends ApiController
                 return $this->successResponse(
                     array(
                         'order_id' => $mtsOrder->order_id,
-                        'gross_amount' => $grossAmount,
+                        'gross_amount' => (double)$mtsOrder->gross_amount,
                         'payment_type' => $mtsOrder->payment_type,
                         'payment_instruction' => $request->pdf_url
                     ),
