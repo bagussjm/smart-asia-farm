@@ -78,9 +78,9 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "order_id" : "575351485",
+  "order_id" : "1633163369753",
   "user_id" : "1",
-  "book_date" : "2021-09-28",
+  "book_date" : "2021-10-05",
   "book_time" : "08:00",
   "pdf_url" : "https://app.sandbox.midtrans.com/snap/v1/transactions/952c2ab8-2921-422d-93ad-ac4138e67c72/pdf"
 }

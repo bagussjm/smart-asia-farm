@@ -33,4 +33,18 @@ class Tiket extends Model
     {
         return $this->hasMany(Keranjang::class,'id_tiket','id');
     }
+
+    public function entranceTicket()
+    {
+        return $this->hasOne(TiketMasuk::class,'id_tiket','id')->withDefault([
+                'id' => null,
+                'id_tiket' => null,
+                'nama_tiket_masuk' => '',
+                'harga_tiket_masuk' => 0,
+                'tipe_tiket' => '',
+                'created_at' => null,
+                'updated_at' => null,
+                'deleted_at' => null,
+        ]);
+    }
 }

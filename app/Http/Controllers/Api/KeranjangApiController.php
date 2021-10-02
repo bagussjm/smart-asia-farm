@@ -136,6 +136,11 @@ class KeranjangApiController extends ApiController
                             'status_keranjang' => 'diproses',
                             'id_tiket' => $request->order_id
                         ]);
+                    TiketMasuk::create([
+                        'id_tiket' => $request->order_id,
+                        'nama_tiket_masuk' => 'Tiket Masuk',
+                        'harga_tiket_masuk' => (int)env('ENTRANCE_TICKET','25000'),
+                    ]);
                     if ($cartUpdate){
                         DB::commit();
                     }else{
