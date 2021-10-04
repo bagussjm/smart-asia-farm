@@ -617,7 +617,7 @@ dt {
 
 .submenu li a {
   padding: 8px 20px 8px 10px;
-  color: #8699ad;
+  color: #fdb4b4;
   display: block;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -628,7 +628,7 @@ dt {
 }
 
 .submenu li a:hover {
-  background-color: #333547;
+  background-color: #ec4561;
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -637,7 +637,7 @@ dt {
 }
 
 .submenu li.mm-active > a {
-  color: #b4c9de;
+  color: #fdb4b4;
   background-color: #ec4561;
 }
 
@@ -788,7 +788,7 @@ dt {
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
-  color: #b4bfcc;
+  color: #ffffff;
 }
 
 .enlarged .slimScrollDiv {

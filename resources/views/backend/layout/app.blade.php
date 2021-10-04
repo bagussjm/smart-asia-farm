@@ -13,8 +13,8 @@
 
     <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{url('/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ url('/css/icons.css?v=1.2.0') }}" rel="stylesheet" type="text/css">
-    <link href="{{url('/css/style.css?v=1.2.0')}}" rel="stylesheet" type="text/css">
+    <link href="{{ url('/css/icons.css?v=1.3.0') }}" rel="stylesheet" type="text/css">
+    <link href="{{url('/css/style.css?v=1.3.0')}}" rel="stylesheet" type="text/css">
 
     <style>
         #table_filter{
@@ -100,41 +100,55 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ route('playground.index') }}" class="waves-effect">
-                                    <i class="fa fa-democrat"> </i>
-                                    <span> Data Wahana</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('landmark.index') }}" class="waves-effect">
-                                    <i class="fa fa-landmark"> </i>
-                                    <span> Data Landmark</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="javascript:void(0);" class="waves-effect">
-                                    <i class="fa fa-ticket-alt"></i>
-                                    <span> Data Pemesanan
-                                        <span class="float-right menu-arrow">
-                                            <i class="mdi mdi-chevron-right"></i>
+                            <li class="menu-title">ASIA FARM</li>
+                                <li>
+                                    <a href="#" class="waves-effect">
+                                        <i class="fa fa-archway"> </i>
+                                        <span> Profil</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="waves-effect">
+                                        <i class="fa fa-newspaper"> </i>
+                                        <span> Postingan</span>
+                                    </a>
+                                </li>
+                            <li class="menu-title">Layanan</li>
+                                <li>
+                                    <a href="{{ route('playground.index') }}" class="waves-effect">
+                                        <i class="fa fa-democrat"> </i>
+                                        <span> Data Wahana</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('landmark.index') }}" class="waves-effect">
+                                        <i class="fa fa-landmark"> </i>
+                                        <span> Data Landmark</span>
+                                    </a>
+                                </li>
+                            <li class="menu-title">TIKET </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="waves-effect">
+                                        <i class="fa fa-ticket-alt"></i>
+                                        <span> Data Pemesanan
+                                            <span class="float-right menu-arrow">
+                                                <i class="mdi mdi-chevron-right"></i>
+                                            </span>
                                         </span>
-                                    </span>
-                                </a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="{{ route('pemesanan.index') }}">
-                                            Pemesanan Wahana
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('pemesanan.masuk') }}">
-                                            Pemesanan Tiket Masuk
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                    </a>
+                                    <ul class="submenu">
+                                        <li>
+                                            <a href="{{ route('pemesanan.index') }}">
+                                                Pemesanan Wahana
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('pemesanan.masuk') }}">
+                                                Pemesanan Tiket Masuk
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                         @endif
 
                     </ul>
@@ -236,7 +250,7 @@
     <!-- END wrapper -->
 
     <!-- App js -->
-    <script src="{{url('/js/app.js?v=1.2.0')}}"></script>
+    <script src="{{url('/js/app.js?v=1.3.0')}}"></script>
     <!-- jQuery  -->
     <script src="{{url('/js/app/jquery.min.js')}}"></script>
     <script src="{{url('/js/app/bootstrap.bundle.min.js')}}"></script>
