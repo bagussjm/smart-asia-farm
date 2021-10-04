@@ -12,6 +12,10 @@ class Profil extends Model
 
     protected $table = 'profil';
 
+    protected $primaryKey = 'id';
+
+    public $incrementing = false;
+
     protected $fillable = [
         'nama_instansi',
         'keterangan_instansi',

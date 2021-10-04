@@ -17,6 +17,10 @@ mix.scripts([
     'resource/js/config.js',
 ],'public/js/config.js');
 
+mix.scripts([
+    'resources/js/components/FileUploadHandler.js',
+],'public/js/FileUploadHandler.js');
+
 if (mix.inProduction()) {
     mix.version();
 }

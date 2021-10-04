@@ -32,6 +32,10 @@
                 type: Boolean,
                 default: false
             },
+            tableName: {
+                type: String,
+                default: ''
+            },
             kost: {
                 type: Object,
                 required: false
@@ -95,6 +99,7 @@
                         let formData = new FormData();
                         formData.append('url',file.name);
                         formData.append('column',this.column);
+                        formData.append('table',this.tableName);
                         axios({
                             url: config.AppUrl+'/api/image/'+this.kost.id+'/pull',
                             method: 'POST',

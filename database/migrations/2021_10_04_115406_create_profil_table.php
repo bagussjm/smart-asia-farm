@@ -14,7 +14,7 @@ class CreateProfilTable extends Migration
     public function up()
     {
         Schema::create('profil', function (Blueprint $table) {
-            $table->id();
+            $table->string('id',255);
             $table->string('nama_instansi',255)->nullable();
             $table->text('keterangan_instansi')->nullable();
             $table->text('alamat_instansi')->nullable();

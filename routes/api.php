@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\WahanaApiController;
 use App\Http\Controllers\Api\KeranjangApiController;
 use App\Http\Controllers\Api\TicketApiController;
 use App\Http\Controllers\Api\PaymentNotificationHandlerController;
+use App\Http\Controllers\Api\FileUploaderController;
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -58,6 +59,10 @@ Route::post('/image/{wahana}/pull', [KostImageController::class,'pull']);
 Route::post('/video/post',[KostVideoController::class,'post']);
 Route::post('/video/remove',[KostVideoController::class,'remove']);
 Route::post('/video/{kost}/pull',[KostVideoController::class,'pull']);
+
+// file handler
+Route::post('/file/post',[FileUploaderController::class,'post']);
+Route::post('/file/remove',[FileUploaderController::class,'remove']);
 
 
 

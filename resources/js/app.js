@@ -1,3 +1,5 @@
+import MapCoordinateInput from "./components/shared/forms/MapCoordinateInput";
+
 require('./bootstrap');
 
 import Vue from 'vue';
@@ -21,6 +23,7 @@ import VideoInput from "./components/shared/forms/VideoInput";
 import BookRulesRepeater from "./components/shared/forms/BookRulesRepeater";
 import VrInput from "./components/shared/forms/VrInput";
 import config from "./config";
+import SingleImageInput from "./components/shared/forms/SingleImageInput";
 
 Vue.prototype.$config = config;
 
@@ -46,6 +49,8 @@ Vue.component('mn-input',MoneyInput);
 Vue.component('vid-input',VideoInput);
 Vue.component('bk-repeater-input',BookRulesRepeater);
 Vue.component('vr-input',VrInput);
+Vue.component('map-input',MapCoordinateInput);
+Vue.component('single-img-input',SingleImageInput);
 
 /*
 * UI Components

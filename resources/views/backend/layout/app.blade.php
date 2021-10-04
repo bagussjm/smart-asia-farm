@@ -102,7 +102,7 @@
                             </li>
                             <li class="menu-title">ASIA FARM</li>
                                 <li>
-                                    <a href="#" class="waves-effect">
+                                    <a href="{{ route('profile.show','SMAF2021') }}" class="waves-effect">
                                         <i class="fa fa-archway"> </i>
                                         <span> Profil</span>
                                     </a>

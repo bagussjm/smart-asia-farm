@@ -6,15 +6,15 @@
                     id="pac-input"
                     class="controls"
                     type="text"
-                    placeholder="Tuliskan nama kost"
+                    placeholder="Tuliskan nama instansi"
                     v-if="edit"
-                    :value="kost.nama_kost"
+                    :value="kost.nama_instansi"
                 />
                 <input
                     id="pac-input"
                     class="controls"
                     type="text"
-                    placeholder="Tuliskan nama kost"
+                    placeholder="Tuliskan nama instansi"
                     v-else
                 />
             </div>
@@ -34,7 +34,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close" @click="coordinateSet = false">
                     <span aria-hidden="true">×</span>
                 </button>
-                <strong>Berhasil mendapatkan koordinat kost</strong>
+                <strong>Berhasil mendapatkan koordinat Instansi</strong>
             </div>
         </div>
         <div class="col-6 my-3">
@@ -43,9 +43,7 @@
         <div class="col-6 my-3">
             <input name="longitude" readonly :value="coordinate.lng" :class="coordinateSet ? 'is-valid' : ''" class="form-control"/>
         </div>
-        <div class="col-9">
-            <span class="text-muted font-weight-light" style="font-size: 11px">Koordinat memudahkan kost anda ditemukan oleh pencari kost pada aplikasi melalui peta</span>
-        </div>
+
     </div>
 </template>
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kost;
 use App\Models\Wahana;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class KostImageController extends Controller
@@ -48,39 +49,47 @@ class KostImageController extends Controller
         ));
     }
 
-    public function pull(Request $request,Wahana $wahana)
+    public function pull(Request $request,$wahana)
     {
+        try{
+            $wahana = DB::table($request->input('table'))->findOrFail($wahana);
+            $column = $request->input('column');
+            $kostData = $wahana->toArray();
+            $pullIndex = array_search($request->input('url'),$kostData[$column]);
+            if (in_array($request->input('url'),$kostData[$column])){
+                $img = $kostData[$column];
 
-        $column = $request->input('column');
-        $kostData = $wahana->toArray();
-        $pullIndex = array_search($request->input('url'),$kostData[$column]);
-        if (in_array($request->input('url'),$kostData[$column])){
-            $img = $kostData[$column];
+                if (count($img) > 1){
+                    Storage::delete($request->input('url'));
+                    array_splice($img,$pullIndex,1);
+                }else if (count($img) === 1 ){
+                    Storage::delete($request->input('url'));
+                    $img = [];
+                }
 
-            if (count($img) > 1){
-                Storage::delete($request->input('url'));
-                array_splice($img,$pullIndex,1);
-            }else if (count($img) === 1 ){
-                Storage::delete($request->input('url'));
-                $img = [];
+                $wahana->update([
+                    $column => $img
+                ]);
+                return json_encode(array(
+                    'code' => 200,
+                    'status' => 'Pull image data successful',
+                    'data' => $img,
+                    'index' => $pullIndex
+                ));
             }
 
-            $wahana->update([
-                $column => $img
-            ]);
             return json_encode(array(
-                'code' => 200,
-                'status' => 'Pull image data successful',
-                'data' => $img,
-                'index' => $pullIndex
+                'code' => 500,
+                'status' => 'Internal server error',
+                'data' => $kostData[$column]
+            ));
+        }catch (\Exception $exception){
+            return json_encode(array(
+                'code' => 500,
+                'status' => $exception->getMessage(),
+                'data' => []
             ));
         }
-
-        return json_encode(array(
-            'code' => 500,
-            'status' => 'Internal server error',
-            'data' => $kostData[$column]
-        ));
 
     }
 }
