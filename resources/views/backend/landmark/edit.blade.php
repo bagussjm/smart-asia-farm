@@ -58,7 +58,7 @@
                                            name="profil_landmark"
                                            table-name="landmark"
                                            v-bind:edit="true"
-                                           v-bind:kost="{{ json_encode($landmark) }}"
+                                           v-bind:edit-obj="{{ json_encode($landmark) }}"
                                            v-bind:data="{{ json_encode(array($landmark->profil_landmark)) }}"
                                            column="profil_landmark"
                                 ></img-input>
@@ -70,10 +70,10 @@
                                 <img-input placeholder="unggah foto-foto tentang landmark"
                                            name="gambar_landmark[]"
                                            table-name="landmark"
-                                           v-bind:edit="true"
-                                           v-bind:kost="{{ json_encode($landmark) }}"
-                                           v-bind:data="{{ json_encode($landmark->gambar_landmark) }}"
                                            column="gambar_landmark"
+                                           v-bind:edit="true"
+                                           v-bind:edit-obj="{{ json_encode($landmark) }}"
+                                           v-bind:data="{{ json_encode($landmark->gambar_landmark) }}"
                                 ></img-input>
                             </div>
                         </div>

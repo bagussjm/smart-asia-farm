@@ -39,8 +39,9 @@
                                 <img-input
                                     placeholder="unggah foto profil wahana"
                                     name="profil_wahana"
+                                    table-name="landmark"
                                     v-bind:edit="true"
-                                    v-bind:kost="{{ json_encode($wahana) }}"
+                                    v-bind:edit-obj="{{ json_encode($wahana) }}"
                                     v-bind:data="{{ json_encode(array($wahana->profil_wahana)) }}"
                                     column="profil_wahana">
                                 </img-input>
