@@ -63,6 +63,7 @@ Route::post('/video/{kost}/pull',[KostVideoController::class,'pull']);
 // file handler
 Route::post('/file/post',[FileUploaderController::class,'post']);
 Route::post('/file/remove',[FileUploaderController::class,'remove']);
+Route::post('/file/pull',[FileUploaderController::class,'pull']);
 
 
 

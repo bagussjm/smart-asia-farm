@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kost;
+use App\Models\Landmark;
+use App\Models\Profil;
 use App\Models\Wahana;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +54,7 @@ class KostImageController extends Controller
     public function pull(Request $request,$wahana)
     {
         try{
-            $wahana = DB::table($request->input('table'))->findOrFail($wahana);
+            $wahana = $this->tableName($request->input('table'),$wahana);
             $column = $request->input('column');
             $kostData = $wahana->toArray();
             $pullIndex = array_search($request->input('url'),$kostData[$column]);
@@ -91,5 +93,20 @@ class KostImageController extends Controller
             ));
         }
 
+    }
+
+    public function tableName($table,$id)
+    {
+        switch ($table){
+            case 'landmark':
+                return Landmark::findOrFail($id);
+                break;
+            case 'wahana':
+                return Wahana::findOrFail($id);
+                break;
+            case 'profil';
+                return Profil::findOrFail($id);
+                break;
+        }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" hidden  :name="name" :value="image.url"  v-for="image in images">
+        <input type="text" :name="name" :value="image.url"  v-for="image in images">
         <vue-dropzone
             ref="imageInput"
             :options="dropzoneOptions"
@@ -17,7 +17,7 @@
     export default {
         name: "ImageInput",
         components: {
-            vueDropzone: vue2Dropzone
+            vueDropzone: vue2Dropzone,
         },
         props: {
             name: {
@@ -36,12 +36,13 @@
                 type: String,
                 default: ''
             },
-            kost: {
+            editObj: {
                 type: Object,
                 required: false
             },
             data: {
                 type: Array,
+                default: [],
                 required: false
             },
             column: {
@@ -53,10 +54,19 @@
         mounted(){
             if (this.edit){
                 if (this.data){
-                    this.data.map((item,index) => {
+                    let v = this;
+                    v.data.map((item) => {
+                        let storagePath = '/public/'+v.tableName+'/';
                         let file = {size: 150, name: item, type: "image/png", index: 1};
                         let url = this.$config.AppUrl+'/'+item;
                         this.$refs.imageInput.manuallyAddFile(file,url);
+                        v.$dzImgPush(
+                            file,
+                            item,
+                            true,
+                            storagePath,
+                            v.images
+                        )
                     });
                 }
             }
@@ -80,38 +90,71 @@
         },
         methods: {
             fileAdded(file){
-                if (file.manuallyAdded === undefined){
-                    let data = new FormData();
-                    data.append('image',file);
-                    let v = this;
-
-                    axios.post(config.AppUrl+'/api/image/post',data).then(function (response) {
-                        console.log(response);
-                        if (response.data.code === 200){
-                            let url = response.data.data;
-                            v.$dzImgPush(file,url,v.images);
-                        }
-                    })
+                if (this.isManual(file)){
+                    console.log(file);
+                }else{
+                    this.postAndPushFile(file);
                 }
             },
             fileRemoved(file){
-                    if (file.manuallyAdded !== undefined){
-                        let formData = new FormData();
-                        formData.append('url',file.name);
-                        formData.append('column',this.column);
-                        formData.append('table',this.tableName);
-                        axios({
-                            url: config.AppUrl+'/api/image/'+this.kost.id+'/pull',
-                            method: 'POST',
-                            data: formData
-                        }).then(function (response) {
-                            console.log(response.data);
-                        });
-
-                    }else {
-                        this.$dzImgPull(file,'/api/image/remove',this.images);
-                    }
+                if (this.isManual(file)){
+                    this.pullAndUpdateTable(file);
+                }else {
+                    this.pullAndRemoveFile(file);
+                }
             },
+            isManual(file){
+                return file.manuallyAdded !== undefined;
+            },
+            getFilePath(file){
+                let fileIndex = this.images.findIndex(f => f.name === file.name);
+                return this.images[fileIndex].url;
+            },
+            postAndPushFile(file){
+                let v = this;
+                let storagePath = 'public/'+v.tableName+'/';
+                let formData = new FormData();
+                formData.append('image',file);
+                formData.append('storage',storagePath);
+                axios.post(config.AppUrl+'/api/file/post',formData).then(function (response) {
+                    if (response.data.code === 200){
+                        let url = response.data.data;
+                        v.$dzImgPush(
+                            file,
+                            url,
+                            false,
+                            storagePath,
+                            v.images
+                        );
+                    }
+                });
+            },
+            pullAndRemoveFile(file){
+                let v = this;
+                let formData = new FormData();
+                formData.append('storage',v.getFilePath(file));
+                axios.post(config.AppUrl+'/api/file/remove',formData)
+                    .then(function (response) {
+                        if (response.data.code === 200){
+                            v.$dzImgPull(file,v.images)
+                        }
+                    });
+            },
+            pullAndUpdateTable(file){
+                let v = this;
+                let formData = new FormData();
+                formData.append('table',v.tableName);
+                formData.append('column',v.column);
+                formData.append('storage',v.getFilePath(file));
+                formData.append('id',v.editObj.id);
+                axios.post(config.AppUrl+'/api/file/pull',formData)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.data.code === 200){
+                            v.$dzImgPull(file,v.images)
+                        }
+                    });
+            }
         }
     }
 </script>

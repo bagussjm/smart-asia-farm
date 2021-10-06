@@ -52,10 +52,11 @@
                                 <img-input
                                     placeholder="unggah foto-foto tentang wahana"
                                     name="gambar_wahana[]"
-                                    v-bind:edit="true"
-                                    v-bind:kost="{{ json_encode($wahana) }}"
-                                    v-bind:data="{{ json_encode($wahana->gambar_wahana) }}"
+                                    table-name="wahana"
                                     column="gambar_wahana"
+                                    v-bind:edit="true"
+                                    v-bind:edit-obj="{{ json_encode($wahana) }}"
+                                    v-bind:data="{{ json_encode($wahana->gambar_wahana) }}"
                                 ></img-input>
                             </div>
                         </div>

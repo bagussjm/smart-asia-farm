@@ -58,27 +58,17 @@ Vue.component('single-img-input',SingleImageInput);
 Vue.component('ct-badge',CostTypeBadge);
 Vue.component('img-lb', ImageLightbox);
 
-Vue.prototype.$dzImgPush = function (file,url,data) {
-    let manual = true;
-    if (file.manuallyAdded === undefined){
-        manual = false;
-    }
+Vue.prototype.$dzImgPush = function (file,url,manual,StoragePath,data) {
     data.push({
         name: file.name,
         file: file,
         url: url,
+        storagePath: StoragePath,
         manual: manual
     })
 };
-Vue.prototype.$dzImgPull = function (file,url,data) {
+Vue.prototype.$dzImgPull = function (file,data) {
     let fileIndex = data.findIndex(f => f.name === file.name);
-    let formData = new FormData();
-    formData.append('url',data[fileIndex].url);
-    axios.post(config.AppUrl+url,formData)
-        .then(function (response) {
-            console.log(response.data);
-        });
-
     data.splice(fileIndex,1);
 };
 
