@@ -40,14 +40,14 @@
                                     {{ $list->isi_post }}
                                 </td>
                                 <td>
-                                    <img src="{{ url($list->thumbnail_post) }}" alt=""
+                                    <img src="{{ url($list->thumbnail_url) }}" alt=""
                                          width="64px" height="64px">
                                 </td>
                                 <td>
                                     {{ $list->formatted_post_date }}
                                 </td>
                                 <td>
-                                    {{ $list->formatted_post_date }}
+                                    {{ $list->formatted_post_update }}
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-between">
@@ -55,11 +55,11 @@
                                             <i class="ti ti-view-list"></i>
                                         </a>
 
-                                        <a href="#" class="btn btn-sm btn-warning">
+                                        <a href="{{ route('post.edit',$list->id) }}" class="btn btn-sm btn-warning">
                                             <i class="ti ti-pencil" ></i>
                                         </a>
 
-                                        <form action="#" method="post">
+                                        <form action="{{ route('post.delete',$list->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('Yakin ingin menghapus data wahana?')" class="btn btn-sm btn-danger">

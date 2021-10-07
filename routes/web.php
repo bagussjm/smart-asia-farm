@@ -39,6 +39,9 @@ Route::middleware('role:pengelola')->group(function (){
         Route::get('/',[PostController::class,'index'])->name('post.index');
         Route::get('/tambah',[PostController::class,'create'])->name('post.create');
         Route::post('/tambah',[PostController::class,'store'])->name('post.store');
+        Route::get('/{post}/edit',[PostController::class,'edit'])->name('post.edit');
+        Route::put('/{post}/edit',[PostController::class,'update'])->name('post.update');
+        Route::delete('/{post}/delete',[PostController::class,'delete'])->name('post.delete');
     });
 
     Route::prefix('/wahana')->group(function (){

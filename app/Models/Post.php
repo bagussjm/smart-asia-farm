@@ -20,6 +20,14 @@ class Post extends Model
         'foto_post',
     ];
 
+    public function getThumbnailUrlAttribute()
+    {
+        if ($this->thumbnail_post !== null){
+            return $this->thumbnail_post;
+        }
+        return url('/images/error.png');
+    }
+
     public function getFormattedPostDateAttribute()
     {
         return Carbon::parse($this->created_at)->translatedFormat('d F Y H:i').' WIB';
