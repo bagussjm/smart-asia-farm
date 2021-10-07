@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" :name="name" :value="image.url"  v-for="image in images">
+        <input type="text" hidden :name="name" :value="image.url"  v-for="image in images">
         <vue-dropzone
             ref="imageInput"
             :options="dropzoneOptions"
@@ -91,7 +91,6 @@
         methods: {
             fileAdded(file){
                 if (this.isManual(file)){
-                    console.log(file);
                 }else{
                     this.postAndPushFile(file);
                 }

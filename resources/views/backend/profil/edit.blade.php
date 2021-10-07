@@ -24,8 +24,8 @@
                         <div class="form-group row">
                             <label for="" class="col-3">Nama Intansi</label>
                             <div class="col-9">
-                                <txt-input name="nama_landmark"
-                                           id="nama_landmark"
+                                <txt-input name="nama_instansi"
+                                           id="nama_instansi"
                                            required placeholder="Isikan nama landmark"
                                            value="{{ $profil->nama_instansi }}"
                                 />
@@ -34,9 +34,9 @@
                         <div class="form-group row">
                             <label for="deskripsi_landmark" class="col-3">Deskripsi Instansi</label>
                             <div class="col-9">
-                                <ta-input name="deskripsi_landmark"
-                                          id="deskripsi_landmark"
-                                          required placeholder="Isikan deskripsi selengkapnya tentang landmark"
+                                <ta-input name="keterangan_instansi"
+                                          id="keterangan_instansi"
+                                          required placeholder="Isikan deskripsi selengkapnya tentang instansi"
                                           value="{{ $profil->keterangan_instansi }}"
                                 />
                             </div>
@@ -45,7 +45,7 @@
                             <label for="info_landmark" class="col-3">Alamat Instansi</label>
                             <div class="col-9">
                                 <ta-input name="alamat_instansi"
-                                          id="info_landmark"
+                                          id="alamat_instansi"
                                           required placeholder="Isikan informasi selengkapnya tentang instansi"
                                           value="{{ $profil->alamat_instansi }}"
                                 />
@@ -54,16 +54,39 @@
                         <div class="form-group row">
                             <label  class="col-3">Lokasi Instansi</label>
                             <div class="col-9">
-                                <map-input name="koordinat_instansi"></map-input>
+                                @if ($profil->lokasi_instansi)
+                                    <map-input name="koordinat_kost"
+                                               v-bind:edit="true"
+                                               v-bind:kost="{{json_encode($profil)}}"
+                                    ></map-input>
+                                    @else
+                                    <map-input name="lokasi_instansi"></map-input>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group row">
                             <label  class="col-3">Foto Profil Instansi</label>
                             <div class="col-9">
-                                <single-img-input
-                                    name="foto_profil"
-                                    form-id="formEdit"
-                                ></single-img-input>
+                                @if ($profil->foto_profil_instansi)
+                                    <img-input placeholder="unggah foto profil instansi"
+                                               name="foto_profil_instansi"
+                                               table-name="profil"
+                                               v-bind:edit="true"
+                                               v-bind:edit-obj="{{ json_encode($profil) }}"
+                                               v-bind:data="{{ json_encode(array($profil->foto_profil_instansi)) }}"
+                                               column="foto_profil_instansi"
+                                    ></img-input>
+                                    @else
+                                    <img-input placeholder="unggah foto profil instansi"
+                                               name="foto_profil_instansi"
+                                               table-name="profil"
+                                               v-bind:edit="false"
+                                               v-bind:edit-obj="{{ json_encode($profil) }}"
+                                               v-bind:data="{{ json_encode(array($profil->foto_profil_instansi)) }}"
+                                               column="foto_profil_instansi"
+                                    ></img-input>
+                                @endif
+
                             </div>
                         </div>
 

@@ -2539,9 +2539,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fileAdded: function fileAdded(file) {
-      if (this.isManual(file)) {
-        console.log(file);
-      } else {
+      if (this.isManual(file)) {} else {
         this.postAndPushFile(file);
       }
     },
@@ -2703,9 +2701,10 @@ __webpack_require__.r(__webpack_exports__);
     var center;
 
     if (this.edit) {
+      console.log();
       this.coordinate = {
-        lat: parseFloat(this.kost.koordinat_kost.latitude),
-        lng: parseFloat(this.kost.koordinat_kost.longitude)
+        lat: parseFloat(this.kost.lokasi_instansi.latitude),
+        lng: parseFloat(this.kost.lokasi_instansi.longitude)
       };
       center = this.coordinate;
     } else {
@@ -4558,6 +4557,63 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "LocationMapView",
+  props: {
+    coordinate: {
+      type: Object
+    },
+    name: {
+      type: String
+    }
+  },
+  data: function data() {
+    return {
+      marker: null
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var position = {
+      lat: parseFloat(this.coordinate.latitude),
+      lng: parseFloat(this.coordinate.longitude)
+    };
+    this.$config.Map.load().then(function () {
+      var map = new google.maps.Map(document.getElementById("cost-map"), {
+        center: position,
+        zoom: 18,
+        streetViewControl: false,
+        mapTypeControl: false
+      });
+      _this.marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title: _this.name
+      });
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -5028,6 +5084,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.lb-container:hover{\n    cursor: pointer;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n#cost-map{\n    width: 100%;\n    height: 240px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22723,6 +22803,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageLightbox_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationMapView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LocationMapView.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationMapView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationMapView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -52052,6 +52162,47 @@ component.options.__file = "resources/js/components/shared/ui/ImageLightbox.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/ui/LocationMapView.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/shared/ui/LocationMapView.vue ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LocationMapView_vue_vue_type_template_id_dfbe5080___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationMapView.vue?vue&type=template&id=dfbe5080& */ "./resources/js/components/shared/ui/LocationMapView.vue?vue&type=template&id=dfbe5080&");
+/* harmony import */ var _LocationMapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocationMapView.vue?vue&type=script&lang=js& */ "./resources/js/components/shared/ui/LocationMapView.vue?vue&type=script&lang=js&");
+/* harmony import */ var _LocationMapView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LocationMapView.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/shared/ui/LocationMapView.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _LocationMapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _LocationMapView_vue_vue_type_template_id_dfbe5080___WEBPACK_IMPORTED_MODULE_0__.render,
+  _LocationMapView_vue_vue_type_template_id_dfbe5080___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/shared/ui/LocationMapView.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/shared/buttons/AddButton.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************!*\
   !*** ./resources/js/components/shared/buttons/AddButton.vue?vue&type=script&lang=js& ***!
@@ -52388,6 +52539,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/ui/LocationMapView.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/shared/ui/LocationMapView.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationMapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LocationMapView.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationMapView_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/shared/forms/MapCoordinateInput.vue?vue&type=style&index=0&lang=css&":
 /*!******************************************************************************************************!*\
   !*** ./resources/js/components/shared/forms/MapCoordinateInput.vue?vue&type=style&index=0&lang=css& ***!
@@ -52423,6 +52590,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageLightbox_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ImageLightbox.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/ImageLightbox.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/shared/ui/LocationMapView.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/shared/ui/LocationMapView.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationMapView_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LocationMapView.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=style&index=0&lang=css&");
 
 
 /***/ }),
@@ -52784,6 +52964,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/shared/ui/LocationMapView.vue?vue&type=template&id=dfbe5080&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/shared/ui/LocationMapView.vue?vue&type=template&id=dfbe5080& ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationMapView_vue_vue_type_template_id_dfbe5080___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationMapView_vue_vue_type_template_id_dfbe5080___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationMapView_vue_vue_type_template_id_dfbe5080___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LocationMapView.vue?vue&type=template&id=dfbe5080& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=template&id=dfbe5080&");
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/buttons/AddButton.vue?vue&type=template&id=4e299ca6&scoped=true&":
 /*!************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/buttons/AddButton.vue?vue&type=template&id=4e299ca6&scoped=true& ***!
@@ -53084,7 +53281,7 @@ var render = function() {
     [
       _vm._l(_vm.images, function(image) {
         return _c("input", {
-          attrs: { type: "text", name: _vm.name },
+          attrs: { type: "text", hidden: "", name: _vm.name },
           domProps: { value: image.url }
         })
       }),
@@ -54141,6 +54338,31 @@ var render = function() {
     ],
     2
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=template&id=dfbe5080&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/shared/ui/LocationMapView.vue?vue&type=template&id=dfbe5080& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "cost-map" } })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -66430,7 +66652,7 @@ var __webpack_exports__ = {};
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_shared_forms_MapCoordinateInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/shared/forms/MapCoordinateInput */ "./resources/js/components/shared/forms/MapCoordinateInput.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _components_shared_buttons_SaveButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/shared/buttons/SaveButton */ "./resources/js/components/shared/buttons/SaveButton.vue");
 /* harmony import */ var _components_shared_buttons_AddButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/shared/buttons/AddButton */ "./resources/js/components/shared/buttons/AddButton.vue");
 /* harmony import */ var _components_shared_logo_KostKitaIcon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/shared/logo/KostKitaIcon */ "./resources/js/components/shared/logo/KostKitaIcon.vue");
@@ -66451,6 +66673,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_shared_forms_VrInput__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/shared/forms/VrInput */ "./resources/js/components/shared/forms/VrInput.vue");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./config */ "./resources/js/config.js");
 /* harmony import */ var _components_shared_forms_SingleImageInput__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/shared/forms/SingleImageInput */ "./resources/js/components/shared/forms/SingleImageInput.vue");
+/* harmony import */ var _components_shared_ui_LocationMapView__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/shared/ui/LocationMapView */ "./resources/js/components/shared/ui/LocationMapView.vue");
 
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
@@ -66476,39 +66699,41 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_21__.default.prototype.$config = _config__WEBPACK_IMPORTED_MODULE_19__.default; // buttons
 
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('save-btn', _components_shared_buttons_SaveButton__WEBPACK_IMPORTED_MODULE_1__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('add-btn', _components_shared_buttons_AddButton__WEBPACK_IMPORTED_MODULE_2__.default); // icons
+vue__WEBPACK_IMPORTED_MODULE_22__.default.prototype.$config = _config__WEBPACK_IMPORTED_MODULE_19__.default; // buttons
 
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('kk-icon', _components_shared_logo_KostKitaIcon__WEBPACK_IMPORTED_MODULE_3__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('kk-icon-text', _components_shared_logo_KostKitaIconText__WEBPACK_IMPORTED_MODULE_4__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('kk-icon-text-mobile', _components_shared_logo_KostKitaIconTextMobile__WEBPACK_IMPORTED_MODULE_5__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('save-btn', _components_shared_buttons_SaveButton__WEBPACK_IMPORTED_MODULE_1__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('add-btn', _components_shared_buttons_AddButton__WEBPACK_IMPORTED_MODULE_2__.default); // icons
+
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('kk-icon', _components_shared_logo_KostKitaIcon__WEBPACK_IMPORTED_MODULE_3__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('kk-icon-text', _components_shared_logo_KostKitaIconText__WEBPACK_IMPORTED_MODULE_4__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('kk-icon-text-mobile', _components_shared_logo_KostKitaIconTextMobile__WEBPACK_IMPORTED_MODULE_5__.default);
 /*
 * forms components
 * */
 
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('txt-input', _components_shared_forms_TextInput__WEBPACK_IMPORTED_MODULE_7__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('pw-input', _components_shared_forms_PasswordInput__WEBPACK_IMPORTED_MODULE_6__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('dp-input', _components_shared_forms_DateInput__WEBPACK_IMPORTED_MODULE_8__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('ta-input', _components_shared_forms_TextAreaInput__WEBPACK_IMPORTED_MODULE_9__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('rg-input', _components_shared_forms_RegionInput__WEBPACK_IMPORTED_MODULE_10__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('img-input', _components_shared_forms_ImageInput__WEBPACK_IMPORTED_MODULE_11__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('cb-facility', _components_shared_forms_FacilityCheckBox__WEBPACK_IMPORTED_MODULE_14__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('mn-input', _components_shared_forms_MoneyInput__WEBPACK_IMPORTED_MODULE_15__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('vid-input', _components_shared_forms_VideoInput__WEBPACK_IMPORTED_MODULE_16__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('bk-repeater-input', _components_shared_forms_BookRulesRepeater__WEBPACK_IMPORTED_MODULE_17__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('vr-input', _components_shared_forms_VrInput__WEBPACK_IMPORTED_MODULE_18__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('map-input', _components_shared_forms_MapCoordinateInput__WEBPACK_IMPORTED_MODULE_0__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('single-img-input', _components_shared_forms_SingleImageInput__WEBPACK_IMPORTED_MODULE_20__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('txt-input', _components_shared_forms_TextInput__WEBPACK_IMPORTED_MODULE_7__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('pw-input', _components_shared_forms_PasswordInput__WEBPACK_IMPORTED_MODULE_6__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('dp-input', _components_shared_forms_DateInput__WEBPACK_IMPORTED_MODULE_8__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('ta-input', _components_shared_forms_TextAreaInput__WEBPACK_IMPORTED_MODULE_9__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('rg-input', _components_shared_forms_RegionInput__WEBPACK_IMPORTED_MODULE_10__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('img-input', _components_shared_forms_ImageInput__WEBPACK_IMPORTED_MODULE_11__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('cb-facility', _components_shared_forms_FacilityCheckBox__WEBPACK_IMPORTED_MODULE_14__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('mn-input', _components_shared_forms_MoneyInput__WEBPACK_IMPORTED_MODULE_15__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('vid-input', _components_shared_forms_VideoInput__WEBPACK_IMPORTED_MODULE_16__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('bk-repeater-input', _components_shared_forms_BookRulesRepeater__WEBPACK_IMPORTED_MODULE_17__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('vr-input', _components_shared_forms_VrInput__WEBPACK_IMPORTED_MODULE_18__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('map-input', _components_shared_forms_MapCoordinateInput__WEBPACK_IMPORTED_MODULE_0__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('map-view', _components_shared_ui_LocationMapView__WEBPACK_IMPORTED_MODULE_21__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('single-img-input', _components_shared_forms_SingleImageInput__WEBPACK_IMPORTED_MODULE_20__.default);
 /*
 * UI Components
 * */
 
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('ct-badge', _components_shared_ui_CostTypeBadge__WEBPACK_IMPORTED_MODULE_12__.default);
-vue__WEBPACK_IMPORTED_MODULE_21__.default.component('img-lb', _components_shared_ui_ImageLightbox__WEBPACK_IMPORTED_MODULE_13__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('ct-badge', _components_shared_ui_CostTypeBadge__WEBPACK_IMPORTED_MODULE_12__.default);
+vue__WEBPACK_IMPORTED_MODULE_22__.default.component('img-lb', _components_shared_ui_ImageLightbox__WEBPACK_IMPORTED_MODULE_13__.default);
 
-vue__WEBPACK_IMPORTED_MODULE_21__.default.prototype.$dzImgPush = function (file, url, manual, StoragePath, data) {
+vue__WEBPACK_IMPORTED_MODULE_22__.default.prototype.$dzImgPush = function (file, url, manual, StoragePath, data) {
   data.push({
     name: file.name,
     file: file,
@@ -66518,14 +66743,14 @@ vue__WEBPACK_IMPORTED_MODULE_21__.default.prototype.$dzImgPush = function (file,
   });
 };
 
-vue__WEBPACK_IMPORTED_MODULE_21__.default.prototype.$dzImgPull = function (file, data) {
+vue__WEBPACK_IMPORTED_MODULE_22__.default.prototype.$dzImgPull = function (file, data) {
   var fileIndex = data.findIndex(function (f) {
     return f.name === file.name;
   });
   data.splice(fileIndex, 1);
 };
 
-var app = new vue__WEBPACK_IMPORTED_MODULE_21__.default({
+var app = new vue__WEBPACK_IMPORTED_MODULE_22__.default({
   el: '#app',
   data: {
     message: 'Hello Vue!'

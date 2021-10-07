@@ -16,7 +16,9 @@
                                <div class="card directory-card shadow-none">
                                    <div class="card-body">
                                        <div class="float-left mr-4">
-                                           <img src="{{ url($profil->foto_profil_instansi) }}" alt="" width="64px" height="64px">
+                                           @if ($profil->foto_profil_instansi)
+                                               <img src="{{ url($profil->foto_profil_instansi) }}" alt="" width="64px" height="64px">
+                                           @endif
                                        </div>
                                       <div class="float-right">
                                           <h5 class="text-primary font-18 mt-0 mb-1">
@@ -51,7 +53,11 @@
                                     <div class="card-body">
                                         <h5 class="card-title text-primary">Alamat Instansi</h5>
                                         <div>
+                                            <map-view
+                                                name="map_instansi"
+                                                v-bind:coordinate="{{ json_encode($profil->lokasi_instansi) }}">
 
+                                            </map-view>
                                         </div>
                                     </div>
                                 </div>

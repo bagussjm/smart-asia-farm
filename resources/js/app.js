@@ -24,6 +24,7 @@ import BookRulesRepeater from "./components/shared/forms/BookRulesRepeater";
 import VrInput from "./components/shared/forms/VrInput";
 import config from "./config";
 import SingleImageInput from "./components/shared/forms/SingleImageInput";
+import LocationMapView from "./components/shared/ui/LocationMapView";
 
 Vue.prototype.$config = config;
 
@@ -50,6 +51,7 @@ Vue.component('vid-input',VideoInput);
 Vue.component('bk-repeater-input',BookRulesRepeater);
 Vue.component('vr-input',VrInput);
 Vue.component('map-input',MapCoordinateInput);
+Vue.component('map-view',LocationMapView);
 Vue.component('single-img-input',SingleImageInput);
 
 /*

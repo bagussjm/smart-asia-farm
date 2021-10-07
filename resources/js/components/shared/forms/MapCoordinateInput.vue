@@ -83,9 +83,10 @@
         mounted() {
             let center;
             if (this.edit){
+                console.log();
                 this.coordinate = {
-                    lat: parseFloat(this.kost.koordinat_kost.latitude),
-                    lng: parseFloat(this.kost.koordinat_kost.longitude)
+                    lat: parseFloat(this.kost.lokasi_instansi.latitude),
+                    lng: parseFloat(this.kost.lokasi_instansi.longitude)
                 };
                 center = this.coordinate;
             }else {
