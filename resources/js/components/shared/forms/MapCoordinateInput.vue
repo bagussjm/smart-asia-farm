@@ -83,7 +83,6 @@
         mounted() {
             let center;
             if (this.edit){
-                console.log();
                 this.coordinate = {
                     lat: parseFloat(this.kost.lokasi_instansi.latitude),
                     lng: parseFloat(this.kost.lokasi_instansi.longitude)

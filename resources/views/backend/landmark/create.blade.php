@@ -42,13 +42,19 @@
                         <div class="form-group row">
                             <label  class="col-3">Foto Profil Landmark </label>
                             <div class="col-9">
-                                <img-input placeholder="unggah foto profil landmark" name="profil_landmark"></img-input>
+                                <img-input
+                                    placeholder="unggah foto profil landmark"
+                                    table-name="landmark"
+                                    name="profil_landmark"></img-input>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label  class="col-3">Galeri Landmark</label>
                             <div class="col-9">
-                                <img-input placeholder="unggah foto-foto tentang landmark" name="gambar_landmark[]"></img-input>
+                                <img-input
+                                    placeholder="unggah foto-foto tentang landmark"
+                                    table-name="landmark"
+                                    name="gambar_landmark[]"></img-input>
                             </div>
                         </div>
 

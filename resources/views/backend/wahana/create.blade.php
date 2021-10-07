@@ -36,13 +36,19 @@
                         <div class="form-group row">
                             <label  class="col-3">Foto Profil Wahana </label>
                             <div class="col-9">
-                                <img-input placeholder="unggah foto profil wahana" name="profil_wahana"></img-input>
+                                <img-input
+                                    placeholder="unggah foto profil wahana"
+                                    table-name="wahana"
+                                    name="profil_wahana"></img-input>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label  class="col-3">Galeri Wahana</label>
                             <div class="col-9">
-                                <img-input placeholder="unggah foto-foto tentang wahana" name="gambar_wahana[]"></img-input>
+                                <img-input
+                                    placeholder="unggah foto-foto tentang wahana"
+                                    table-name="wahana"
+                                    name="gambar_wahana[]"></img-input>
                             </div>
                         </div>
 

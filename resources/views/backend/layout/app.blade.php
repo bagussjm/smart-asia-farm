@@ -108,7 +108,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="waves-effect">
+                                    <a href="{{ route('post.index') }}" class="waves-effect">
                                         <i class="fa fa-newspaper"> </i>
                                         <span> Postingan</span>
                                     </a>
