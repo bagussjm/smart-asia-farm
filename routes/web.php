@@ -10,6 +10,7 @@ use App\Http\Controllers\LandMarkController;
 use App\Http\Controllers\PaymentCheckoutController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 
 // authentication
 Route::get('login',[AuthController::class,'login'])->name('auth.login');
@@ -32,6 +33,12 @@ Route::middleware('role:pengelola')->group(function (){
         Route::get('/{profil}/edit',[ProfileController::class,'edit'])->name('profile.edit');
         Route::post('/{profil}/update',[ProfileController::class,'update'])->name('profile.update');
 //        Route::get('/{profil}')->name('profil.delete');
+    });
+
+    Route::prefix('/post')->group(function (){
+        Route::get('/',[PostController::class,'index'])->name('post.index');
+        Route::get('/tambah',[PostController::class,'create'])->name('post.create');
+        Route::post('/tambah',[PostController::class,'store'])->name('post.store');
     });
 
     Route::prefix('/wahana')->group(function (){
