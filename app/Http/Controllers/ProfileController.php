@@ -58,7 +58,10 @@ class ProfileController extends Controller
             'nama_instansi' => 'Belum ditambahkan',
             'keterangan_instansi' => 'Belum ditambahkan',
             'alamat_instansi' => null,
-            'lokasi_instansi' => null,
+            'lokasi_instansi' => array(
+                'latitude' => 000,
+                'longitude' => 000
+            ),
             'foto_profil_instansi' => '',
             'created_at' => null,
             'updated_at' => null,

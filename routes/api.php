@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\KeranjangApiController;
 use App\Http\Controllers\Api\TicketApiController;
 use App\Http\Controllers\Api\PaymentNotificationHandlerController;
 use App\Http\Controllers\Api\FileUploaderController;
+use App\Http\Controllers\Api\ProfilApiController;
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -51,6 +52,8 @@ Route::prefix('/tiket')->group(function (){
 Route::prefix('/payment')->group(function (){
     Route::post('/payment-notification-handler',[PaymentNotificationHandlerController::class,'handle']);
 });
+
+Route::get('/profil/{profil}',[ProfilApiController::class,'show']);
 // utils
 Route::post('/image/post', [KostImageController::class,'post']);
 Route::post('/image/remove', [KostImageController::class,'remove']);

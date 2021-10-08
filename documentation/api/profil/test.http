@@ -1,0 +1,13 @@
+### get profile success test
+
+GET http://localhost/smart-asia-farm/public/api/profil/SMAF2021
+Accept: application/json
+
+###
+
+### get profile success test
+
+GET http://localhost/smart-asia-farm/public/api/profil/abc.xyz
+Accept: application/json
+
+###

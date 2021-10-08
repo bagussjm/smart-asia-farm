@@ -1,6 +1,6 @@
 @extends('backend.layout.app')
 
-@section('page-title','Data Wahana')
+@section('page-title','Data Profil')
 
 @section('content')
     {{-- dynamic content--}}
