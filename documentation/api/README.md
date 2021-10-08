@@ -7,4 +7,5 @@
  - [TIket](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api/tiket)
  - [User](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api/user)
  - [Profil](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api/profil)
+ - [Post](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api/post)
     

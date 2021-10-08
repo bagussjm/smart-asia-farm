@@ -1,0 +1,20 @@
+### list post success test
+
+GET http://localhost/smart-asia-farm/public/api/post
+Accept: application/json
+
+###
+
+### get profile success test
+
+GET http://localhost/smart-asia-farm/public/api/post/2
+Accept: application/json
+
+###
+
+### get profile success test
+
+GET http://localhost/smart-asia-farm/public/api/post/abc.xyz
+Accept: application/json
+
+###

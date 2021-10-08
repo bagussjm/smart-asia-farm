@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\TicketApiController;
 use App\Http\Controllers\Api\PaymentNotificationHandlerController;
 use App\Http\Controllers\Api\FileUploaderController;
 use App\Http\Controllers\Api\ProfilApiController;
+use App\Http\Controllers\Api\PostApiController;
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -54,6 +55,11 @@ Route::prefix('/payment')->group(function (){
 });
 
 Route::get('/profil/{profil}',[ProfilApiController::class,'show']);
+
+Route::prefix('/post')->group(function (){
+    Route::get('/',[PostApiController::class,'index']);
+    Route::get('/{post}',[PostApiController::class,'show']);
+});
 // utils
 Route::post('/image/post', [KostImageController::class,'post']);
 Route::post('/image/remove', [KostImageController::class,'remove']);
