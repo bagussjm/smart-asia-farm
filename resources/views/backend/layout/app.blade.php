@@ -151,7 +151,7 @@
                                 </li>
                             <li class="menu-title">LAPORAN</li>
                                 <li>
-                                    <a href="#" class="waves-effect">
+                                    <a href="{{ route('report.visitor-report') }}" class="waves-effect">
                                         <i class="fa fa-print"> </i>
                                         <span> Laporan Pengunjung</span>
                                     </a>

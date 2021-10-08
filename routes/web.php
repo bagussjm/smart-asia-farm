@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentCheckoutController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ReportController;
 
 // authentication
 Route::get('login',[AuthController::class,'login'])->name('auth.login');
@@ -69,6 +70,10 @@ Route::middleware('role:pengelola')->group(function (){
         Route::get('/tiket/masuk',[PemesananController::class,'tiketMasuk'])->name('pemesanan.masuk');
         Route::get('/{ticket}',[PemesananController::class,'show'])->name('pemesanan.show');
         Route::post('/tiket-masuk',[PemesananController::class,'entranceTicket'])->name('pemesanan.tiket-masuk');
+    });
+
+    Route::prefix('/laporan')->group(function (){
+        Route::get('/laporan-pengunjung',[ReportController::class,'visitorReport'])->name('report.visitor-report');
     });
 
     Route::get('payment',[PaymentCheckoutController::class,'pay'])->name('payment.index');
