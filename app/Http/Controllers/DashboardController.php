@@ -14,8 +14,8 @@ class DashboardController extends Controller
     public function index()
     {
         try{
-            $fileName = 'kambing.svg';
-            $svg = QrCode::generate($fileName);
+            $fileName = 'mawar-hitam-x-marwah-riau.png';
+            $svg = QrCode::format('png')->generate($fileName);
             Storage::put('public/qr/png/'.$fileName,$svg);
             return  Storage::url('/qr/png/'.$fileName);
         }catch (\Exception $exception){
