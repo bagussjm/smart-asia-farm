@@ -144,7 +144,12 @@
                                         </li>
                                         <li>
                                             <a href="{{ route('pemesanan.masuk') }}">
-                                                Pemesanan Tiket Masuk
+                                                Pemesanan Tiket
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('pemesanan.masuk') }}">
+                                                Pemesanan Tiket & Wahana
                                             </a>
                                         </li>
                                     </ul>
