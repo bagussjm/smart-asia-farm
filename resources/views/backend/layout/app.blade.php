@@ -13,8 +13,8 @@
 
     <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{url('/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ url('/css/icons.css?v=1.3.0') }}" rel="stylesheet" type="text/css">
-    <link href="{{url('/css/style.css?v=1.3.0')}}" rel="stylesheet" type="text/css">
+    <link href="{{ url('/css/icons.css?v=1.4.0') }}" rel="stylesheet" type="text/css">
+    <link href="{{url('/css/style.css?v=1.4.0')}}" rel="stylesheet" type="text/css">
 
     <style>
         #table_filter{
@@ -257,7 +257,7 @@
     <!-- END wrapper -->
 
     <!-- App js -->
-    <script src="{{url('/js/app.js?v=1.3.0')}}"></script>
+    <script src="{{url('/js/app.js?v=1.4.0')}}"></script>
     <!-- jQuery  -->
     <script src="{{url('/js/app/jquery.min.js')}}"></script>
     <script src="{{url('/js/app/bootstrap.bundle.min.js')}}"></script>

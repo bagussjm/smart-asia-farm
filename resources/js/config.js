@@ -7,7 +7,7 @@ const loader = new Loader({
 export default {
     AppName: 'Smart Asia Farm',
     Environment: 'development',
-    AppUrl: window.location.origin+'/smart-asia-farm/public',
-    // AppUrl: window.location.origin,
+    // AppUrl: window.location.origin+'/smart-asia-farm/public',
+    AppUrl: window.location.origin,
     Map: loader
 }

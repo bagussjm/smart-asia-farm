@@ -2701,7 +2701,6 @@ __webpack_require__.r(__webpack_exports__);
     var center;
 
     if (this.edit) {
-      console.log();
       this.coordinate = {
         lat: parseFloat(this.kost.lokasi_instansi.latitude),
         lng: parseFloat(this.kost.lokasi_instansi.longitude)
@@ -4686,8 +4685,8 @@ var loader = new _googlemaps_js_api_loader__WEBPACK_IMPORTED_MODULE_0__.Loader({
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   AppName: 'Smart Asia Farm',
   Environment: 'development',
-  AppUrl: window.location.origin + '/smart-asia-farm/public',
-  // AppUrl: window.location.origin,
+  // AppUrl: window.location.origin+'/smart-asia-farm/public',
+  AppUrl: window.location.origin,
   Map: loader
 });
 
