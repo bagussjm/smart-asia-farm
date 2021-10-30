@@ -290,7 +290,7 @@ Request :
 - Book Type Enum Description:
     - A `Pemesanan tiket masuk dan wahana`
     - B `Pemesanan hanya tiket masuk `
-    - A `Pemesanan hanya wahana`
+    - C `Pemesanan hanya wahana`
 - Header : 
     - Content-Type: application/json
     - Accept: application/json
