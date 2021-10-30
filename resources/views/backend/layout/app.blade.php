@@ -14,7 +14,7 @@
     <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{url('/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ url('/css/icons.css?v=1.4.0') }}" rel="stylesheet" type="text/css">
-    <link href="{{url('/css/style.css?v=1.4.0')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/css/style.css?v=2.0.0')}}" rel="stylesheet" type="text/css">
 
     <style>
         #table_filter{
@@ -139,7 +139,7 @@
                                     <ul class="submenu">
                                         <li>
                                             <a href="{{ route('pemesanan.index') }}">
-                                                Pemesanan Wahana
+                                                Pemesanan Tiket & Wahana
                                             </a>
                                         </li>
                                         <li>
@@ -148,8 +148,8 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('pemesanan.masuk') }}">
-                                                Pemesanan Tiket & Wahana
+                                            <a href="{{ route('pemesanan.wahana') }}">
+                                                Pemesanan Wahana
                                             </a>
                                         </li>
                                     </ul>

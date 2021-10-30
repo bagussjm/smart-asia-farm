@@ -49,6 +49,11 @@ class PemesananController extends Controller
         return view('backend.pemesanan.masuk',$data);
     }
 
+    public function wahana()
+    {
+
+    }
+
     public function show($ticket)
     {
         try{
