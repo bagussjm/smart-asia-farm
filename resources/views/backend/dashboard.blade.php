@@ -10,7 +10,7 @@
     <div class="row">
 
         <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-danger text-white">
+            <div class="card mini-stat bg-info text-white">
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="float-left mini-stat-img mr-4">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-danger text-white">
+            <div class="card mini-stat bg-info text-white">
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="float-left mini-stat-img mr-4">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-danger text-white">
+            <div class="card mini-stat bg-info text-white">
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="float-left mini-stat-img mr-4">
@@ -70,7 +70,7 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-danger text-white">
+            <div class="card mini-stat bg-info text-white">
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="float-left mini-stat-img mr-4">
