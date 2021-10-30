@@ -287,6 +287,10 @@ Checkout all wahana in user cart if `Midtrans TransactionResult.getStatus() === 
 Request : 
 - Method : POST
 - Endpoint : `/api/keranjang/checkout`
+- Book Type Enum Description:
+    - A `Pemesanan tiket masuk dan wahana`
+    - B `Pemesanan hanya tiket masuk `
+    - A `Pemesanan hanya wahana`
 - Header : 
     - Content-Type: application/json
     - Accept: application/json
@@ -298,6 +302,7 @@ Request :
   "user_id" : "bigint",
   "book_date" : "date",
   "book_time" : "time",
+  "book_type" : "enum[A,B,C]",
   "pdf_url" : "text"
 }
 ```
