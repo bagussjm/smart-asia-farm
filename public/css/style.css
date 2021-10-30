@@ -617,7 +617,7 @@ dt {
 
 .submenu li a {
   padding: 8px 20px 8px 10px;
-  color: #fdb4b4;
+  color: #8699ad;
   display: block;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -628,8 +628,8 @@ dt {
 }
 
 .submenu li a:hover {
-  background-color: #ec4561;
-  color: rgba(255, 255, 255, 0.8);
+    background-color: #333547;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .submenu > li > a {
