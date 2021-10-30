@@ -14,7 +14,7 @@
     <link href="{{url('/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{url('/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ url('/css/icons.css?v=1.4.0') }}" rel="stylesheet" type="text/css">
-    <link href="{{url('/css/style.css?v=2.0.1')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('/css/style.css?v=2.0.2')}}" rel="stylesheet" type="text/css">
 
     <style>
         #table_filter{
