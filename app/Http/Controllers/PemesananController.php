@@ -46,7 +46,7 @@ class PemesananController extends Controller
 
 //        return response()->json($data['pemesanan']);
 
-        return view('backend.pemesanan.masuk',$data);
+        return view('backend.pemesanan.wahana',$data);
     }
 
     public function wahana()
