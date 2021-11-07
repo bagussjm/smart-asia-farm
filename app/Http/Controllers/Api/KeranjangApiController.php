@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\ApiController;
+use App\Http\Requests\CheckoutCartRequest;
 use App\Models\Keranjang;
 use App\Models\TiketMasuk;
 use App\Models\User;
@@ -107,17 +108,14 @@ class KeranjangApiController extends ApiController
 
     }
 
-    public function checkout(Request $request)
+    public function checkout(CheckoutCartRequest $request)
     {
         DB::beginTransaction();
         try{
-            $request->validate([
-                'order_id' => 'required',
-                'user_id' => 'required',
-                'book_date' => 'required|date',
-                'book_time' => 'required|date_format:H:i',
-                'pdf_url' => 'string|nullable'
-            ]);
+            return $this->successResponse(
+                $request->validated(),
+                'showing store checkout cart data'
+            );
             $mtsOrder = $this->MidtransRepository->orderStatus($request->order_id)->getOrder();
 
             if (!empty($mtsOrder)){
