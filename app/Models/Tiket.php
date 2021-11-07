@@ -39,6 +39,7 @@ class Tiket extends Model
         return $this->hasOne(TiketMasuk::class,'id_tiket','id')->withDefault([
                 'id' => null,
                 'id_tiket' => null,
+                'id_user' => null,
                 'nama_tiket_masuk' => '',
                 'harga_tiket_masuk' => 0,
                 'tipe_tiket' => '',
