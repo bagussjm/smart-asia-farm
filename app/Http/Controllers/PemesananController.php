@@ -46,12 +46,14 @@ class PemesananController extends Controller
 
 //        return response()->json($data['pemesanan']);
 
-        return view('backend.pemesanan.wahana',$data);
+        return view('backend.pemesanan.masuk',$data);
     }
 
     public function wahana()
     {
+        $data['pemesanan'] = TiketMasuk::all();
 
+        return view('backend.pemesanan.wahana',$data);
     }
 
     public function show($ticket)
