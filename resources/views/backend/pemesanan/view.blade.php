@@ -1,6 +1,6 @@
 @extends('backend.layout.app')
 
-@section('page-title','Data Pemesanan Tiket')
+@section('page-title','Invoice Pemesanan Tiket')
 
 @section('content')
     {{-- dynamic content--}}
