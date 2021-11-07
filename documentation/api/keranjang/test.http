@@ -82,6 +82,7 @@ Accept: application/json
   "user_id" : "1",
   "book_date" : "2021-10-05",
   "book_time" : "08:00",
+  "book_type" : "A",
   "pdf_url" : "https://app.sandbox.midtrans.com/snap/v1/transactions/952c2ab8-2921-422d-93ad-ac4138e67c72/pdf"
 }
 
@@ -98,6 +99,7 @@ Accept: application/json
   "user_id" : "",
   "book_date" : "",
   "book_time" : "",
+  "book_type" : "F",
   "pdf_url" : ""
 }
 
@@ -114,6 +116,7 @@ Accept: application/json
   "user_id" : "1",
   "book_date" : "2021-09-28",
   "book_time" : "08:00",
+  "book_type" : "C",
   "pdf_url" : ""
 }
 
