@@ -30,11 +30,15 @@ class PemesananController extends Controller
 
     public function index()
     {
-        $data['tickets'] = Tiket::with(['carts' => function($c){
+        $orderData = Tiket::with(['carts' => function($c){
             $c->with(['user','playground'])->processed();
-        }])->get();
+        },'entranceTicket'])->get();
+        $data['tickets'] = $orderData->filter(function ($value,$key){
+           return $value->carts->first() !== null && $value->entranceTicket->id !== null;
+        });
+//        return response()->json($data['tickets']->all());
 
-        $data['pemesanan'] = count($data['tickets']->first()->carts) > 0 ? $data['tickets'] : [];
+        $data['pemesanan'] = count($data['tickets']->first()->carts) > 0 ? $data['tickets']->all() : [];
 
 
         return view('backend.pemesanan.index',$data);
@@ -42,16 +46,29 @@ class PemesananController extends Controller
 
     public function tiketMasuk()
     {
-        $data['pemesanan'] = TiketMasuk::with(['user','ticket'])->get();
+        $orderData = TiketMasuk::with(['user','ticket' => function($q){
+            $q->with('carts');
+        }])->get();
+        $filteredEntranceDate = $orderData->filter(function ($value,$key){
+            return $value->ticket->carts->first() === null;
+        });
+        $data['pemesanan'] = $filteredEntranceDate->all();
 
-//        return response()->json($data['pemesanan']);
+//        return response()->json($data['pemesanan']->all());
 
         return view('backend.pemesanan.masuk',$data);
     }
 
     public function wahana()
     {
-        $data['pemesanan'] = TiketMasuk::all();
+        $orderData = Tiket::with(['carts' => function($c){
+            $c->with(['user','playground'])->processed();
+        },'entranceTicket'])->get();
+        $filteredOrder = $orderData->filter(function ($value,$key){
+            return $value->carts->first() !== null && $value->entranceTicket->id === null;
+        });
+        $data['pemesanan'] = $filteredOrder->all();
+//        return response()->json($filteredOrder->all());
 
         return view('backend.pemesanan.wahana',$data);
     }
@@ -65,13 +82,34 @@ class PemesananController extends Controller
             $data['detail'] = $this->midtransRepository->orderStatus($ticket)->getOrder();
             $data['payment'] = $this->payment($data['detail']);
 
-//            dd($data['tiket']->entranceTicket);
-//            dd($data['payment']);
-
+//            return response()->json($data['tiket']);
             return view('backend.pemesanan.view',$data);
         }catch (\Exception $exception){
+            Log::error($exception->getMessage());
             return Redirect::route('pemesanan.index')->with('error',$exception->getMessage());
         }
+    }
+
+    public function showEntranceTicketInvoice($ticket)
+    {
+        try{
+            $data['tiket'] = Tiket::with(['entranceTicket' => function($q){
+               $q->with('user');
+            }])->findOrFail($ticket);
+            $data['detail'] = $this->midtransRepository->orderStatus($ticket)->getOrder();
+            $data['payment'] = $this->payment($data['detail']);
+
+//            return response()->json($data['detail']);
+            return view('backend.pemesanan.invoice.tiket-masuk',$data);
+        }catch (\Exception $exception){
+            Log::error($exception->getMessage());
+            return Redirect::route('pemesanan.masuk')->with('error',$exception->getMessage());
+        }
+    }
+
+    public function showRidesTicketInvoice(Tiket $tiket)
+    {
+
     }
 
     public function payment($mtsOrder)

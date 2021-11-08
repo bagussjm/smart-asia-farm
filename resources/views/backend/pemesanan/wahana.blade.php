@@ -30,15 +30,48 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($pemesanan as $order)
                             <tr>
-                                <td>No</td>
-                                <td>Nama Pemesan</td>
-                                <td>Tanggal & Jam Masuk</td>
-                                <td>Jumlah Pembayaran</td>
-                                <td>Tanggal Pemesanan</td>
-                                <td>Status Pembayaran</td>
-                                <td>Tiket</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    {{ $order->carts->first()->user->nama_lengkap }}
+                                </td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($order->tanggal_masuk)->translatedFormat('d F Y') }}
+                                    {{ \Carbon\Carbon::parse($order->jam_masuk)->translatedFormat('H:i') }}
+                                    WIB
+                                </td>
+                                <td>
+                                    Rp.{{ number_format($order->total_bayar,0,'','.') }}
+                                </td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($order->created_at)->translatedFormat('d F Y H:i') }} WIB
+                                </td>
+                                <td>
+                                    @if ($order->status === 'pending')
+                                        <span class="badge badge-light">
+                                            <i class="mdi mdi-wallet"></i>
+                                            Menunggu Pembayaran
+                                        </span>
+                                    @elseif ($order->status === 'success')
+                                        <span class="badge badge-success">
+                                            <i class="mdi mdi-check-circle"></i>
+                                            Pembayaran Selesai
+                                        </span>
+                                    @else
+                                        <span class="badge badge-danger">
+                                            <i class="mdi mdi-close-box"></i>
+                                            Pembayaran Gagal
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('pemesanan.show',$order->id) }}" class="btn btn-light btn-sm text-danger">
+                                        <i class="fa fa-ticket-alt"></i>
+                                    </a>
+                                </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
