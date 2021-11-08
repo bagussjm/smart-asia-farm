@@ -112,14 +112,11 @@ class KeranjangApiController extends ApiController
     {
         DB::beginTransaction();
         try{
-            return $this->successResponse(
-                $request->validated(),
-                'showing store checkout cart data'
-            );
+
             $mtsOrder = $this->MidtransRepository->orderStatus($request->order_id)->getOrder();
 
             if (!empty($mtsOrder)){
-                $ticket = $this->TicketRepository->insert([
+                $this->TicketRepository->insert([
                     'id' => $request->order_id,
                     'tanggal_masuk' => $request->book_date,
                     'jam_masuk' => $request->book_time,
@@ -128,20 +125,17 @@ class KeranjangApiController extends ApiController
                     'kode_qr' => null,
                     'instruksi_pembayaran' => $request->pdf_url
                 ]);
-                if ($ticket){
-                    Keranjang::where('id_user',$request->user_id)
-                        ->unprocessed()->update([
-                            'status_keranjang' => 'diproses',
-                            'id_tiket' => $request->order_id
-                        ]);
-                    TiketMasuk::create([
-                        'id_tiket' => $request->order_id,
-                        'id_user' => $request->user_id,
-                        'nama_tiket_masuk' => 'Tiket Masuk',
-                        'harga_tiket_masuk' => (int)env('ENTRANCE_TICKET','25000'),
-                    ]);
-                    DB::commit();
+
+                switch ($request->book_type){
+                    case 'A':
+                        $this->processBooking($request);break;
+                    case 'B':
+                        $this->processEntranceTicket($request);
+                    case 'C':
+                        $this->processRidesTicket($request);
                 }
+
+                DB::commit();
 
                 return $this->successResponse(
                     array(
@@ -167,6 +161,31 @@ class KeranjangApiController extends ApiController
                 $exception->getMessage()
             );
         }
+    }
+
+    public function processBooking(CheckoutCartRequest $request)
+    {
+        $this->processEntranceTicket($request);
+        $this->processRidesTicket($request);
+    }
+
+    public function processEntranceTicket(CheckoutCartRequest $request)
+    {
+        TiketMasuk::create([
+            'id_tiket' => $request->order_id,
+            'id_user' => $request->user_id,
+            'nama_tiket_masuk' => 'Tiket Masuk',
+            'harga_tiket_masuk' => (int)env('ENTRANCE_TICKET','25000'),
+        ]);
+    }
+
+    public function processRidesTicket(CheckoutCartRequest $request)
+    {
+        Keranjang::where('id_user',$request->user_id)
+            ->unprocessed()->update([
+                'status_keranjang' => 'diproses',
+                'id_tiket' => $request->order_id
+            ]);
     }
 
 }
