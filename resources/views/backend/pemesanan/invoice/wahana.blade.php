@@ -1,6 +1,6 @@
 @extends('backend.layout.app')
 
-@section('page-title','Invoice Pemesanan Tiket')
+@section('page-title','Invoice Pemesanan Wahana')
 
 @section('content')
     {{-- dynamic content--}}
@@ -75,13 +75,6 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-
-                                            <tr>
-                                                <td>{{ $tiket->entranceTicket->nama_tiket_masuk }}</td>
-                                                <td class="text-center">{{ $tiket->entranceTicket->formatted_harga_tiket_masuk }}</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-right">{{ $tiket->entranceTicket->formatted_harga_tiket_masuk }}</td>
-                                            </tr>
                                             @foreach($tiket->carts as $keranjang)
                                                 <tr>
                                                     <td>{{ $keranjang->playground->nama_wahana }}</td>

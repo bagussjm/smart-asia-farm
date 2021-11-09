@@ -107,9 +107,21 @@ class PemesananController extends Controller
         }
     }
 
-    public function showRidesTicketInvoice(Tiket $tiket)
+    public function showRidesTicketInvoice($ticket)
     {
+        try{
+            $data['tiket'] = Tiket::with(['carts' => function($c){
+                $c->with(['user','playground'])->processed();
+            },'entranceTicket'])->findOrFail($ticket);
+            $data['detail'] = $this->midtransRepository->orderStatus($ticket)->getOrder();
+            $data['payment'] = $this->payment($data['detail']);
 
+//            return response()->json($data['tiket']);
+            return view('backend.pemesanan.invoice.wahana',$data);
+        }catch (\Exception $exception){
+            Log::error($exception->getMessage());
+            return Redirect::route('pemesanan.wahana')->with('error',$exception->getMessage());
+        }
     }
 
     public function payment($mtsOrder)

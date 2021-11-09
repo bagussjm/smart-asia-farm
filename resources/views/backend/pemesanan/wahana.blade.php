@@ -66,7 +66,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('pemesanan.show',$order->id) }}" class="btn btn-light btn-sm text-danger">
+                                    <a href="{{ route('pemesanan.rides-ticket-invoice',$order->id) }}" class="btn btn-light btn-sm text-danger">
                                         <i class="fa fa-ticket-alt"></i>
                                     </a>
                                 </td>

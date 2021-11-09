@@ -72,7 +72,7 @@ Route::middleware('role:pengelola')->group(function (){
 
         Route::get('/{ticket}',[PemesananController::class,'show'])->name('pemesanan.show');
         Route::get('/tiket-masuk/{ticket}',[PemesananController::class,'showEntranceTicketInvoice'])->name('pemesanan.entrance-ticket-invoice');
-        Route::get('/wahana/{wahana}',[PemesananController::class,'showRidesTicketInvoice'])->name('pemesanan.rides-ticket-invoice');
+        Route::get('/wahana/{ticket}',[PemesananController::class,'showRidesTicketInvoice'])->name('pemesanan.rides-ticket-invoice');
 
         Route::post('/tiket-masuk',[PemesananController::class,'entranceTicket'])->name('pemesanan.tiket-masuk');
     });
