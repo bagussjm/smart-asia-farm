@@ -25,9 +25,9 @@
                                 <div class="col-6">
                                     <address>
                                         <strong>Ditagih Ke:</strong><br>
-                                        {{ $tiket->carts[0]->user->nama_lengkap }}<br>
-                                        {{ $tiket->carts[0]->user->no_hp }}<br>
-                                        {{ $tiket->carts[0]->user->alamat }}<br>
+                                        {{ $tiket->entranceTicket->user->nama_lengkap }}<br>
+                                        {{ $tiket->entranceTicket->user->no_hp }}<br>
+                                        {{ $tiket->entranceTicket->user->alamat }}<br>
                                     </address>
                                 </div>
                                 <div class="col-6 text-right">
@@ -77,10 +77,16 @@
                                             <tbody>
 
                                             <tr>
-                                                <td>Tiket Masuk</td>
-                                                <td class="text-center">Harga Tiket Masuk</td>
+                                                <td>
+                                                    {{ $tiket->entranceTicket->nama_tiket_masuk }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $tiket->entranceTicket->formatted_harga_tiket_masuk }}
+                                                </td>
                                                 <td class="text-center">1</td>
-                                                <td class="text-right">Total</td>
+                                                <td class="text-right">
+                                                    {{ $tiket->entranceTicket->formatted_harga_tiket_masuk }}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="no-line"></td>

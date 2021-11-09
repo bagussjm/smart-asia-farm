@@ -99,7 +99,7 @@ class PemesananController extends Controller
             $data['detail'] = $this->midtransRepository->orderStatus($ticket)->getOrder();
             $data['payment'] = $this->payment($data['detail']);
 
-//            return response()->json($data['detail']);
+//            return response()->json($data['tiket']);
             return view('backend.pemesanan.invoice.tiket-masuk',$data);
         }catch (\Exception $exception){
             Log::error($exception->getMessage());
