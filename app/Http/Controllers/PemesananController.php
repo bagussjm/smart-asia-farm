@@ -38,7 +38,12 @@ class PemesananController extends Controller
         });
 //        return response()->json($data['tickets']->all());
 
-        $data['pemesanan'] = count($data['tickets']->first()->carts) > 0 ? $data['tickets']->all() : [];
+        if (!empty($data['tickets'])){
+            $data['pemesanan'] = count($data['tickets']->first()->carts) > 0 ? $data['tickets']->all() : [];
+        }else{
+            $data['pemesanan'] = [];
+
+        }
 
 
         return view('backend.pemesanan.index',$data);
