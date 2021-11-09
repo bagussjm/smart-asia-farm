@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use function Symfony\Component\Translation\t;
 
 class Tiket extends Model
 {
@@ -32,6 +33,16 @@ class Tiket extends Model
     public function carts()
     {
         return $this->hasMany(Keranjang::class,'id_tiket','id');
+    }
+
+    public function scopeBetween($q,$from,$to)
+    {
+        return $q->whereBetween('tanggal_masuk',[$from,$to]);
+    }
+
+    public function scopeSettlement($q)
+    {
+        return $q->where('status','success');
     }
 
     public function entranceTicket()
