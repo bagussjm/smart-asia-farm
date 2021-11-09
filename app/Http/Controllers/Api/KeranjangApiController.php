@@ -130,9 +130,9 @@ class KeranjangApiController extends ApiController
                     case 'A':
                         $this->processBooking($request);break;
                     case 'B':
-                        $this->processEntranceTicket($request);
+                        $this->processEntranceTicket($request);break;
                     case 'C':
-                        $this->processRidesTicket($request);
+                        $this->processRidesTicket($request);break;
                 }
 
                 DB::commit();
