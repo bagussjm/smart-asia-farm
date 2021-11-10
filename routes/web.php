@@ -91,6 +91,8 @@ Route::get('storage-link',function (){
    Artisan::call('storage:link');
 });
 
+Route::get('/qr-image-test',[DashboardController::class,'qrImageTest']);
+
 Route::get('clear-cache',function (){
    Artisan::call('cache:clear');
 });
