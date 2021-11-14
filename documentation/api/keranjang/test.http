@@ -121,3 +121,20 @@ Accept: application/json
 }
 
 ###
+
+### delete chart item not found item test
+
+DELETE http://localhost/smart-asia-farm/public/api/keranjang/id
+Content-Type: application/json
+Accept: application/json
+
+
+###
+
+### delete chart item success test
+
+DELETE http://localhost/smart-asia-farm/public/api/keranjang/13
+Content-Type: application/json
+Accept: application/json
+
+###

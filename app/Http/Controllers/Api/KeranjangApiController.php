@@ -13,6 +13,7 @@ use App\Repositories\MidtransRepository;
 use Illuminate\Http\Request;
 use App\Http\Resources\KeranjangResource;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class KeranjangApiController extends ApiController
 {
@@ -186,6 +187,27 @@ class KeranjangApiController extends ApiController
                 'status_keranjang' => 'diproses',
                 'id_tiket' => $request->order_id
             ]);
+    }
+
+    public function delete($keranjang)
+    {
+        DB::beginTransaction();
+        try{
+            $item = Keranjang::findOrFail($keranjang);
+            $item->delete();
+            DB::commit();
+            return $this->successResponse(
+                $keranjang,
+                'successfully removed item in cart'
+            );
+        }catch (\Exception $exception){
+            DB::rollBack();
+            Log::error($exception->getMessage());
+            return $this->errorResponse(
+                null,
+                $exception->getMessage()
+            );
+        }
     }
 
 }

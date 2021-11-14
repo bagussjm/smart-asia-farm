@@ -44,6 +44,8 @@ Route::prefix('/keranjang')->group(function (){
     Route::post('/create',[KeranjangApiController::class,'store']);
     Route::post('/inCart',[KeranjangApiController::class,'inCart']);
     Route::post('/checkout',[KeranjangApiController::class,'checkout']);
+
+    Route::delete('/{keranjang}',[KeranjangApiController::class,'delete']);
 });
 
 Route::prefix('/tiket')->group(function (){
