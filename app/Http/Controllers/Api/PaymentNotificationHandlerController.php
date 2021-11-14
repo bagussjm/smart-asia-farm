@@ -98,11 +98,16 @@ class PaymentNotificationHandlerController extends Controller
     private function generateQr($ticketId)
     {
        try{
-           $generator = new Generator();
-           $fileName = $ticketId.'.svg';
-           $svg = $generator->generate($ticketId);
-           Storage::put('public/qr/'.$fileName,$svg);
-           return  Storage::url('/qr/'.$fileName);
+//           $generator = new Generator();
+//           $fileName = $ticketId.'.svg';
+//           $svg = $generator->generate($ticketId);
+//           Storage::put('public/qr/'.$fileName,$svg);
+//           return  Storage::url('/qr/'.$fileName);
+
+           $fileName = $ticketId.'.png';
+           $svg = QrCode::format('png')->generate($fileName);
+           Storage::put('public/qr/png/'.$fileName,$svg);
+           return  Storage::url('/qr/png/'.$fileName);
        }catch (\Exception $exception){
            Log::error($exception->getMessage());
        }
