@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Models\Keranjang;
 use App\Models\Tiket;
+use App\Models\TiketMasuk;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -108,22 +109,32 @@ class TicketRepository
     public function userTicket($user, $status = null)
     {
         try{
+            // trigger exception
             User::findOrFail($user);
-            $userTicket = Keranjang::with(['ticket'])
-                ->where('id_tiket','!=', null)
+            $both = collect([]);
+            $authenticatedUserTickets = collect([]);
+
+            $userTickets = Keranjang::with(['ticket'])
+                ->where('id_user',$user)
                 ->processed()
-                ->userCarts($user)
                 ->distinct()
                 ->get('id_tiket');
-            $ticket = [];
-            foreach ($userTicket as $item) {
-                array_push($ticket,$item->ticket);
-            }
-            if ($status !== null){
-                return collect($ticket)->where('status',$status);
-            }
-            Log::info('showing user tickets');
-            return collect($ticket);
+            $userTickets->map(function ($value,$key) use ($both){
+                $both->push($value->ticket->id);
+            });
+            $userEntranceTicket = TiketMasuk::with('ticket')
+                ->where('id_user',$user)
+                ->whereNotIn('id_tiket',$both)
+                ->distinct()
+                ->get('id_tiket');
+            $userTickets->map(function ($value,$key) use ($authenticatedUserTickets){
+                $authenticatedUserTickets->push($value->ticket);
+            });
+            $userEntranceTicket->map(function ($value,$key) use ($authenticatedUserTickets){
+                $authenticatedUserTickets->push($value->ticket);
+            });
+
+            return $status ? $authenticatedUserTickets->where('status', $status) : $authenticatedUserTickets->all();
         }catch (Exception $exception){
             Log::error($exception->getMessage());
             if ($exception instanceof ModelNotFoundException){
