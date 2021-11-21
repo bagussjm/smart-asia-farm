@@ -18,6 +18,8 @@ class AuthApiController extends ApiController
             if ($user != null){
                 if ($user->jenis_pengguna === 'pelanggan'){
                     return $this->successResponse($user,'sukses');
+                } elseif ($user->jenis_pengguna === 'pengelola') {
+                    return $this->successResponse($user,'sukses');
                 } else {
                     return $this->errorResponse(null,'Username atau Password salah',400);
                 }
