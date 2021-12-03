@@ -1,6 +1,6 @@
 ### get spesific ticket success test
 
-GET http://localhost/smart-asia-farm/public/api/tiket/1632384497774-1632384483697
+GET http://localhost/smart-asia-farm/public/api/tiket/1636906766100
 Content-Type: application/json
 Accept: application/json
 
