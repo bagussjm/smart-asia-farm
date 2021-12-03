@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Wahana;
+use App\Repositories\MidtransRepository;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(MidtransRepository $midtransRepository)
     {
+        $order = $midtransRepository->orderStatus(1638543062190)->getOrder();
 
+        return response()->json($order->payment_type);
         return view('backend.dashboard');
     }
 

@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\KeranjangResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class KeranjangApiController extends ApiController
 {
@@ -117,15 +119,28 @@ class KeranjangApiController extends ApiController
             $mtsOrder = $this->MidtransRepository->orderStatus($request->order_id)->getOrder();
 
             if (!empty($mtsOrder)){
-                $this->TicketRepository->insert([
-                    'id' => $request->order_id,
-                    'tanggal_masuk' => $request->book_date,
-                    'jam_masuk' => $request->book_time,
-                    'status' => 'pending',
-                    'total_bayar' => (double)$mtsOrder->gross_amount,
-                    'kode_qr' => null,
-                    'instruksi_pembayaran' => $request->pdf_url
-                ]);
+
+                if ($mtsOrder->payment_type === 'credit_card'){
+                    $this->TicketRepository->insert([
+                        'id' => $request->order_id,
+                        'tanggal_masuk' => $request->book_date,
+                        'jam_masuk' => $request->book_time,
+                        'status' => 'success',
+                        'total_bayar' => (double)$mtsOrder->gross_amount,
+                        'kode_qr' => $this->generateQr($request->order_id),
+                        'instruksi_pembayaran' => $request->pdf_url
+                    ]);
+                }else{
+                    $this->TicketRepository->insert([
+                        'id' => $request->order_id,
+                        'tanggal_masuk' => $request->book_date,
+                        'jam_masuk' => $request->book_time,
+                        'status' => 'pending',
+                        'total_bayar' => (double)$mtsOrder->gross_amount,
+                        'kode_qr' => null,
+                        'instruksi_pembayaran' => $request->pdf_url
+                    ]);
+                }
 
                 switch ($request->book_type){
                     case 'A':
@@ -187,6 +202,25 @@ class KeranjangApiController extends ApiController
                 'status_keranjang' => 'diproses',
                 'id_tiket' => $request->order_id
             ]);
+    }
+
+    private function generateQr($ticketId)
+    {
+        try{
+//           $generator = new Generator();
+//           $fileName = $ticketId.'.svg';
+//           $svg = $generator->generate($ticketId);
+//           Storage::put('public/qr/'.$fileName,$svg);
+//           return  Storage::url('/qr/'.$fileName);
+
+            $fileName = $ticketId.'.png';
+            $svg = QrCode::format('png')->generate($fileName);
+            Storage::put('public/qr/png/'.$fileName,$svg);
+            return  Storage::url('/qr/png/'.$fileName);
+        }catch (\Exception $exception){
+            Log::error($exception->getMessage());
+        }
+        return '';
     }
 
     public function delete($keranjang)
