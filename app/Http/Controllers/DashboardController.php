@@ -12,11 +12,11 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DashboardController extends Controller
 {
-    public function index(MidtransRepository $midtransRepository)
+    public function index()
     {
-        $order = $midtransRepository->orderStatus(1638543062190)->getOrder();
-
-        return response()->json($order->payment_type);
+//        $order = $midtransRepository->orderStatus(1638543062190)->getOrder();
+//
+//        return response()->json($order->payment_type);
         return view('backend.dashboard');
     }
 
