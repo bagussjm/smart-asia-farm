@@ -56,9 +56,12 @@ Response :
 Request :
 - Method : GET
 - Endpoint : `/api/tiket/{id}`
+- Ticket Type Enum Description:
+    - A `Pemesanan tiket masuk dan wahana`
+    - B `Pemesanan hanya tiket masuk `
+    - C `Pemesanan hanya wahana`
 - Header :
     - Accept: application/json
-
 Response :
 
 ```json 
@@ -76,7 +79,53 @@ Response :
          "created_at" : "timestamps",
          "updated_at" : "timestamps",
          "deleted_at" : "timestamps",
-     }
+         "tipe_tiket" : "enum[A,B,C]",
+         "tiket_masuk" : {
+             "id": "bigint",
+             "id_tiket": "string",
+             "id_user": "bigint",
+             "nama_tiket_masuk": "string",
+             "harga_tiket_masuk": "number",
+             "tipe_tiket": "enum[normal,promo]",
+             "created_at": "timestamps",
+             "updated_at": "timestamps",
+             "deleted_at": "timestamps"
+         },
+         "wahana" : [
+                {
+                    "id" : "bigint,unique",
+                    "nama_wahana" : "string",
+                    "deskripsi_wahana" : "text",
+                    "profil_wahana" : "text",
+                    "gambar_wahana" : [
+                        "text",
+                        "text",
+                    ],
+                    "tarif_tiket" : "integer",
+                    "masa_aktif" : "string",
+                    "syarat_ketentuan" : "text",
+                    "created_at" : "timestamps",
+                    "updated_at" : "timestamps",
+                    "deleted_at" : "timestamps",
+                },
+                {
+                    "id" : "bigint,unique",
+                    "nama_wahana" : "string",
+                    "deskripsi_wahana" : "text",
+                    "profil_wahana" : "text",
+                    "gambar_wahana" : [
+                        "text",
+                        "text",
+                    ],
+                    "tarif_tiket" : "integer",
+                    "masa_aktif" : "string",
+                    "syarat_ketentuan" : "text",
+                    "created_at" : "timestamps",
+                    "updated_at" : "timestamps",
+                    "deleted_at" : "timestamps",
+                }
+         ]
+    }
 }
 ```
 
