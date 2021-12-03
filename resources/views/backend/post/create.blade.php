@@ -49,7 +49,7 @@
                                 <div>
                                     <save-btn />
                                 </div>
-                                <a href="{{route('landmark.index')}}" class="btn btn-light">
+                                <a href="{{route('post.index')}}" class="btn btn-light">
                                     BATALKAN
                                 </a>
                             </div>
