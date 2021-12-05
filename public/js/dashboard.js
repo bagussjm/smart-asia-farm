@@ -1,7 +1,7 @@
 $(document).ready(function(){
     const ctx = document.getElementById('ticket-sales-line-chart').getContext('2d');
-    let baseUrl = window.location.origin+'/smart-asia-farm/public/api';
-    // let baseUrl = window.location.origin+'/api/';
+    // let baseUrl = window.location.origin+'/smart-asia-farm/public/api';
+    let baseUrl = window.location.origin+'/api/';
     $.get( baseUrl+'/ticket-sales-chart', function( data ) {
         const myChart = new Chart(ctx, {
             type: 'line',
