@@ -56,6 +56,9 @@ Route::prefix('/payment')->group(function (){
     Route::post('/payment-notification-handler',[PaymentNotificationHandlerController::class,'handle']);
 });
 
+/* ticket sales chart stats */
+Route::get('/ticket-sales-chart', [TicketApiController::class,'ticketSalesChart']);
+
 Route::get('/profil/{profil}',[ProfilApiController::class,'show']);
 
 Route::prefix('/post')->group(function (){

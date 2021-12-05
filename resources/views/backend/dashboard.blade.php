@@ -17,7 +17,7 @@
                             <img src="{{ url('/images/services-icon/01.png') }}" alt="">
                         </div>
                         <h5 class="font-16 text-uppercase mt-0 text-white-50">Pengunjung</h5>
-                        <h4 class="font-500">1,685 </h4>
+                        <h4 class="font-500">{{ $totalTicketsSold }} </h4>
 
                     </div>
                     <div class="pt-2">
@@ -36,7 +36,7 @@
                             <img src="{{ url('/images/services-icon/02.png') }}" alt="">
                         </div>
                         <h5 class="font-16 text-uppercase mt-0 text-white-50">Tiket Terjual</h5>
-                        <h4 class="font-500">1,685 </h4>
+                        <h4 class="font-500">{{ $totalTicketsSold }} </h4>
 
                     </div>
                     <div class="pt-2">
@@ -55,7 +55,7 @@
                             <img src="{{ url('/images/services-icon/03.png') }}" alt="">
                         </div>
                         <h5 class="font-16 text-uppercase mt-0 text-white-50">Data Wahana</h5>
-                        <h4 class="font-500">1,685 </h4>
+                        <h4 class="font-500"> {{ $totalPlayground }} </h4>
 
                     </div>
                     <div class="pt-2">
@@ -77,7 +77,7 @@
                             <img src="{{ url('/images/services-icon/04.png') }}" alt="">
                         </div>
                         <h5 class="font-16 text-uppercase mt-0 text-white-50">Landmark</h5>
-                        <h4 class="font-500">1,685 </h4>
+                        <h4 class="font-500">{{ $totalLandmark }}</h4>
 
                     </div>
                     <div class="pt-2">
@@ -100,25 +100,31 @@
                     <div class="row">
                         <div class="col-lg-7">
                             <div>
-                                <div id="chart-with-area" class="ct-chart earning ct-golden-section"></div>
+                                <canvas id="ticket-sales-line-chart" width="400" height="200"></canvas>
                             </div>
                         </div>
                         <div class="col-lg-5">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="text-center">
-                                        <p class="text-muted mb-4">This month</p>
-                                        <h4>$34,252</h4>
-                                        <p class="text-muted mb-5">It will be as simple as in fact it will be occidental.</p>
-                                        <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#02a499&quot;, &quot;#f2f2f2&quot;], &quot;innerRadius&quot;: 28, &quot;radius&quot;: 32 }" data-width="72" data-height="72">4/5</span>
+                                        <p class="mb-4 text-muted"><strong>Bulan Ini</strong></p>
+                                        <h4>
+                                            Rp {{ number_format($ticketSalesThisMonth,0,'','.')  }}
+                                        </h4>
+                                        <p class="text-muted mb-5">
+                                            Akumulusi pendapatan dari penjualan tiket bulan ini
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-center">
-                                        <p class="text-muted mb-4">Last month</p>
-                                        <h4>$36,253</h4>
-                                        <p class="text-muted mb-5">It will be as simple as in fact it will be occidental.</p>
-                                        <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#02a499&quot;, &quot;#f2f2f2&quot;], &quot;innerRadius&quot;: 28, &quot;radius&quot;: 32 }" data-width="72" data-height="72">3/5</span>
+                                        <p class="mb-4 text-muted"><strong>Bulan Lalu</strong></p>
+                                        <h4>
+                                            Rp {{ number_format($ticketSalesLastMonth,0,'','.')  }}
+                                        </h4>
+                                        <p class="text-muted mb-5">
+                                            Akumulusi pendapatan dari penjualan tiket bulan lalu
+                                        </p>
                                     </div>
                                 </div>
                             </div>

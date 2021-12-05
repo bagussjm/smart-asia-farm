@@ -287,6 +287,9 @@
     {{-- datatable init   --}}
     <script src="{{ url('/js/datatable.init.js') }}"></script>
 
+    {{-- chart for dahsboard --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.1/dist/chart.min.js"></script>
+    <script src="{{ url('/js/dashboard.js') }}"></script>
 
 </body>
 
