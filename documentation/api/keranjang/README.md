@@ -303,6 +303,7 @@ Request :
   "book_date" : "date",
   "book_time" : "time",
   "book_type" : "enum[A,B,C]",
+  "ticket_quantity": "integer",
   "pdf_url" : "text"
 }
 ```
