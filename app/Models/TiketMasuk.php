@@ -16,7 +16,9 @@ class TiketMasuk extends Model
         'id_tiket',
         'id_user',
         'nama_tiket_masuk',
-        'harga_tiket_masuk'
+        'harga_tiket_masuk',
+        'jumlah',
+        'total_harga'
     ];
 
     public function getFormattedHargaTiketMasukAttribute()

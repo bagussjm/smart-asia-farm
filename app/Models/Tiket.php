@@ -22,7 +22,12 @@ class Tiket extends Model
         'status',
         'total_bayar',
         'kode_qr',
-        'instruksi_pembayaran'
+        'instruksi_pembayaran',
+        'is_scanned'
+    ];
+
+    protected $casts = [
+        'is_scanned' => 'boolean'
     ];
 
     public function getFormattedTotalBayarAttribute()
