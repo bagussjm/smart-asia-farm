@@ -33,6 +33,7 @@ class CheckoutCartRequest extends FormRequest
                 'required',
                 Rule::in(['A','B','C'])
             ],
+            'ticket_quantity' => 'integer',
             'pdf_url' => 'string|nullable'
         ];
     }
