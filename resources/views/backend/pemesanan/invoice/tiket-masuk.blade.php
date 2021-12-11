@@ -84,10 +84,18 @@
                                                     {{ $tiket->entranceTicket->formatted_harga_tiket_masuk }}
                                                 </td>
                                                 <td class="text-center">
-                                                    {{ $tiket->entranceTicket->jumlah }}
+                                                    @if ($tiket->entranceTicket->jumlah)
+                                                        {{ $tiket->entranceTicket->jumlah }}
+                                                    @else
+                                                        1
+                                                    @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    {{ $tiket->entranceTicket->formatted_grand_total }}
+                                                    @if ($tiket->entranceTicket->total_harga)
+                                                        {{ $tiket->entranceTicket->formatted_grand_total }}
+                                                    @else
+                                                        {{ 'Rp '.number_format(env('ENTRANCE_TICKET'),0,'','.') }}
+                                                    @endif
                                                 </td>
                                             </tr>
                                             <tr>
