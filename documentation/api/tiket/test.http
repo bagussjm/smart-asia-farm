@@ -13,3 +13,19 @@ Content-Type: application/json
 Accept: application/json
 
 ###
+
+### scan ticket success test
+
+GET http://localhost/smart-asia-farm/public/api/tiket/1636906766100/scan
+Content-Type: application/json
+Accept: application/json
+
+###
+
+### scan ticket not found test
+
+GET http://localhost/smart-asia-farm/public/api/tiket/abc/scan
+Content-Type: application/json
+Accept: application/json
+
+###
