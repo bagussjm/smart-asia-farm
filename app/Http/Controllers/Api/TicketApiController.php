@@ -24,8 +24,44 @@ class TicketApiController extends ApiController
 
     public function show($tiket)
     {
+       try{
+           return $this->successResponse(
+               $this->ticketDetail($tiket),
+               'showing ticket '.$tiket
+           );
+       }catch (\Exception $exception){
+           Log::error($exception->getMessage());
+           return $this->errorResponse(
+               [],
+               $exception->getMessage()
+           );
+       }
+    }
+
+    public function scan($tiket)
+    {
+        DB::beginTransaction();
         try{
-//            $ticket = $this->TicketRepository->find($ticket)->get();
+            $this->TicketRepository->find($tiket)->update([
+                'is_scanned' => true
+            ]);
+            DB::commit();
+            return $this->successResponse(
+                $this->ticketDetail($tiket),
+                'success scanning ticket.'.$tiket
+            );
+        }catch (\Exception $exception){
+            DB::rollBack();
+            return $this->errorResponse(
+                [],
+                $exception->getMessage()
+            );
+        }
+    }
+
+    private function ticketDetail($tiket)
+    {
+        try{
             $cartsInTicket = Tiket::with(['carts' => function($q){
                 $q->with('playground');
             },'entranceTicket'])->findOrFail($tiket);
@@ -62,15 +98,11 @@ class TicketApiController extends ApiController
             }else{
                 $ticket->put('tiket_masuk',null);
             }
-            return $this->successResponse(
-                $ticket->all(),
-                'success, show ticket '.$tiket
-            );
+
+            return $ticket->all();
         }catch (\Exception $exception){
-            return $this->errorResponse(
-                [],
-                $exception->getMessage()
-            );
+            Log::error($exception->getMessage());
+            return [];
         }
     }
 

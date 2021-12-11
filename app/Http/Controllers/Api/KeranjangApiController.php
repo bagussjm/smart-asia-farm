@@ -187,11 +187,14 @@ class KeranjangApiController extends ApiController
 
     public function processEntranceTicket(CheckoutCartRequest $request)
     {
+        $grandTotal = $request->ticket_quantity*(int)env('ENTRANCE_TICKET');
         TiketMasuk::create([
             'id_tiket' => $request->order_id,
             'id_user' => $request->user_id,
             'nama_tiket_masuk' => 'Tiket Masuk',
             'harga_tiket_masuk' => (int)env('ENTRANCE_TICKET','25000'),
+            'jumlah' => $request->ticket_quantity,
+            'total_harga' => $grandTotal
         ]);
     }
 

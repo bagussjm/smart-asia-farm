@@ -50,6 +50,7 @@ Route::prefix('/keranjang')->group(function (){
 
 Route::prefix('/tiket')->group(function (){
     Route::get('/{tiket}',[TicketApiController::class,'show']);
+    Route::get('/{tiket}/scan',[TicketApiController::class,'scan']);
 });
 
 Route::prefix('/payment')->group(function (){
