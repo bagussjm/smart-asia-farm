@@ -26,6 +26,11 @@ class TiketMasuk extends Model
         return 'Rp '.number_format($this->harga_tiket_masuk,0,'','.');
     }
 
+    public function getFormattedGrandTotalAttribute()
+    {
+        return 'Rp '.number_format($this->total_harga,0,'','.');
+    }
+
     public function ticket()
     {
         return $this->belongsTo(Tiket::class,'id_tiket','id')->withDefault([

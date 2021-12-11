@@ -79,8 +79,8 @@
                                             <tr>
                                                 <td>{{ $tiket->entranceTicket->nama_tiket_masuk }}</td>
                                                 <td class="text-center">{{ $tiket->entranceTicket->formatted_harga_tiket_masuk }}</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-right">{{ $tiket->entranceTicket->formatted_harga_tiket_masuk }}</td>
+                                                <td class="text-center">{{ $tiket->entranceTicket->jumlah }}</td>
+                                                <td class="text-right">{{ $tiket->entranceTicket->formatted_grand_total }}</td>
                                             </tr>
                                             @foreach($tiket->carts as $keranjang)
                                                 <tr>
