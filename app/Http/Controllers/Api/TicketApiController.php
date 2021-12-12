@@ -73,6 +73,7 @@ class TicketApiController extends ApiController
                 'total_bayar' => $cartsInTicket->total_bayar,
                 'kode_qr' => $cartsInTicket->kode_qr,
                 'instruksi_pembayaran' => $cartsInTicket->instruksi_pembayaran,
+                'is_scanned' => $cartsInTicket->is_scanned,
                 'created_at' => $cartsInTicket->created_at,
                 'updated_at' => $cartsInTicket->updated_at,
                 'deleted_at' => $cartsInTicket->deleted_at
