@@ -134,7 +134,7 @@ class TicketRepository
                 $authenticatedUserTickets->push($value->ticket);
             });
 
-            return $status ? $authenticatedUserTickets->where('status', $status) : $authenticatedUserTickets->all();
+            return $status ? $authenticatedUserTickets->where('status', $status)->sortByDesc('created_at') : $authenticatedUserTickets->sortByDesc('created_at');
         }catch (Exception $exception){
             Log::error($exception->getMessage());
             if ($exception instanceof ModelNotFoundException){

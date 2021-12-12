@@ -22,7 +22,7 @@ Accept: application/json
 
 ### get authenticated user tickets success
 
-GET http://localhost/smart-asia-farm/public/api/user/1/tiket
+GET http://localhost/smart-asia-farm/public/api/user/17/tiket
 Accept: application/json
 
 ###
