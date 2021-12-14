@@ -32,7 +32,9 @@ class PemesananController extends Controller
     {
         $orderData = Tiket::with(['carts' => function($c){
             $c->with(['user','playground'])->processed();
-        },'entranceTicket'])->get();
+        },'entranceTicket'])
+        ->orderBy('created_at','DESC')
+        ->get();
         $data['tickets'] = $orderData->filter(function ($value,$key){
            return $value->carts->first() !== null && $value->entranceTicket->id !== null;
         });
@@ -53,7 +55,9 @@ class PemesananController extends Controller
     {
         $orderData = TiketMasuk::with(['user','ticket' => function($q){
             $q->with('carts');
-        }])->get();
+        }])
+        ->orderBy('created_at','DESC')
+        ->get();
         $filteredEntranceDate = $orderData->filter(function ($value,$key){
             return $value->ticket->carts->first() === null;
         });
@@ -68,7 +72,9 @@ class PemesananController extends Controller
     {
         $orderData = Tiket::with(['carts' => function($c){
             $c->with(['user','playground'])->processed();
-        },'entranceTicket'])->get();
+        },'entranceTicket'])
+        ->orderBy('created_at','DESC')
+        ->get();
         $filteredOrder = $orderData->filter(function ($value,$key){
             return $value->carts->first() !== null && $value->entranceTicket->id === null;
         });
