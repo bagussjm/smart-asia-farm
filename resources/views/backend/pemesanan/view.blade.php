@@ -100,9 +100,15 @@
                                                     <td class="text-center">
                                                         Rp.{{ number_format($keranjang->playground->tarif_tiket,0,'','.') }}
                                                     </td>
-                                                    <td class="text-center">1</td>
+                                                    <td class="text-center">
+                                                        {{ $keranjang->modified_quantity }}
+                                                    </td>
                                                     <td class="text-right">
-                                                        Rp.{{ number_format($keranjang->playground->tarif_tiket,0,'','.') }}
+                                                        @if ($keranjang->total_harga)
+                                                              {{ $keranjang->formatted_grand_total }}
+                                                            @else
+                                                            Rp.{{ number_format($keranjang->playground->tarif_tiket,0,'','.') }}
+                                                        @endif
 
                                                     </td>
                                                 </tr>

@@ -21,6 +21,27 @@ class Keranjang extends Model
         'total_harga'
     ];
 
+    protected $appends = [
+        'modified_quantity',
+        'formatted_grand_total'
+    ];
+
+    public function getModifiedQuantityAttribute()
+    {
+        if ($this->jumlah_pesan){
+            return $this->jumlah_pesan;
+        }
+        return 1;
+    }
+
+    public function getFormattedGrandTotalAttribute()
+    {
+        if ($this->total_harga){
+            return 'Rp '.number_format($this->total_harga,0,'','.');
+        }
+        return 'Rp ';
+    }
+
     public function scopeUnprocessed($query)
     {
         return $query->where('status_keranjang','belum diproses');
@@ -60,6 +81,9 @@ class Keranjang extends Model
             'gambar_wahana' => [
                 url('/images/asia-farm.png')
             ],
+            'tarif_tiket' => 0,
+            'masa_aktif' => '',
+            'syarat_ketentuan' => '',
         ]);
     }
 
