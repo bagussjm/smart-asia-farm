@@ -22,6 +22,7 @@ Request :
 {
       "id_user" : "bigint",
       "id_wahana" : "bigint",
+      "jumlah_pesan" : "integer|default:1"
 }
 ```
 
@@ -82,10 +83,7 @@ Request :
 
 ```json 
 {
-    "id_user" : "bigint",
-    "id_wahana" : "bigint",
-    "id_tiket" : "string",
-    "status_keranjang" : "enum['belum diproses','diproses']",
+    "jumlah_pesan" : "integer|default:1"
 }
 ```
 
@@ -101,6 +99,8 @@ Response :
          "id_wahana" : "bigint",
          "id_tiket" : "string",
          "status_keranjang" : "enum['belum diproses','diproses']",
+         "jumlah_pesan" : "integer",
+         "total_harga" : "integer",
          "created_at" : "timestamps",
          "updated_at" : "timestamps",
          "deleted_at" : "timestamps",
