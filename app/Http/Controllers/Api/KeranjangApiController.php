@@ -8,6 +8,7 @@ use App\Http\Requests\CheckoutCartRequest;
 use App\Models\Keranjang;
 use App\Models\TiketMasuk;
 use App\Models\User;
+use App\Models\Wahana;
 use App\Repositories\TicketRepository;
 use App\Repositories\MidtransRepository;
 use Illuminate\Http\Request;
@@ -40,42 +41,71 @@ class KeranjangApiController extends ApiController
         );
     }
 
+    public function update(Request $request,$keranjang)
+    {
+        DB::beginTransaction();
+        try{
+            $cart = Keranjang::findOrFail($keranjang);
+            $playground = Wahana::findOrFail($cart->id_wahana);
+            $valid = $request->validate([
+                'jumlah_pesan' => 'required|integer'
+            ]);
+            $grandTotal = $valid['jumlah_pesan']*$playground->tarif_tiket;
+
+            $cart->update([
+                'jumlah_pesan' => $valid['jumlah_pesan'],
+                'total_harga' => $grandTotal
+            ]);
+            DB::commit();
+            return $this->successResponse(
+                $cart,
+                'successfully update item in cart'
+            );
+        }catch (\Exception $exception){
+            DB::rollBack();
+            Log::error($exception->getMessage());
+            return $this->errorResponse(
+                null,
+                $exception->getMessage()
+            );
+        }
+    }
+
     public function store(Request $request)
     {
+        DB::beginTransaction();
         try{
-            $request->validate([
+            $valid = $request->validate([
                 'id_user' => 'required',
-                'id_wahana' => 'required'
+                'id_wahana' => 'required',
+                'jumlah_pesan' => 'required|integer'
             ]);
 
-            DB::beginTransaction();
+            $playground = Wahana::findOrFail($valid['id_wahana']);
+            $grandTotal = $playground->tarif_tiket*$valid['jumlah_pesan'];
+
             $insert = Keranjang::create([
                 'id_user' => $request->id_user,
                 'id_wahana' => $request->id_wahana,
+                'id_tiket' => null,
                 'status_keranjang' => 'belum diproses',
-                'id_tiket' => null
+                'jumlah_pesan' => $valid['jumlah_pesan'],
+                'total_harga' => $grandTotal,
             ]);
 
-            if (!$insert) {
-                DB::rollBack();
-            } else {
-                DB::commit();
-                return $this->successResponse(
-                    $insert
-                    ,
-                    'keranjang successfully created');
-            }
+            DB::commit();
+            return $this->successResponse(
+                $insert
+                ,
+                'keranjang successfully created');
 
         }catch (\Exception $e){
+            DB::rollBack();
             return $this->errorResponse(
                 [],
                 $e->getMessage());
         }
 
-        return $this->errorResponse(
-            [],
-            'unknown error'
-        );
     }
 
     public function inCart(Request $request)

@@ -14,7 +14,8 @@ Accept: application/json
 
 {
   "id_user" : "1",
-  "id_wahana" : "1"
+  "id_wahana" : "1",
+  "jumlah_pesan" : 4
 }
 
 ###
@@ -27,7 +28,32 @@ Accept: application/json
 
 {
   "id_user" : "",
-  "id_wahana" : ""
+  "id_wahana" : "",
+  "jumlah_pesan" : ""
+}
+
+###
+
+## update keranjang success test
+
+PUT http://localhost/smart-asia-farm/public/api/keranjang/34
+Content-Type: application/json
+Accept: application/json
+
+{
+  "jumlah_pesan" : 2
+}
+
+###
+
+### update keranjang invalid test
+
+PUT http://localhost/smart-asia-farm/public/api/keranjang/34
+Content-Type: application/json
+Accept: application/json
+
+{
+  "jumlah_pesan" : ""
 }
 
 ###

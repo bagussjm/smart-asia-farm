@@ -45,6 +45,8 @@ Route::prefix('/keranjang')->group(function (){
     Route::post('/inCart',[KeranjangApiController::class,'inCart']);
     Route::post('/checkout',[KeranjangApiController::class,'checkout']);
 
+    Route::put('/{keranjang}',[KeranjangApiController::class,'update']);
+
     Route::delete('/{keranjang}',[KeranjangApiController::class,'delete']);
 });
 

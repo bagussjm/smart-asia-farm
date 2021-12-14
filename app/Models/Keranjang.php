@@ -17,6 +17,8 @@ class Keranjang extends Model
         'id_wahana',
         'id_tiket',
         'status_keranjang',
+        'jumlah_pesan',
+        'total_harga'
     ];
 
     public function scopeUnprocessed($query)
