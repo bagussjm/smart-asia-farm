@@ -26,6 +26,7 @@
                                 <th>Jumlah Pembayaran</th>
                                 <th>Tanggal Pemesanan</th>
                                 <th>Status Pembayaran</th>
+                                <th>Status Tiket</th>
                                 <th>Tiket</th>
                             </tr>
                         </thead>
@@ -60,6 +61,17 @@
                                         <span class="badge badge-danger">
                                             <i class="mdi mdi-close-box"></i>
                                             Pembayaran Gagal
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($tickets->is_scanned)
+                                        <span class="badge badge-info">
+                                            <i class="mdi mdi-ticket-confirmation"></i> terkonfirmasi
+                                        </span>
+                                        @else
+                                        <span class="badge badge-warning">
+                                            <i class="mdi mdi-ticket-outline"></i> kadaluwarsa
                                         </span>
                                     @endif
                                 </td>

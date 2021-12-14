@@ -26,6 +26,7 @@
                                 <th>Jumlah Pembayaran</th>
                                 <th>Tanggal Pemesanan</th>
                                 <th>Status Pembayaran</th>
+                                <th>Status Tiket</th>
                                 <th>Tiket</th>
                             </tr>
                         </thead>
@@ -35,8 +36,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $book->user->nama_lengkap }}</td>
                                     <td>
-                                        {{ \Carbon\Carbon::parse($book->tanggal_masuk)->translatedFormat('d F Y') }}
-                                        {{ \Carbon\Carbon::parse($book->jam_masuk)->translatedFormat('H:i') }}
+                                        {{ \Carbon\Carbon::parse($book->ticket->tanggal_masuk)->translatedFormat('d F Y') }}
+                                        {{ \Carbon\Carbon::parse($book->ticket->jam_masuk)->translatedFormat('H:i') }}
                                         WIB
                                     </td>
                                     <td>
@@ -60,6 +61,17 @@
                                             <span class="badge badge-danger">
                                             <i class="mdi mdi-close-box"></i>
                                             Pembayaran Gagal
+                                        </span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($book->ticket->is_scanned)
+                                            <span class="badge badge-info">
+                                            <i class="mdi mdi-ticket-confirmation"></i> terkonfirmasi
+                                        </span>
+                                        @else
+                                            <span class="badge badge-warning">
+                                            <i class="mdi mdi-ticket-outline"></i> kadaluwarsa
                                         </span>
                                         @endif
                                     </td>

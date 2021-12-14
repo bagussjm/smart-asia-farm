@@ -63,7 +63,7 @@ class PemesananController extends Controller
         });
         $data['pemesanan'] = $filteredEntranceDate->all();
 
-//        return response()->json($data['pemesanan']->all());
+//        return response()->json($data['pemesanan']);
 
         return view('backend.pemesanan.masuk',$data);
     }
