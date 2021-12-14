@@ -68,6 +68,7 @@ class ReportController extends Controller
             $q->with('user');
         }])
             ->settlement()
+            ->scanned()
             ->get();
         $reportData->map(function ($value,$key) use ($filteredReports){
             $user = null;

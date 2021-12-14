@@ -50,6 +50,11 @@ class Tiket extends Model
         return $q->where('status','success');
     }
 
+    public function scopeScanned($q)
+    {
+        return $q->where('is_scanned',1);
+    }
+
     public function entranceTicket()
     {
         return $this->hasOne(TiketMasuk::class,'id_tiket','id')->withDefault([
