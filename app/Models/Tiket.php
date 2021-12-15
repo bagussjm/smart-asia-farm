@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,9 +31,29 @@ class Tiket extends Model
         'is_scanned' => 'boolean'
     ];
 
+    protected $appends = [
+        'ticket_scan_status'
+    ];
+
     public function getFormattedTotalBayarAttribute()
     {
         return 'Rp '.number_format($this->total_bayar,0,'','.');
+    }
+
+    public function getTicketScanStatusAttribute()
+    {
+        $bookTimestamp = Carbon::make($this->tanggal_masuk)->timestamp;
+        $nowTimestamp = Carbon::now()->timestamp;
+
+        if (!$this->is_scanned){
+            if ($nowTimestamp > $bookTimestamp){
+                return 'kadaluarsa';
+            }else{
+                return 'menunggu';
+            }
+        }else{
+            return 'terkonfirmasi';
+        }
     }
 
     public function carts()

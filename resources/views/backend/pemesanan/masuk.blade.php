@@ -71,7 +71,7 @@
                                         </span>
                                         @else
                                             <span class="badge badge-warning">
-                                            <i class="mdi mdi-ticket-outline"></i> kadaluwarsa
+                                            <i class="mdi mdi-ticket-outline"></i> {{ $book->ticket->ticket_scan_status }}
                                         </span>
                                         @endif
                                     </td>
