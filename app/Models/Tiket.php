@@ -42,8 +42,8 @@ class Tiket extends Model
 
     public function getTicketScanStatusAttribute()
     {
-        $bookTimestamp = Carbon::make($this->tanggal_masuk)->timestamp;
-        $nowTimestamp = Carbon::now()->timestamp;
+        $bookTimestamp = Carbon::make($this->tanggal_masuk);
+        $nowTimestamp = Carbon::now();
 
         if (!$this->is_scanned){
             if ($nowTimestamp > $bookTimestamp){
