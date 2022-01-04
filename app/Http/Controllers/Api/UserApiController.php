@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
+use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\KeranjangResource;
 use App\Http\Resources\TiketResource;
 use App\Models\Keranjang;
@@ -10,6 +11,8 @@ use App\Models\Tiket;
 use App\Models\User;
 use App\Repositories\TicketRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 class UserApiController extends ApiController
@@ -33,6 +36,31 @@ class UserApiController extends ApiController
                 'showing user '
             );
         }catch (\Exception $exception){
+            return $this->errorResponse(
+                [],
+                $exception->getMessage()
+            );
+        }
+    }
+
+    public function update($user,UserUpdateRequest $userUpdateRequest)
+    {
+        DB::beginTransaction();
+        try{
+            $profile = User::findOrFail($user);
+
+            $profile->update(
+                $userUpdateRequest->validated()
+            );
+
+            DB::commit();
+            return $this->successResponse(
+                $profile,
+                'success update user personal data'
+            );
+        }catch (\Exception $exception){
+            DB::rollBack();
+            Log::error($exception->getMessage());
             return $this->errorResponse(
                 [],
                 $exception->getMessage()

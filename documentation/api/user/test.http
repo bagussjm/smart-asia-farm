@@ -19,6 +19,40 @@ Accept: application/json
 
 ###
 
+### update user personal data success test
+
+PUT http://localhost/smart-asia-farm/public/api/user/16
+Content-Type: application/json
+Accept: application/json
+
+{
+   "nama_lengkap" : "Budiman Sudjatmiko",
+   "no_hp" : "082174614390",
+   "alamat" : "Jl. Rowo Bening",
+   "jenis_kelamin" : "laki-laki",
+   "tanggal_lahir" : "1998-03-05",
+   "tempat_lahir" : "Tembilahan"
+}
+
+###
+
+### update user personal data invalid test
+
+PUT http://localhost/smart-asia-farm/public/api/user/16
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nama_lengkap" : "Budiman Sudjatmiko",
+  "no_hp" : "082174614390",
+  "alamat" : "Jl. Rowo Bening",
+  "jenis_kelamin" : "kelamin",
+  "tanggal_lahir" : "kambing",
+  "tempat_lahir" : ""
+}
+
+###
+
 ### get user not found user
 
 GET http://localhost/smart-asia-farm/public/api/user/ol/keranjang
