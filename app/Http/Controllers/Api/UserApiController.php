@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
+use App\Http\Requests\UserUpdatePasswordRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\KeranjangResource;
 use App\Http\Resources\TiketResource;
@@ -12,6 +13,7 @@ use App\Models\User;
 use App\Repositories\TicketRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
@@ -61,6 +63,32 @@ class UserApiController extends ApiController
         }catch (\Exception $exception){
             DB::rollBack();
             Log::error($exception->getMessage());
+            return $this->errorResponse(
+                [],
+                $exception->getMessage()
+            );
+        }
+    }
+
+    public function updatePassword($user,UserUpdatePasswordRequest $userUpdatePasswordRequest)
+    {
+        DB::beginTransaction();
+        try{
+            $profile = User::findOrFail($user);
+            $valid = $userUpdatePasswordRequest->validated();
+
+            $profile->update([
+                'password' => Hash::make($valid['password'])
+            ]);
+
+            DB::commit();
+            return $this->successResponse(
+                $profile,
+                'success update user password'
+            );
+        }catch (\Exception $exception){
+            DB::rollBack();
+            Log::error($exception->getMessage().''.$exception->getTraceAsString());
             return $this->errorResponse(
                 [],
                 $exception->getMessage()

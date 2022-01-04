@@ -53,6 +53,31 @@ Accept: application/json
 
 ###
 
+### update password data success test
+
+PUT http://localhost/smart-asia-farm/public/api/user/16/password
+Content-Type: application/json
+Accept: application/json
+
+{
+  "password" : "rahasia"
+}
+
+###
+
+
+### update password data invalid test
+
+PUT http://localhost/smart-asia-farm/public/api/user/16/password
+Content-Type: application/json
+Accept: application/json
+
+{
+  "password" : ""
+}
+
+###
+
 ### get user not found user
 
 GET http://localhost/smart-asia-farm/public/api/user/ol/keranjang

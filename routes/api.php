@@ -27,6 +27,7 @@ Route::prefix('/user')->group(function (){
     Route::get('/',[UserApiController::class,'index']);
     Route::get('/{user}',[UserApiController::class,'profile']);
     Route::put('/{user}',[UserApiController::class,'update']);
+    Route::put('/{user}/password',[UserApiController::class,'updatePassword']);
 
     Route::get('/{user}/keranjang',[UserApiController::class,'charts']);
     Route::get('/{user}/tiket',[UserApiController::class,'tickets']);
