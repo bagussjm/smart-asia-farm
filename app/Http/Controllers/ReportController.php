@@ -10,20 +10,28 @@ use phpDocumentor\Reflection\Types\Void_;
 
 class ReportController extends Controller
 {
+    private $reportYear;
+
+    public function __construct()
+    {
+        $this->reportYear = Carbon::now()->translatedFormat('Y');
+    }
+
     public function visitorReport()
     {
-        $data['januaryReports'] = $this->getMonthlyReports('2021-01');
-        $data['februaryReports'] = $this->getMonthlyReports('2021-02');
-        $data['marchReports'] = $this->getMonthlyReports('2021-03');
-        $data['aprilReports'] = $this->getMonthlyReports('2021-04');
-        $data['mayReports'] = $this->getMonthlyReports('2021-05');
-        $data['juneReports'] = $this->getMonthlyReports('2021-06');
-        $data['julyReports'] = $this->getMonthlyReports('2021-07');
-        $data['augustReports'] = $this->getMonthlyReports('2021-08');
-        $data['septemberReports'] = $this->getMonthlyReports('2021-09');
-        $data['octoberReports'] = $this->getMonthlyReports('2021-10');
-        $data['novemberReports'] = $this->getMonthlyReports('2021-11');
-        $data['decemberReports'] = $this->getMonthlyReports('2021-12');
+
+        $data['januaryReports'] = $this->getMonthlyReports('01');
+        $data['februaryReports'] = $this->getMonthlyReports('02');
+        $data['marchReports'] = $this->getMonthlyReports('03');
+        $data['aprilReports'] = $this->getMonthlyReports('04');
+        $data['mayReports'] = $this->getMonthlyReports('05');
+        $data['juneReports'] = $this->getMonthlyReports('06');
+        $data['julyReports'] = $this->getMonthlyReports('07');
+        $data['augustReports'] = $this->getMonthlyReports('08');
+        $data['septemberReports'] = $this->getMonthlyReports('09');
+        $data['octoberReports'] = $this->getMonthlyReports('10');
+        $data['novemberReports'] = $this->getMonthlyReports('11');
+        $data['decemberReports'] = $this->getMonthlyReports('12');
 
 //        return response()->json($data);
 
@@ -39,6 +47,7 @@ class ReportController extends Controller
     }
 
     /**
+     * @param String $month
      * @return array
      * */
     public function getMonthlyReports($month)
@@ -46,7 +55,7 @@ class ReportController extends Controller
         $filteredReports = $this->getFilteredReports();
 
         $reportPerMonth = $filteredReports
-            ->whereBetween('date',$this->getFromToBetweenMonth($month));
+            ->whereBetween('date',$this->getFromToBetweenMonth($this->reportYear.'-'.$month));
 
         return array(
             'man' => $reportPerMonth->where('sex','laki-laki')->count(),
