@@ -8,14 +8,16 @@ Accept: application/json
 
 ### create keranjang success test
 
-POST http://localhost/smart-asia-farm/public/api/keranjang/create
+POST http://localhost/future-school/public/api/submit-student-registration
 Content-Type: application/json
 Accept: application/json
 
 {
-  "id_user" : "1",
-  "id_wahana" : "1",
-  "jumlah_pesan" : 4
+  "id_siswa" : "9",
+  "id_formulir" : "4",
+  "payment_number" : "FRM.4.461bea1a8e2aff",
+  "form_data" : "[{name: bagussjm}]",
+  "status_pembayaran" : "pending"
 }
 
 ###

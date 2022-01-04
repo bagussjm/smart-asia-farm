@@ -73,7 +73,7 @@ Response :
     "data" : {
          "id" : "bigint,unique",
          "email" : "string",
-         "password" : "string",
+         "email_verified_at": "timestamps",
          "jenis_pengguna" : "enum['admin','pengelola','pelanggan']",
          "nama_lengkap" : "string",
          "no_hp" : "string",
@@ -100,9 +100,6 @@ Request :
 
 ```json 
 {
-   "email" : "string",
-   "password" : "string",
-   "jenis_pengguna" : "enum['admin','pengelola','pelanggan']",
    "nama_lengkap" : "string",
    "no_hp" : "string",
    "alamat" : "text",
@@ -121,7 +118,47 @@ Response :
     "data" : {
          "id" : "bigint,unique",
          "email" : "string",
-         "password" : "string",
+         "email_verified_at": "timestamps",
+         "jenis_pengguna" : "enum['admin','pengelola','pelanggan']",
+         "nama_lengkap" : "string",
+         "no_hp" : "string",
+         "alamat" : "text",
+         "jenis_kelamin" : "enum['laki-laki','perempuan']",
+         "tanggal_lahir" : "date",
+         "tempat_lahir" : "string",
+         "created_at" : "timestamps",
+         "updated_at" : "timestamps",
+         "deleted_at" : "timestamps",
+     }
+}
+```
+
+## Update Password
+
+Request :
+- Method : PUT
+- Endpoint : `/api/user/{id}/password`
+- Header :
+    - Content-Type: application/json
+    - Accept: application/json
+- Body :
+
+```json 
+{
+   "password" : "string"
+}
+```
+
+Response :
+
+```json 
+{
+    "code" : "number",
+    "status" : "string",
+    "data" : {
+         "id" : "bigint,unique",
+         "email" : "string",
+         "email_verified_at": "timestamps",
          "jenis_pengguna" : "enum['admin','pengelola','pelanggan']",
          "nama_lengkap" : "string",
          "no_hp" : "string",

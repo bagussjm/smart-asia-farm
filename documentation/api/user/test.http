@@ -5,6 +5,19 @@ Accept: application/json
 
 ###
 
+### get user profile success test
+
+GET http://localhost/smart-asia-farm/public/api/user/14
+Accept: application/json
+
+###
+
+### get user profile not found test
+
+GET http://localhost/smart-asia-farm/public/api/user/abc
+Accept: application/json
+
+###
 
 ### get user not found user
 
