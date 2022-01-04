@@ -25,6 +25,7 @@ Route::post('/register',[AuthApiController::class,'register']);
 
 Route::prefix('/user')->group(function (){
     Route::get('/',[UserApiController::class,'index']);
+    Route::get('/{user}',[UserApiController::class,'profile']);
     Route::get('/{user}/keranjang',[UserApiController::class,'charts']);
     Route::get('/{user}/tiket',[UserApiController::class,'tickets']);
 });

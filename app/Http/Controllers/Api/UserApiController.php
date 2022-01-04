@@ -24,6 +24,22 @@ class UserApiController extends ApiController
         );
     }
 
+    public function profile($user)
+    {
+        try{
+            $profile = User::findOrFail($user);
+            return $this->successResponse(
+                $profile,
+                'showing user '
+            );
+        }catch (\Exception $exception){
+            return $this->errorResponse(
+                [],
+                $exception->getMessage()
+            );
+        }
+    }
+
     public function charts($user)
     {
         try{
