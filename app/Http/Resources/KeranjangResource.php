@@ -20,6 +20,8 @@ class KeranjangResource extends JsonResource
             'id_wahana' => $this->id_wahana,
             'id_tiket' => $this->id_tiket,
             'status_keranjang' => $this->status_keranjang,
+            'jumlah_pesan' => $this->jumlah_pesan,
+            'total_harga' => $this->total_harga,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
