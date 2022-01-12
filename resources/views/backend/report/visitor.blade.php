@@ -34,10 +34,9 @@
                                     Wisatawan Nusantara
                                 </b>
                             </th>
-                            <th colspan="3">
+                            <th colspan="3" class="text-center">
                                 <b>
-                                    Pengunjung Asing / <br>
-                                    Wisatawan Mancanegara
+                                    TIKET
                                 </b>
                             </th>
                             <th>
@@ -68,17 +67,17 @@
                             </th>
                             <th>
                                 <b>
-                                    Lk2
+                                    Tiket Terjual
                                 </b>
                             </th>
                             <th>
                                 <b>
-                                    Pr
+                                    Tiket Divalidasi
                                 </b>
                             </th>
                             <th>
                                 <b>
-                                    Jlh
+                                    Tiket Belum Divalidasi
                                 </b>
                             </th>
                             <th></th>
@@ -96,9 +95,15 @@
                             <td>
                                 {{ $januaryReports['formatted_grand_total'] }}
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                {{ $ticketSold['january'] }}
+                            </td>
+                            <td>
+                                {{ $validated['january'] }}
+                            </td>
+                            <td>
+                                {{ $waiting['january'] }}
+                            </td>
                             <td>
                                 {{ $januaryReports['formatted_grand_total'] }}
                             </td>
