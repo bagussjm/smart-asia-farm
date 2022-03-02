@@ -4,7 +4,7 @@
 Online Ticket Booking at Asia Farm Pekanbaru City, Riau Province.
 
 ## Restful API
-Restful API documentation can be found [here](https://github.com/digtive/E-Tiket-Asia-Farm/tree/main/documentation/api)
+Restful API documentation can be found [here](https://github.com/bagussjm/smart-asia-farm/tree/main/documentation/api)
 
 ## Framework
 
